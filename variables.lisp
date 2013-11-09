@@ -15,9 +15,7 @@
 (setf *frame-number-map* "1234567890")
 (setf *startup-message* "Never Stop Hacking!")
 (setf *run-or-raise-all-screens* t)
-(setf *mode-line-background-color* "black");;"Define mode line background color."
-(setf *mode-line-foreground-color* "green");;"Define mode line foreground color."
-(setf *mode-line-border-color* "lightyellow");;"Define mode line border color."
+(setf *mode-line-foreground-color* "DarkSeaGreen")
 (setf *mode-line-timeout* 10)
 (setf *normal-border-width* 1)
 (setf *disk-modeline-fmt* "%m: %a/%s")
