@@ -44,13 +44,6 @@
 (load-config-contrib "global-windows.lisp")
 
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
-
-(resize-head 0 0 15 1600 885);
-
 (add-hook *urgent-window-hook* 'echo-urgent-window)
-
-;; turn on/off the mode line for the current head only.
-(stumpwm:toggle-mode-line (stumpwm:current-screen)
-                         (stumpwm:current-head))
-
-(run-commands "enable-per-window-layout")
+(enable-mode-line-all-heads)
+(run-commands "enable-per-window-layout" "resize-heads")
