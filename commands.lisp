@@ -148,3 +148,7 @@ rules."
   ;; (ipython "URxvt" "urxvt -e ipython" "ipython" "ipython")
   ;; (mc "URxvt" "urxvt -e mc" "mc" "Midnight Commander")
   )
+
+(defcommand update-all-modelines () ()
+  "Update modelines on all heads."
+  (enable-mode-line-all-heads))

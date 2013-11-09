@@ -161,3 +161,8 @@ in which case pull it into the current frame."
 in which case focus it."
                          name)
                 (run-or-raise ,command '(:class ,class :instance ,instance :title ,title))))))
+
+(defun enable-mode-line-all-heads ()
+  (dolist (screen *screen-list*)
+    (dolist (head (screen-heads screen))
+      (enable-mode-line screen head t))))
