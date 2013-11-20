@@ -118,7 +118,6 @@
 
 (defkeys-top
   ("s-P" "exec gmrun")
-  ("s-p" "exec dmenu_run")
   ("s-L" "update-mode-line")
   ("s-C" "kill-window")
   ;;
