@@ -24,6 +24,7 @@
                                ("s-h"  "search-github-selection")
                                ("s-p"  "search-pypi-selection")
                                ("s-s"  "search-libgen-scimag-selection")
+                               ("s-c"  "search-crate-io-selection")
                                ("s-C-g"  "search-google-prompt")
                                ("s-C-y"  "search-yandex-prompt")
                                ("s-C-t"  "search-multitran-prompt")
@@ -31,6 +32,7 @@
                                ("s-C-o"  "search-ohloh-prompt")
                                ("s-C-p"  "search-pypi-prompt")
                                ("s-C-s"  "search-libgen-scimag-prompt")
+                               ("s-C-c"  "search-crate-io-prompt")
                                ))
 
 (defparameter *pull-keymap* (build-keymap

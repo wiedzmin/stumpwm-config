@@ -9,6 +9,8 @@
 
 (setf *search-browser-command* "firefox -new-tab")
 
+(defparameter *URL-CRATE-IO*   "http://crate.io/?q=~a")
+
 (make-search-engine-selection search-google-selection *URL-GOOGLE* "Google search")
 (make-search-engine-selection search-yandex-selection *URL-YANDEX* "Yandex search")
 (make-search-engine-selection search-hackage-selection *URL-HACKAGE* "Hackage search")
@@ -37,6 +39,7 @@
 (make-search-engine-selection search-piratebay-selection *URL-PIRATEBAY* "PirateBay search")
 (make-search-engine-selection search-ohloh-selection *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-selection search-libgen-scimag-selection *URL-LIBGEN-SCIMAG* "Libgen scientific")
+(make-search-engine-selection search-crate-io-selection *URL-CRATE-IO* "Crate.io Python packages index")
 
 (make-search-engine-prompt search-google-prompt "Google" *URL-GOOGLE* "Google search")
 (make-search-engine-prompt search-yandex-prompt "Yandex" *URL-YANDEX* "Yandex search")
@@ -66,3 +69,4 @@
 (make-search-engine-prompt search-piratebay-prompt "PirateBay" *URL-PIRATEBAY* "PirateBay search")
 (make-search-engine-prompt search-ohloh-prompt "Ohloh" *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-prompt search-libgen-scimag-prompt "Libgen scientific" *URL-LIBGEN-SCIMAG* "Libgen scientific search")
+(make-search-engine-prompt search-crate-io-prompt "Crate.io index" *URL-CRATE-IO* "Crate.io Python packages index")
