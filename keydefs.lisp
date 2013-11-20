@@ -42,6 +42,7 @@
                                ("v"  "p-virtualbox")
                                ("q"  "p-qmpdclient")
                                ("k"  "p-krusader")
+                               ("l"  "p-vlc")
                                ))
 
 (defparameter *raise-keymap* (build-keymap
@@ -53,6 +54,7 @@
                                ("v"  "virtualbox")
                                ("q"  "qmpdclient")
                                ("k"  "krusader")
+                               ("l"  "vlc")
                                ))
 
 (defparameter *heads-keymap* (build-keymap

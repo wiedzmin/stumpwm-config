@@ -136,7 +136,7 @@ rules."
   (focus-prev-frame (current-group)))
 
 (define-pull-raise-pairs
-  emacs conkeror libreoffice qmpdclient krusader konsole
+  emacs conkeror libreoffice qmpdclient krusader konsole vlc
   (firefox "Firefox" "firefox")
   (urxvt "URxvt")
   (VirtualBox "VirtualBox" "VirtualBox")
