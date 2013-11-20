@@ -152,3 +152,17 @@ rules."
 (defcommand update-all-modelines () ()
   "Update modelines on all heads."
   (enable-mode-line-all-heads))
+
+(defcommand custom/dump-group () ()
+  "Dump group for future use"
+  (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/.stumpwm-group" )))
+    (dump-to-file (dump-group (current-group)) group-file)))
+
+(defcommand custom/restore-group-multihead () ()
+  "Restore group windows placement for multihead setup"
+  (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/.stumpwm-multihead" )))
+    (cond ((not (probe-file group-file))
+           (message "~s not found" group-file))
+          (t
+           (restore-group (current-group) (read-dump-from-file group-file))
+           ))))

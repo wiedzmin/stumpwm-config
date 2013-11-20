@@ -1,2 +1,3 @@
 credentials.lisp
 ssh-servers.lisp
+layouts/.stumpwm-group

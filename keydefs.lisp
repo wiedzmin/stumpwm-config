@@ -71,6 +71,12 @@
                                ("Down"  "exchange-direction down")
                                ))
 
+(defparameter *desktop-keymap* (build-keymap
+                                ("a"  "update-all-modelines")
+                                ("d"  "custom/dump-group")
+                                ("m"  "custom/restore-group-multihead")
+                               ))
+
 (defkeys-root
   ("0" "remove-split")
   ("1" "only")
@@ -140,6 +146,7 @@
   ("s-r"       '*raise-keymap*)
   ("s-v"       '*heads-keymap*)
   ("s-s"       '*swap-keymap*)
+  ("s-p"       '*desktop-keymap*)
   )
 
 (flet ((dk (k c)
