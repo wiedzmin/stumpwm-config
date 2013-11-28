@@ -35,8 +35,7 @@
 (setf stumpwm:*window-format* "%n%s%t") ;' %c'
 
 ;; Window border colors.
-(set-focus-color "DarkSeaGreen")
-;; (set-unfocus-color "red")
+(set-focus-color "red")
 (set-win-bg-color "black")
 
 (setf *window-border-style* :thin)      ; :thick :thin :tight :none
