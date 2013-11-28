@@ -76,7 +76,8 @@
 (defparameter *desktop-keymap* (build-keymap
                                 ("a"  "update-all-modelines")
                                 ("d"  "custom/dump-group")
-                                ("m"  "custom/restore-group-multihead")
+                                ("h"  "custom/restore-group-multihead-home")
+                                ("w"  "custom/restore-group-multihead-work")
                                ))
 
 (defkeys-root

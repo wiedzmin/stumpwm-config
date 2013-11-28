@@ -166,3 +166,15 @@ in which case focus it."
   (dolist (screen *screen-list*)
     (dolist (head (screen-heads screen))
       (enable-mode-line screen head t))))
+
+(defmacro restore-group-multihead-command (key relfilename)
+  `(defcommand
+      ,(intern (string-upcase (concatenate 'string "custom/restore-group-multihead-" key)))
+      () ()
+    "Restore group windows placement for multihead setup"
+    (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename )))
+      (cond ((not (probe-file group-file))
+             (message "~s not found" group-file))
+            (t
+             (restore-group (current-group) (read-dump-from-file group-file))
+             )))))
