@@ -43,8 +43,9 @@
                                ("g"  "p-google-chrome")
                                ("v"  "p-virtualbox")
                                ("q"  "p-qmpdclient")
-                               ("k"  "p-krusader")
+                               ("k"  "p-emelfm2")
                                ("l"  "p-vlc")
+                               ("2"  "p-fbreader")
                                ))
 
 (defparameter *raise-keymap* (build-keymap
@@ -55,8 +56,9 @@
                                ("g"  "google-chrome")
                                ("v"  "virtualbox")
                                ("q"  "qmpdclient")
-                               ("k"  "krusader")
+                               ("k"  "emelfm2")
                                ("l"  "vlc")
+                               ("2"  "fbreader")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
