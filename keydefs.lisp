@@ -46,6 +46,7 @@
                                ("k"  "p-emelfm2")
                                ("l"  "p-vlc")
                                ("2"  "p-fbreader")
+                               ("z"  "p-zathura")
                                ))
 
 (defparameter *raise-keymap* (build-keymap
@@ -59,6 +60,7 @@
                                ("k"  "emelfm2")
                                ("l"  "vlc")
                                ("2"  "fbreader")
+                               ("z"  "zathura")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
