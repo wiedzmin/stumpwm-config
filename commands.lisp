@@ -167,3 +167,9 @@ rules."
 
 (restore-group-multihead-command "home" "layouts/.stumpwm-multihead-home")
 (restore-group-multihead-command "work" "layouts/.stumpwm-multihead-work")
+
+;; TDB Refactor to generalize with search macros
+;; TDB Disengage from *search-browser-command*
+(defcommand custom/open-selection () ()
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " \"" (get-x-selection) "\"")))

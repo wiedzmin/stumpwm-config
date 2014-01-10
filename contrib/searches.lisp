@@ -40,6 +40,7 @@
 (make-search-engine-selection search-ohloh-selection *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-selection search-libgen-scimag-selection *URL-LIBGEN-SCIMAG* "Libgen scientific")
 (make-search-engine-selection search-crate-io-selection *URL-CRATE-IO* "Crate.io Python packages index")
+(make-search-engine-selection search-open-selection "" "Just open selection")
 
 (make-search-engine-prompt search-google-prompt "Google" *URL-GOOGLE* "Google search")
 (make-search-engine-prompt search-yandex-prompt "Yandex" *URL-YANDEX* "Yandex search")

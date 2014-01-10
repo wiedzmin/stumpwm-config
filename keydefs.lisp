@@ -25,6 +25,7 @@
                                ("s-p"  "search-pypi-selection")
                                ("s-s"  "search-libgen-scimag-selection")
                                ("s-c"  "search-crate-io-selection")
+                               ("s-o"  "custom/open-selection")
                                ("s-C-g"  "search-google-prompt")
                                ("s-C-y"  "search-yandex-prompt")
                                ("s-C-t"  "search-multitran-prompt")
