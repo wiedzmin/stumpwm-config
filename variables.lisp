@@ -46,10 +46,10 @@
 (set-fg-color "yellow")
 (set-border-color "grey16")
 (set-msg-border-width 0)
-(setf *input-window-gravity* :top-left)
+(setf *input-window-gravity* :center)
 
 ;; Set the message and input box to the bottom right. This way it overlaps with mode-line.
-(setf *message-window-gravity* :top-left)
+(setf *message-window-gravity* :center)
 ;; in seconds, how long a message will appear for. This must be an integer.
 (setf *timeout-wait* 5)
 
