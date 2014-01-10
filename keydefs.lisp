@@ -66,6 +66,7 @@
                                ("Left"  "enable-external-monitor-left")
                                ("Up"  "enable-external-monitor-above")
                                ("Down"  "disable-external-monitor")
+                               ("u"  "update-heads-layout")
                                ))
 
 (defparameter *swap-keymap* (build-keymap

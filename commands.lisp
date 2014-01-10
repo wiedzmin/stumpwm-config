@@ -153,6 +153,11 @@ rules."
   "Update modelines on all heads."
   (enable-mode-line-all-heads))
 
+(defcommand update-heads-layout () ()
+  (run-commands
+   "resize-heads"
+   "update-all-modelines"))
+
 (defcommand custom/dump-group () ()
   "Dump group for future use"
   (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/.stumpwm-group" )))
