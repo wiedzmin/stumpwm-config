@@ -166,7 +166,7 @@ rules."
     (dump-to-file (dump-group (current-group)) group-file)))
 
 (restore-group-multihead-command "home" "layouts/.stumpwm-multihead-home")
-(restore-group-multihead-command "work" "layouts/.stumpwm-multihead-work")
+(restore-group-multihead-command "work" "layouts/.stumpwm-mh-horizontal-work")
 
 ;; TDB Refactor to generalize with search macros
 ;; TDB Disengage from *search-browser-command*
