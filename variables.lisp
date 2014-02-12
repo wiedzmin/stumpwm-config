@@ -49,7 +49,7 @@
 (setf *input-window-gravity* :center)
 
 ;; Set the message and input box to the bottom right. This way it overlaps with mode-line.
-(setf *message-window-gravity* :center)
+(setf *message-window-gravity* :bottom-right)
 ;; in seconds, how long a message will appear for. This must be an integer.
 (setf *timeout-wait* 5)
 
