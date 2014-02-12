@@ -165,7 +165,7 @@ rules."
   (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/.stumpwm-group" )))
     (dump-to-file (dump-group (current-group)) group-file)))
 
-(restore-group-multihead-command "home" "layouts/.stumpwm-multihead-home")
+(restore-group-multihead-command "home" "layouts/.stumpwm-mh-horizontal-home")
 (restore-group-multihead-command "work" "layouts/.stumpwm-mh-horizontal-work")
 
 ;; TDB Refactor to generalize with search macros
