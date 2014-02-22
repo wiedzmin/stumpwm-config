@@ -178,3 +178,13 @@ in which case focus it."
             (t
              (restore-group (current-group) (read-dump-from-file group-file))
              )))))
+
+(defun update-emacs-frames ()
+  (let ((heads-count (length (screen-heads (car *screen-list*)))))
+    (emacs)
+    (send-meta-key (current-screen) (kbd "M-x"))
+    (window-send-string "update-frames")
+    (send-meta-key (current-screen) (kbd "RET"))
+    (window-send-string (write-to-string heads-count))
+    (send-meta-key (current-screen) (kbd "RET"))
+    ))

@@ -158,7 +158,8 @@ rules."
 (defcommand update-heads-layout () ()
   (run-commands
    "resize-heads"
-   "update-all-modelines"))
+   "update-all-modelines")
+  (update-emacs-frames))
 
 (defcommand custom/dump-group () ()
   "Dump group for future use"
