@@ -53,17 +53,6 @@ select the screen."
   (or (argument-pop input)
       (completing-read (current-screen) prompt (my-global-window-names))))
 
-(defcommand global-select () ((:my-global-window-names "Select: "))
-  "Like select, but for all groups not just the current one."
-  (let ((window nil))
-    ;; Check each group to see if it's in
-    (dolist (group (screen-groups (current-screen)))
-      (setq window (my-window-in-group query group))
-      (when window
-        (switch-to-group group)
-        (frame-raise-window group (window-frame window) window)
-        return))))
-
 (defmacro with-global-windowlist (name docstring &rest args)
  `(defcommand ,name (&optional (fmt *window-format*)) (:rest)
    ,docstring
