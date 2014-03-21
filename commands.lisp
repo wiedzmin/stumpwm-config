@@ -161,9 +161,9 @@ rules."
    "update-all-modelines")
   (update-emacs-frames))
 
-(defcommand custom/dump-group () ()
+(defcommand custom/dump-group (filename) ((:string "Set filename: "))
   "Dump group for future use"
-  (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/.stumpwm-group" )))
+  (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/" filename)))
     (dump-to-file (dump-group (current-group)) group-file)))
 
 (restore-group-multihead-command "home" "layouts/.stumpwm-mh-sidebar-home")
