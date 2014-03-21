@@ -172,7 +172,7 @@ in which case focus it."
       ,(intern (string-upcase (concatenate 'string "custom/restore-group-multihead-" key)))
       () ()
     "Restore group windows placement for multihead setup"
-    (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename )))
+    (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename)))
       (cond ((not (probe-file group-file))
              (message "~s not found" group-file))
             (t
