@@ -107,6 +107,7 @@
   ("s-m" "screenshot-default")
   ("v" "view-gmail")
   ("w" "global-windowlist")
+  ("l" "custom/choose-group-layout")
   )
 
 (when (and (boundp '*xmonad-style-groups*) *xmonad-style-groups*)

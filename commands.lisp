@@ -174,3 +174,6 @@ rules."
 (defcommand custom/open-selection () ()
   (run-shell-command
    (concatenate 'string *search-browser-command* " \"" (get-x-selection) "\"")))
+
+(defcommand custom/choose-group-layout () ()
+  (select-layout-from-menu))

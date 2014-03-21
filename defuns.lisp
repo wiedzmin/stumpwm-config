@@ -188,3 +188,19 @@ in which case focus it."
     (window-send-string (write-to-string heads-count))
     (send-meta-key (current-screen) (kbd "RET"))
     ))
+
+(defun window-layout-list ()
+  (let ((layout-dir (concatenate 'string *STUMPWM-LIB-DIR* "/layouts")))
+    (directory
+     (make-pathname
+      :directory `(:absolute ,@(split-seq layout-dir "/"))
+      :name :wild))))
+
+(defun select-layout-from-menu ()
+  (let ((group-file (select-from-menu
+                     (current-screen)
+                     (mapcar
+                      (lambda (pathname) (namestring pathname))
+                      (window-layout-list)))))
+    (when group-file
+      (restore-group (current-group) (read-dump-from-file group-file)))))
