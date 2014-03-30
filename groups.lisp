@@ -1,6 +1,6 @@
 (clear-window-placement-rules)
 
-(when (and (boundp '*xmonad-style-groups*) *xmonad-style-groups*)
+(if (and (boundp '*xmonad-style-groups*) *xmonad-style-groups*)
     (progn
       (run-commands "gnewbg web" "gnewbg im" "gnewbg work" "gnewbg read"
                     "gnewbg term" "gnewbg mm" "gnewbg file" "gnewbg virt")
@@ -43,7 +43,15 @@
         (0 t   t :title "ranger:")
         (0 t   t :class "Recoll"))
       (define-frame-preference "virt"
-        (0 t   t :class "VirtualBox"))))
+        (0 t   t :class "VirtualBox")))
+    (progn
+      ;; by default force video players to go to frame 0
+      ;; otherwise they freeze up stumpwm being residing
+      ;; on external monitor occasionally (VGA-specific)
+      (define-frame-preference "Default"
+        (0 t   t :class "Qmpdclient")
+        (0 t   t :class "Vlc")
+        (0 t   t :class "Smplayer"))))
 
 (defcommand rearrange-windows () ()
   (sync-window-placement))
