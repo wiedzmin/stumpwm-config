@@ -166,9 +166,6 @@ rules."
   (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/" filename)))
     (dump-to-file (dump-group (current-group)) group-file)))
 
-(restore-group-multihead-command "home" "layouts/.stumpwm-mh-sidebar-home")
-(restore-group-multihead-command "work" "layouts/.stumpwm-mh-sidebar-work")
-
 ;; TDB Refactor to generalize with search macros
 ;; TDB Disengage from *search-browser-command*
 (defcommand custom/open-selection () ()
