@@ -71,3 +71,5 @@
 (make-search-engine-prompt search-ohloh-prompt "Ohloh" *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-prompt search-libgen-scimag-prompt "Libgen scientific" *URL-LIBGEN-SCIMAG* "Libgen scientific search")
 (make-search-engine-prompt search-crate-io-prompt "Crate.io index" *URL-CRATE-IO* "Crate.io Python packages index")
+
+(make-search-engine-augmented search-google-augmented "Augmented Google" *URL-GOOGLE* "Google search")
