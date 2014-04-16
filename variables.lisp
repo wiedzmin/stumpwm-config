@@ -31,8 +31,7 @@
            `(:eval (mode-line-groups-list))
            "^7*(^[^n ^]" `(:eval (window-title-and-notifications-with-fix-length 200 20)) ")^n "
            ))
-(setf *window-format* "<%n%s%m%30t>")
-(setf stumpwm:*window-format* "%n%s%t") ;' %c'
+(setf *window-format* "%n%s%t")
 
 ;; Window border colors.
 (set-focus-color "red")
