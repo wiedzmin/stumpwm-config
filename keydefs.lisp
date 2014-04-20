@@ -36,6 +36,7 @@
                                ("s-C-s"  "search-libgen-scimag-prompt")
                                ("s-C-c"  "search-crate-io-prompt")
                                ("s-C-z"  "search-zugaina-prompt")
+                               ("C-g"  "search-google-augmented")
                                ))
 
 (defparameter *pull-keymap* (build-keymap
