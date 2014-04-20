@@ -167,17 +167,20 @@ in which case focus it."
     (dolist (head (screen-heads screen))
       (enable-mode-line screen head t))))
 
+(defun concat-as-symbol (prefix suffix)
+  (intern (string-upcase (concatenate 'string prefix suffix))))
+
 (defmacro restore-group-multihead-command (key relfilename)
   `(defcommand
-      ,(intern (string-upcase (concatenate 'string "custom/restore-group-multihead-" key)))
-      () ()
-    "Restore group windows placement for multihead setup"
-    (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename)))
-      (cond ((not (probe-file group-file))
-             (message "~s not found" group-file))
-            (t
-             (restore-group (current-group) (read-dump-from-file group-file))
-             )))))
+       ,(concat-as-symbol "custom/restore-group-multihead-" key)
+       () ()
+     "Restore group windows placement for multihead setup"
+     (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename)))
+       (cond ((not (probe-file group-file))
+              (message "~s not found" group-file))
+             (t
+              (restore-group (current-group) (read-dump-from-file group-file))
+              )))))
 
 (defun update-emacs-frames ()
   (let ((heads-count (length (screen-heads (car *screen-list*)))))
@@ -189,11 +192,11 @@ in which case focus it."
     (send-meta-key (current-screen) (kbd "RET"))
     ))
 
-(defun window-layout-list ()
-  (let ((layout-dir (concatenate 'string *STUMPWM-LIB-DIR* "/layouts")))
+(defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir ""))
+  (let ((pathspec (concatenate 'string basedir "/" subdir)))
     (directory
      (make-pathname
-      :directory `(:absolute ,@(split-seq layout-dir "/"))
+      :directory `(:absolute ,@(split-seq pathspec "/"))
       :name :wild))))
 
 (defun select-layout-from-menu ()
@@ -201,6 +204,6 @@ in which case focus it."
                      (current-screen)
                      (mapcar
                       (lambda (pathname) (namestring pathname))
-                      (window-layout-list)))))
+                      (directory-file-list :subdir "layouts")))))
     (when group-file
       (restore-group (current-group) (read-dump-from-file group-file)))))
