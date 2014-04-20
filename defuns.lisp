@@ -200,10 +200,12 @@ in which case focus it."
       :name :wild))))
 
 (defun select-layout-from-menu ()
-  (let ((group-file (select-from-menu
-                     (current-screen)
-                     (mapcar
-                      (lambda (pathname) (namestring pathname))
-                      (directory-file-list :subdir "layouts")))))
-    (when group-file
-      (restore-group (current-group) (read-dump-from-file group-file)))))
+  (let ((filelist (directory-file-list :subdir "layouts")))
+    (unless (null filelist)
+      (let ((group-file (select-from-menu
+                         (current-screen)
+                         (mapcar
+                          (lambda (pathname) (namestring pathname))
+                          filelist))))
+        (when group-file
+          (restore-group (current-group) (read-dump-from-file group-file)))))))
