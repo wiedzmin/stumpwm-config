@@ -29,7 +29,6 @@
 (load-module "stumperwindowlayout")
 
 (load-config-module "credentials.lisp")
-(load-config-module "defkeys")
 (load-config-module "constants.lisp")
 (load-config-module "variables.lisp")
 (load-config-module "defuns.lisp")
