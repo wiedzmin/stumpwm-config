@@ -10,6 +10,7 @@
 (setf *search-browser-command* "firefox -new-tab")
 
 (defparameter *URL-CRATE-IO*   "http://crate.io/?q=~a")
+(defparameter *URL-RUTRACKER*  "http://rutracker.org/forum/tracker.php?nm=~a")
 
 (make-search-engine-selection search-google-selection *URL-GOOGLE* "Google search")
 (make-search-engine-selection search-yandex-selection *URL-YANDEX* "Yandex search")
@@ -40,6 +41,7 @@
 (make-search-engine-selection search-ohloh-selection *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-selection search-libgen-scimag-selection *URL-LIBGEN-SCIMAG* "Libgen scientific")
 (make-search-engine-selection search-crate-io-selection *URL-CRATE-IO* "Crate.io Python packages index")
+(make-search-engine-selection search-rutracker-selection *URL-RUTRACKER* "Rutracker torrents")
 (make-search-engine-selection search-open-selection "" "Just open selection")
 
 (make-search-engine-prompt search-google-prompt "Google" *URL-GOOGLE* "Google search")
@@ -71,5 +73,6 @@
 (make-search-engine-prompt search-ohloh-prompt "Ohloh" *URL-OHLOH-CODE* "Ohloh code search")
 (make-search-engine-prompt search-libgen-scimag-prompt "Libgen scientific" *URL-LIBGEN-SCIMAG* "Libgen scientific search")
 (make-search-engine-prompt search-crate-io-prompt "Crate.io index" *URL-CRATE-IO* "Crate.io Python packages index")
+(make-search-engine-prompt search-rutracker-prompt "Rutracker" *URL-RUTRACKER* "Rutracker torrents")
 
 (make-search-engine-augmented search-google-augmented "Augmented Google" *URL-GOOGLE* "Google search")

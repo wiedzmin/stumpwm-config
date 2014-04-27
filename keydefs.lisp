@@ -26,6 +26,7 @@
                                ("s-s"  "search-libgen-scimag-selection")
                                ("s-c"  "search-crate-io-selection")
                                ("s-z"  "search-zugaina-selection")
+                               ("s-r"  "search-rutracker-selection")
                                ("s-o"  "custom/open-selection")
                                ("s-C-g"  "search-google-prompt")
                                ("s-C-y"  "search-yandex-prompt")
@@ -36,6 +37,7 @@
                                ("s-C-s"  "search-libgen-scimag-prompt")
                                ("s-C-c"  "search-crate-io-prompt")
                                ("s-C-z"  "search-zugaina-prompt")
+                               ("s-C-r"  "search-rutracker-prompt")
                                ("C-g"  "search-google-augmented")
                                ))
 
