@@ -38,7 +38,6 @@
 
 (load-config-contrib "urgent-windows.lisp")
 (load-config-contrib "ssh-servers.lisp")
-(load-config-contrib "gmail.lisp")
 (load-config-contrib "searches.lisp")
 (load-config-contrib "global-windows.lisp")
 
