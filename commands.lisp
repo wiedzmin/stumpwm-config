@@ -56,10 +56,6 @@
   "Update the mode-line sooner than usual."
   (update-all-mode-lines))
 
-(defcommand view-gmail () ()
-  "View current gmail unread"
-  (format-gmail nil))
-
 ;; fix with message
 (defcommand display-current-window-info () ()
   "Shows the properties of the current window. These properties can be
