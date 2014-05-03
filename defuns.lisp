@@ -49,6 +49,7 @@
    ".png"))
 
 (defun show-key-seq (key seq val)
+  (declare (ignore key val))
   (message "Key sequence: ~A" (print-key-seq (reverse seq))))
 (add-hook *key-press-hook* 'show-key-seq)
 
@@ -134,6 +135,10 @@
      (run-or-raise ,command ,props)
      (place-existing-windows))) ; needed if the command has already been run
 
+(defun fix-str-length (str length)
+  (if (> (length str) length)
+      (cat (subseq str 0 (- length 2)) ".*")
+    (format nil "~va" length str)))
 
 (defun window-title-and-notifications-with-fix-length (length notifications-length)
   (if (< length notifications-length)
@@ -158,11 +163,6 @@
         (window-title current-window)
       (cat "No Window In ::"
 (group-name (current-group)) "::"))))
-
-(defun fix-str-length (str length)
-  (if (> (length str) length)
-      (cat (subseq str 0 (- length 2)) ".*")
-    (format nil "~va" length str)))
 
 (defun change-vol (sign val) () "Change mixer volume by value val"
   (run-shell-command (format nil "mixer vol ~A~A" sign val)))

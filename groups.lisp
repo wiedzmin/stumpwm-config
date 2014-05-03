@@ -54,4 +54,5 @@
         (0 t   t :class "Smplayer"))))
 
 (defcommand rearrange-windows () ()
+  "Rearrange existing windows among groups (if any)"
   (sync-window-placement))

@@ -124,6 +124,7 @@ rules."
 
 ;; TBD make mode-line follow frame focus between heads
 (defcommand toggle-mode-line-here () ()
+  "Toggle modeline on the current screen and head"
   (stumpwm:toggle-mode-line (stumpwm:current-screen)
                             (stumpwm:current-head)))
 
@@ -152,6 +153,7 @@ rules."
   (enable-mode-line-all-heads))
 
 (defcommand update-heads-layout () ()
+  "Update stuff after attaching external head(s)"
   (run-commands
    "resize-heads"
    "update-all-modelines")
@@ -165,8 +167,10 @@ rules."
 ;; TDB Refactor to generalize with search macros
 ;; TDB Disengage from *search-browser-command*
 (defcommand custom/open-selection () ()
+  "Open selection in browser as URL"
   (run-shell-command
    (concatenate 'string *search-browser-command* " \"" (get-x-selection) "\"")))
 
 (defcommand custom/choose-group-layout () ()
+  "Select windows layout from menu"
   (select-layout-from-menu))

@@ -55,3 +55,6 @@
 (setf *window-format* "%n%s%t")
 (set-fg-color "yellow")
 (setf *timeout-wait* 3)
+
+(defparameter X-TERM "urxvt"
+  "What shall be the command run when we want an X terminal?")
