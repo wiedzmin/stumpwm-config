@@ -67,6 +67,7 @@
                                ("l"  "vlc")
                                ("2"  "fbreader")
                                ("z"  "zathura")
+                               ("m"  "custom/open-gmail")
                                ))
 
 (defparameter *heads-keymap* (build-keymap

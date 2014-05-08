@@ -174,3 +174,10 @@ rules."
 (defcommand custom/choose-group-layout () ()
   "Select windows layout from menu"
   (select-layout-from-menu))
+
+;; TODO decouple of firefox
+(defcommand custom/open-gmail () ()
+  "Open Gmail"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " https://mail.google.com/mail/u/0/#inbox"))
+  (firefox))
