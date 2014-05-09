@@ -181,3 +181,10 @@ rules."
   (run-shell-command
    (concatenate 'string *search-browser-command* " https://mail.google.com/mail/u/0/#inbox"))
   (firefox))
+
+;; TODO abstract away
+(defcommand custom/open-github () ()
+  "Open Github"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " https://github.com/wiedzmin"))
+  (firefox))

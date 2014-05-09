@@ -67,7 +67,11 @@
                                ("l"  "vlc")
                                ("2"  "fbreader")
                                ("z"  "zathura")
+                               ))
+
+(defparameter *web-keymap* (build-keymap
                                ("m"  "custom/open-gmail")
+                               ("g"  "custom/open-github")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
@@ -160,6 +164,7 @@
   ("s-v"       '*heads-keymap*)
   ("s-s"       '*swap-keymap*)
   ("s-p"       '*desktop-keymap*)
+  ("s-w"       '*web-keymap*)
   )
 
 (flet ((dk (k c)
