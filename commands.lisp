@@ -9,27 +9,25 @@
 
 (in-package #:stumpwm)
 
-(defcommand swank-start () ()
-  "Start Swank backend"
-  (setf stumpwm:*top-level-error-action* :break)
-  (if *swank-p*
-      (message "Swank server already running.")
-      (progn
-        (swank:create-server :port *swank-port*
-                             :style swank:*communication-style*
-                             ;;:coding-system "utf-8-unix"
-                             :dont-close t)
-        (setf *swank-p* t)
-        (echo-string (current-screen)
-                     "Starting Swank. M-x slime-connect RET RET, then (in-package stumpwm)."))))
-
-(defcommand swank-stop () ()
-  "Stop Swank backend"
-  (setf stumpwm:*top-level-error-action* :break)
-  (swank:stop-server *swank-port*)
-  (setf *swank-p* nil)
-  (echo-string (current-screen)
-         "Stopping Swank..."))
+(let ((swank-p nil))
+  (defcommand swank-toggle () ()
+    "Toggle the swank server on/off"
+    (if swank-p
+        (progn
+          (setf stumpwm:*top-level-error-action* :break)
+          (swank:stop-server *swank-port*)
+          (setf swank-p nil)
+          (echo-string (current-screen)
+                       "Stopping Swank..."))
+        (progn
+          (swank:create-server :port *swank-port*
+                               :style swank:*communication-style*
+                               ;;:coding-system "utf-8-unix"
+                               :dont-close t)
+          (setf swank-p t)
+          (echo-string (current-screen)
+                       "Starting Swank. M-x slime-connect RET RET, then (in-package stumpwm)."))
+        )))
 
 (defcommand raise-volume () ()
   "Raise volume."

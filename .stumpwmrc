@@ -13,7 +13,6 @@
 
 (load (concatenate 'string *SLIME-DIR* "swank-loader.lisp"))
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
-(defvar *swank-p* nil)
 
 (pushnew "/home/octocat/.commonlisp/clx-xkeyboard/" asdf:*central-registry*)
 
