@@ -220,12 +220,14 @@ in which case focus it."
       (window-send-string (write-to-string heads-count))
       (send-meta-key (current-screen) (kbd "RET")))))
 
-(defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir ""))
-  (let ((pathspec (concatenate 'string basedir "/" subdir)))
+(defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
+  (let ((pathspec (if subdir
+                      (concatenate 'string basedir "/" subdir)
+                      basedir)))
     (directory
      (make-pathname
       :directory `(:absolute ,@(split-seq pathspec "/"))
-      :name :wild))))
+      :name :wild :type :wild))))
 
 (defun select-layout-from-menu ()
   (let ((filelist (directory-file-list :subdir "layouts")))
