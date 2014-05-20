@@ -239,3 +239,17 @@ in which case focus it."
                           filelist))))
         (when group-file
           (restore-group (current-group) (read-dump-from-file group-file)))))))
+
+;; TODO abstract away as macro (see above)
+(defun select-books-from-menu ()
+  ;; TODO parametrize :basedir value
+  (let ((filelist (directory-file-list :basedir "/home/octocat/bookshelf")))
+    (unless (null filelist)
+      (let ((book-file (select-from-menu
+                         (current-screen)
+                         (mapcar
+                          (lambda (pathname) (namestring pathname))
+                          filelist))))
+        (when book-file
+          ;; TODO parametrize viewer below
+          (run-shell-command (format nil "zathura \"~a\"" book-file) nil))))))
