@@ -10,7 +10,7 @@
 (defparameter *simple-resize-increment* 100)
 
 ;; borders
-(setf *maxsize-border-width* 0)
+(setf *maxsize-border-width* 2)
 (setf *transient-border-width* 1)
 (setf *normal-border-width* 1)
 (setf *window-border-style* :thin)
