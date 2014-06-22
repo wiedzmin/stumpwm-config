@@ -113,7 +113,6 @@
   ("s-i" "iresize")
   ("s-l" "lock-screen")
   ("s-m" "screenshot-default")
-  ("v" "view-gmail")
   ("w" "global-windowlist")
   ("l" "custom/choose-group-layout")
   ("b" "custom/choose-book")
