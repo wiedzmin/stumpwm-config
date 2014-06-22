@@ -28,7 +28,7 @@
            "^B[^b"
            "%d"
            "^B]^b "
-           "[%c %t] [%M / %N] [%D] [%l]"
+           "[%c %t] [%M / %N] [%D] [%l] [%b]"
            (string #\NewLine)
            " "
            `(:eval (mode-line-groups-list))
