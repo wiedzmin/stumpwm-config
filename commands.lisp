@@ -187,6 +187,18 @@ rules."
    (concatenate 'string *search-browser-command* " https://github.com/wiedzmin"))
   (firefox))
 
+(defcommand custom/open-yandex () ()
+  "Open Github"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " http://yandex.ru"))
+  (firefox))
+
+(defcommand custom/open-facebook () ()
+  "Open Github"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " https://facebook.com/"))
+  (firefox))
+
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
   (select-books-from-menu))

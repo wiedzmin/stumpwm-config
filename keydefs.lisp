@@ -72,6 +72,8 @@
 (defparameter *web-keymap* (build-keymap
                                ("m"  "custom/open-gmail")
                                ("g"  "custom/open-github")
+                               ("y"  "custom/open-yandex")
+                               ("f"  "custom/open-facebook")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
