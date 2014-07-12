@@ -35,6 +35,8 @@
            "^7*(^[^n ^]" `(:eval (window-title-and-notifications-with-fix-length 200 20)) ")^n "
            ))
 (setf *mode-line-foreground-color* "DarkSeaGreen")
+(setf *mode-line-background-color* "Gray15")
+
 (setf *mode-line-timeout* 10)
 (setf *disk-modeline-fmt* "%m: %a/%s")
 (setf *time-modeline-string* "%d-%m-%Y ^3*^B%H:%M^b^n %a")
