@@ -188,13 +188,13 @@ rules."
   (firefox))
 
 (defcommand custom/open-yandex () ()
-  "Open Github"
+  "Open Yandex"
   (run-shell-command
    (concatenate 'string *search-browser-command* " http://yandex.ru"))
   (firefox))
 
 (defcommand custom/open-facebook () ()
-  "Open Github"
+  "Open Facebook"
   (run-shell-command
    (concatenate 'string *search-browser-command* " https://facebook.com/"))
   (firefox))
