@@ -74,6 +74,7 @@
                                ("g"  "custom/open-github")
                                ("y"  "custom/open-yandex")
                                ("f"  "custom/open-facebook")
+                               ("t"  "custom/open-multitran")
                                ))
 
 (defparameter *heads-keymap* (build-keymap

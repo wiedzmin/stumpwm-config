@@ -199,6 +199,12 @@ rules."
    (concatenate 'string *search-browser-command* " https://facebook.com/"))
   (firefox))
 
+(defcommand custom/open-multitran () ()
+  "Open Multitran"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " http://www.multitran.ru/"))
+  (firefox))
+
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
   (select-books-from-menu))
