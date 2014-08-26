@@ -96,23 +96,36 @@ rules."
 
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil))
+  (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
+  (setf *heads-updated* nil))
 
 (defcommand enable-external-monitor-left () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil))
+  (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
+  (setf *heads-updated* nil))
 
 (defcommand enable-external-monitor-above () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil))
+  (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
+  (setf *heads-updated* nil))
 
 (defcommand disable-external-monitor () ()
   "Disables external monitor"
-  (run-shell-command "xrandr --output VGA1 --off"))
+  (run-shell-command "xrandr --output VGA1 --off")
+  (setf *heads-updated* nil))
 
+;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
   "Resizes primary head (to see tray)"
-  (resize-head 0 0 15 1600 885))
+  (let ((internal-head (nth 0 (screen-heads (current-screen)))))
+    (unless *heads-updated*
+      (resize-head 0
+                   (head-x internal-head)
+                   (+ (head-y internal-head) 15)
+                   (head-width internal-head)
+                   (- (head-height internal-head) 15)
+                   )
+      (setf *heads-updated* t))))
 
 (defcommand rule-them-all () ()
   "Make rules for all currently active windows"

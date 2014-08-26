@@ -59,5 +59,8 @@
 (setf *timeout-wait* 3)
 (setf *mouse-focus-policy* :click)
 
+(defvar *heads-updated* nil
+  "Tracks status of heads updates")
+
 (defparameter X-TERM "urxvt"
   "What shall be the command run when we want an X terminal?")
