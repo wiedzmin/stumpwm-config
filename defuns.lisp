@@ -152,11 +152,6 @@
            "]")
     (fix-str-length (current-window-title) length)))
 
-(defun mode-line-groups-list ()
-  (if (and (boundp '*xmonad-style-groups*) *xmonad-style-groups*)
-      "^6*(^[^n ^]%g)^n "
-      "^n"))
-
 (defun current-window-title ()
   (let ((current-window (current-window)))
     (if current-window

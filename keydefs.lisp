@@ -121,20 +121,6 @@
   ("b" "custom/choose-book")
   )
 
-(when (and (boundp '*xmonad-style-groups*) *xmonad-style-groups*)
-  (defkeys-top
-    ("s-1" "gselect 1")
-    ("s-2" "gselect 2")
-    ("s-3" "gselect 3")
-    ("s-4" "gselect 4")
-    ("s-5" "gselect 5")
-    ("s-6" "gselect 6")
-    ("s-7" "gselect 7")
-    ("s-8" "gselect 8")
-    ("s-9" "gselect 9")
-    ("s-C-w" "gmove")
-    ))
-
 (defkeys-top
   ("s-P" "exec gmrun")
   ("s-L" "update-mode-line")

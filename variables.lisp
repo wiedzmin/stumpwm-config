@@ -31,7 +31,7 @@
            "[%c %t] [%M / %N] [%D] [%l] [%b]"
            (string #\NewLine)
            " "
-           `(:eval (mode-line-groups-list))
+           "^n"
            "^7*(^[^n ^]" `(:eval (window-title-and-notifications-with-fix-length 200 20)) ")^n "
            ))
 (setf *mode-line-foreground-color* "DarkSeaGreen")
