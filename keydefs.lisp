@@ -90,6 +90,7 @@
                                ("Left"  "exchange-direction left")
                                ("Up"  "exchange-direction up")
                                ("Down"  "exchange-direction down")
+                               ("s" "fselect")
                                ))
 
 (defparameter *desktop-keymap* (build-keymap
