@@ -26,6 +26,7 @@
 (load-module "screenshot")
 (load-module "notifications")
 (load-module "stumperwindowlayout")
+(load-module "stumptray")
 
 (load-config-module "credentials.lisp")
 (load-config-module "constants.lisp")
@@ -43,4 +44,4 @@
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
 (add-hook *urgent-window-hook* 'echo-urgent-window)
 (enable-mode-line-all-heads)
-(run-commands "enable-per-window-layout" "resize-heads")
+(run-commands "enable-per-window-layout")

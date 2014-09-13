@@ -96,7 +96,8 @@
 (defparameter *desktop-keymap* (build-keymap
                                 ("a"  "update-all-modelines")
                                 ("d"  "custom/dump-group")
-                               ))
+                                ("t"  "stumptray")
+                                ))
 
 (defkeys-root
   ("0" "remove-split")
