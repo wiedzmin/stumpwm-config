@@ -85,7 +85,7 @@
                                ("u"  "update-heads-layout")
                                ))
 
-(defparameter *swap-keymap* (build-keymap
+(defparameter *frames-keymap* (build-keymap
                                ("Right"  "exchange-direction right")
                                ("Left"  "exchange-direction left")
                                ("Up"  "exchange-direction up")
@@ -152,7 +152,7 @@
   ("s-x"       '*pull-keymap*)
   ("s-r"       '*raise-keymap*)
   ("s-v"       '*heads-keymap*)
-  ("s-s"       '*swap-keymap*)
+  ("s-s"       '*frames-keymap*)
   ("s-p"       '*desktop-keymap*)
   ("s-w"       '*web-keymap*)
   )
