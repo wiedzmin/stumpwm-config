@@ -165,9 +165,11 @@ rules."
 
 (defcommand update-heads-layout () ()
   "Update stuff after attaching external head(s)"
-  (run-commands
-   "resize-heads"
-   "update-all-modelines")
+  (let ((update-commands nil))
+    (push "update-all-modelines" update-commands)
+    (when *reserve-tray-placement*
+      (push "resize-heads" update-commands))
+    (apply #'run-commands update-commands))
   (update-emacs-frames))
 
 (defcommand custom/dump-group (filename) ((:string "Set filename: "))

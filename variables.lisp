@@ -59,6 +59,9 @@
 (setf *timeout-wait* 3)
 (setf *mouse-focus-policy* :click)
 
+(defparameter *reserve-tray-placement* nil
+  "Should we reserve screen real estate for system tray app?")
+
 (defvar *heads-updated* nil
   "Tracks status of heads updates")
 
