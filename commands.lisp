@@ -226,6 +226,12 @@ rules."
    (concatenate 'string *search-browser-command* " http://youtube.com/"))
   (firefox))
 
+(defcommand custom/open-trello () ()
+  "Open Trello"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " http://trello.com/"))
+  (firefox))
+
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
   (select-books-from-menu))

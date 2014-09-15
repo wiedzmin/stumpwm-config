@@ -76,6 +76,7 @@
                                ("f"  "custom/open-facebook")
                                ("t"  "custom/open-multitran")
                                ("b"  "custom/open-youtube")
+                               ("o"  "custom/open-trello")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
