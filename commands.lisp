@@ -220,6 +220,12 @@ rules."
    (concatenate 'string *search-browser-command* " http://www.multitran.ru/"))
   (firefox))
 
+(defcommand custom/open-youtube () ()
+  "Open Youtube"
+  (run-shell-command
+   (concatenate 'string *search-browser-command* " http://youtube.com/"))
+  (firefox))
+
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
   (select-books-from-menu))
