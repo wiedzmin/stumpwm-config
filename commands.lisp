@@ -133,12 +133,6 @@ rules."
   (dolist (w (all-windows))
     (make-rule-for-window w t)))
 
-;; TBD make mode-line follow frame focus between heads
-(defcommand toggle-mode-line-here () ()
-  "Toggle modeline on the current screen and head"
-  (stumpwm:toggle-mode-line (stumpwm:current-screen)
-                            (stumpwm:current-head)))
-
 (defcommand (fprev tile-group) () ()
   "Cycle through the frame tree to the previous frame."
   (focus-prev-frame (current-group)))
