@@ -51,7 +51,6 @@
 (defun show-key-seq (key seq val)
   (declare (ignore key val))
   (message "Key sequence: ~A" (print-key-seq (reverse seq))))
-(add-hook *key-press-hook* 'show-key-seq)
 
 ;;; find window and to what your whant.
 (defun find-window-group (group props)
