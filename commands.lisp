@@ -188,7 +188,6 @@ rules."
   "Select windows layout from menu"
   (select-layout-from-menu))
 
-;; TODO decouple of firefox
 (defmacro defwebjump (caption url)
   `(defcommand
        ,(concat-as-symbol "custom/open-" (string-downcase caption))
@@ -196,7 +195,7 @@ rules."
      ,(format nil "Open ~a" caption)
      (run-shell-command
       (concatenate 'string *search-browser-command* " " ,url))
-     (firefox)))
+     (,(intern (string-upcase (car (split-string *search-browser-command* " ")))))))
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox")
 (defwebjump "Github" "https://github.com/wiedzmin")
