@@ -189,48 +189,22 @@ rules."
   (select-layout-from-menu))
 
 ;; TODO decouple of firefox
-(defcommand custom/open-gmail () ()
-  "Open Gmail"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " https://mail.google.com/mail/u/0/#inbox"))
-  (firefox))
+(defmacro defwebjump (caption url)
+  `(defcommand
+       ,(concat-as-symbol "custom/open-" (string-downcase caption))
+       () ()
+     ,(format nil "Open ~a" caption)
+     (run-shell-command
+      (concatenate 'string *search-browser-command* " " ,url))
+     (firefox)))
 
-;; TODO abstract away
-(defcommand custom/open-github () ()
-  "Open Github"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " https://github.com/wiedzmin"))
-  (firefox))
-
-(defcommand custom/open-yandex () ()
-  "Open Yandex"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " http://yandex.ru"))
-  (firefox))
-
-(defcommand custom/open-facebook () ()
-  "Open Facebook"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " https://facebook.com/"))
-  (firefox))
-
-(defcommand custom/open-multitran () ()
-  "Open Multitran"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " http://www.multitran.ru/"))
-  (firefox))
-
-(defcommand custom/open-youtube () ()
-  "Open Youtube"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " http://youtube.com/"))
-  (firefox))
-
-(defcommand custom/open-trello () ()
-  "Open Trello"
-  (run-shell-command
-   (concatenate 'string *search-browser-command* " http://trello.com/"))
-  (firefox))
+(defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox")
+(defwebjump "Github" "https://github.com/wiedzmin")
+(defwebjump "Yandex" "http://yandex.ru")
+(defwebjump "Facebook" "https://facebook.com/")
+(defwebjump "Multitran" "http://www.multitran.ru/")
+(defwebjump "Youtube" "http://youtube.com/")
+(defwebjump "Trello" "http://trello.com/")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
