@@ -159,9 +159,6 @@
       (cat "No Window In ::"
 (group-name (current-group)) "::"))))
 
-(defun change-vol (sign val) () "Change mixer volume by value val"
-  (run-shell-command (format nil "mixer vol ~A~A" sign val)))
-
 (defmacro define-pull-raise-pairs (&body items)
   "Defines pairs of pull/raise commands for applications in 'items'. Credits to ivan4th"
   `(progn

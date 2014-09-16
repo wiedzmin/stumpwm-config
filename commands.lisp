@@ -145,7 +145,7 @@ rules."
 
 (define-pull-raise-pairs
   emacs conkeror libreoffice
-  qmpdclient emelfm2 konsole
+  qmpdclient konsole
   vlc fbreader zathura
   (firefox "Firefox" "firefox")
   (urxvt "URxvt")
