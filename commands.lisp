@@ -54,7 +54,6 @@
   "Update the mode-line sooner than usual."
   (update-all-mode-lines))
 
-;; fix with message
 (defcommand display-current-window-info () ()
   "Shows the properties of the current window. These properties can be
 used for matching windows with run-or-raise or window placement
@@ -62,8 +61,6 @@ rules."
   (let ((w (current-window))
         (*suppress-echo-timeout* t)
         (nl (string #\NewLine)))
-
-    ;; (message-no-timeout "class: ~a~%instance~a~%..." (window-class w) (window-res w) ...)
     (echo-string (current-screen)
                  (concat "class:    " (window-class w) nl
                          "instance: " (window-res w) nl
