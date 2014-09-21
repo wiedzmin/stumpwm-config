@@ -186,7 +186,7 @@ rules."
      ,(format nil "Open ~a" caption)
      (run-shell-command
       (concatenate 'string *search-browser-command* " " ,url))
-     (,(intern (string-upcase (car (split-string *search-browser-command* " ")))))))
+     (,(intern (string-upcase *BROWSER*)))))
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox")
 (defwebjump "Github" "https://github.com/wiedzmin")
