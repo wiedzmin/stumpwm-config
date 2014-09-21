@@ -123,6 +123,7 @@
 (defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
 
+;TODO: actualize this copypaste
 (defmacro program-with-layout (name &key (command (string-downcase (string name)))
                                (props `'(:class ,(string-capitalize command))))
   `(defcommand ,name () ()

@@ -185,7 +185,7 @@ rules."
        () ()
      ,(format nil "Open ~a" caption)
      (run-shell-command
-      (concatenate 'string *search-browser-command* " " ,url))
+      (concatenate 'string *search-browser-command* " " ,url)) ;TODO: someway reorganize these browser commandlines
      (,(intern (string-upcase *BROWSER*)))))
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox")
