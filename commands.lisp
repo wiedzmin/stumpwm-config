@@ -40,7 +40,7 @@
 (defcommand toggle-modeline () ()
   "Toggle mode line."
   (stumpwm:toggle-mode-line (stumpwm:current-screen)
-                          (stumpwm:current-head)))
+                            (stumpwm:current-head)))
 
 (defcommand screenshot-default () ()
   "Make screenshot of root window"
