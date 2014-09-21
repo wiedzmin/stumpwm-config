@@ -65,5 +65,8 @@
 (defvar *heads-updated* nil
   "Tracks status of heads updates")
 
-(defparameter X-TERM "urxvt"
+(defparameter *X-TERM* "urxvt"
   "What shall be the command run when we want an X terminal?")
+
+(defparameter *BROWSER* "firefox"
+  "What shall be the command run when we want a browser?")
