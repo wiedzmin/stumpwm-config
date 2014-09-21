@@ -156,6 +156,8 @@
   ("s-s"       '*frames-keymap*)
   ("s-p"       '*desktop-keymap*)
   ("s-w"       '*web-keymap*)
+  ;;
+  ("s-i" "display-current-window-info")
   )
 
 (flet ((dk (k c)
