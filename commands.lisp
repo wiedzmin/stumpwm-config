@@ -195,6 +195,7 @@ rules."
 (defwebjump "Multitran" "http://www.multitran.ru/")
 (defwebjump "Youtube" "http://youtube.com/")
 (defwebjump "Trello" "http://trello.com/")
+(defwebjump "Lumosity" "http://lumosity.com/")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
