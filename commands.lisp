@@ -196,6 +196,8 @@ rules."
 (defwebjump "Youtube" "http://youtube.com/")
 (defwebjump "Trello" "http://trello.com/")
 (defwebjump "Lumosity" "http://lumosity.com/")
+(defwebjump "Lumosity" "http://lumosity.com/")
+(defwebjump "Feedly" "http://cloud.feedly.com/")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"

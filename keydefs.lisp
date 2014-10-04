@@ -76,6 +76,7 @@
                                ("b"  "custom/open-youtube")
                                ("o"  "custom/open-trello")
                                ("l"  "custom/open-lumosity")
+                               ("d"  "custom/open-feedly")
                                ))
 
 (defparameter *heads-keymap* (build-keymap
