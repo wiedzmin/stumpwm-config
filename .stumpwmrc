@@ -29,7 +29,6 @@
 (load-transitional-module "screenshot.lisp")
 (load-module "notifications")
 (load-transitional-module "stumperwindowlayout.lisp")
-(load-module "stumptray")
 (load-module "ttf-fonts")
 
 (load-config-module "credentials.lisp")
