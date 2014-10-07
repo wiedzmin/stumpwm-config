@@ -58,6 +58,10 @@
 (set-fg-color "yellow")
 (setf *timeout-wait* 3)
 (setf *mouse-focus-policy* :click)
+(setf *grab-pointer-character* 40)
+(setf *grab-pointer-character-mask* 41)
+(setf *grab-pointer-foreground* (xlib:make-color :red 0.24 :green 0.70 :blue 0.44))
+(setf *grab-pointer-background* (xlib:make-color :red 0.173 :green 0.325 :blue 0.792))
 
 (defparameter *reserve-tray-placement* nil
   "Should we reserve screen real estate for system tray app?")
