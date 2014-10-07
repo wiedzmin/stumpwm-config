@@ -44,7 +44,7 @@
 (load-transitional-module "searches.lisp")
 (load-transitional-module "global-windows.lisp")
 
-(xft:cache-fonts)
+;; (xft:cache-fonts)
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
 (add-hook *urgent-window-hook* 'echo-urgent-window)
 (enable-mode-line-all-heads)
