@@ -101,6 +101,12 @@
                                 ("t"  "stumptray")
                                 ))
 
+(defparameter *swank-keymap* (build-keymap
+                                ("t"  "swank-toggle")
+                                ("s"  "swank-status")
+                                ))
+
+
 (defkeys-root
   ("0" "remove-split")
   ("1" "only")
@@ -158,6 +164,7 @@
   ("s-s"       '*frames-keymap*)
   ("s-p"       '*desktop-keymap*)
   ("s-w"       '*web-keymap*)
+  ("s-e"       '*swank-keymap*)
   ;;
   ("s-i" "display-current-window-info")
   )
