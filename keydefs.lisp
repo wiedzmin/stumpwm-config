@@ -74,7 +74,7 @@
                                ("f"  "custom/open-facebook")
                                ("t"  "custom/open-multitran")
                                ("b"  "custom/open-youtube")
-                               ("o"  "custom/open-trello")
+                               ("o"  "custom/open-toodledo")
                                ("l"  "custom/open-lumosity")
                                ("d"  "custom/open-feedly")
                                ))

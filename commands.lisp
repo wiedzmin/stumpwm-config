@@ -204,8 +204,7 @@ rules."
 (defwebjump "Facebook" "https://facebook.com/")
 (defwebjump "Multitran" "http://www.multitran.ru/")
 (defwebjump "Youtube" "http://youtube.com/")
-(defwebjump "Trello" "http://trello.com/")
-(defwebjump "Lumosity" "http://lumosity.com/")
+(defwebjump "Toodledo" "http://www.toodledo.com/")
 (defwebjump "Lumosity" "http://lumosity.com/")
 (defwebjump "Feedly" "http://cloud.feedly.com/")
 
