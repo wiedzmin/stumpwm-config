@@ -140,24 +140,12 @@
       (cat (subseq str 0 (- length 2)) ".*")
     (format nil "~va" length str)))
 
-(defun window-title-and-notifications-with-fix-length (length notifications-length)
-  (if (< length notifications-length)
-      (error "length should bigger than notifications-length!"))
-  (if notifications
-      (cat (fix-str-length (current-window-title) (- length
-                                                     notifications-length
-                                                     3))
-           " ["
-           (fix-str-length (format nil "~{ ~a~#[~:;;~]~}" notifications) notifications-length)
-           "]")
-    (fix-str-length (current-window-title) length)))
-
 (defun current-window-title ()
   (let ((current-window (current-window)))
     (if current-window
         (window-title current-window)
-      (cat "No Window In ::"
-(group-name (current-group)) "::"))))
+        (cat "No Window In ::"
+           (group-name (current-group)) "::"))))
 
 (defmacro define-pull-raise-pairs (&body items)
   "Defines pairs of pull/raise commands for applications in 'items'. Credits to ivan4th"
