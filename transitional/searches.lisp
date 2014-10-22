@@ -7,10 +7,8 @@
 ;;;
 ;;;
 
-(setf *search-browser-command* "firefox -new-tab")
-
-(defparameter *URL-CRATE-IO*   "http://crate.io/?q=~a")
-(defparameter *URL-RUTRACKER*  "http://rutracker.org/forum/tracker.php?nm=~a")
+(setf *search-browser-executable* "firefox")
+(setf *search-browser-params* '("-new-tab"))
 
 (make-search-engine-selection search-google-selection *URL-GOOGLE* "Google search")
 (make-search-engine-selection search-yandex-selection *URL-YANDEX* "Yandex search")

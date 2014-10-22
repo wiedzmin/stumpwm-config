@@ -4,7 +4,10 @@
 
 (in-package #:stumpwm)
 
-(defvar *search-browser-command* nil)
+(defvar *search-browser-executable* nil
+  "Browser to use while performing searches")
+(defvar *search-browser-params* nil
+  "Additional executable parameters for searching browser")
 
 (defmacro make-search-engine-prompt (name caption url docstring)
   `(defcommand ,name (search)
@@ -13,20 +16,28 @@
      (check-type search string)
      (let* ((search-processed (drakma:url-encode search :utf-8))
            (uri (format nil ,url search-processed)))
-       (if (eql *search-browser-command* nil)
-           (message-no-timeout "stumpwm::*search-browser-command* is nil, set it first")
+       (if (eql *search-browser-executable* nil)
+           (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
            (run-shell-command
-            (concatenate 'string *search-browser-command* " \"" uri "\""))))))
+            (concatenate 'string
+                         *search-browser-executable*
+                         " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                         " \"" uri "\"")
+            (,(intern (string-upcase *search-browser-executable*))))))))
 
 (defmacro make-search-engine-selection (name url docstring)
   `(defcommand ,name () ()
      ,docstring
      (let* ((search-processed (drakma:url-encode (get-x-selection) :utf-8))
            (uri (format nil ,url search-processed)))
-       (if (eql *search-browser-command* nil)
-           (message-no-timeout "stumpwm::*search-browser-command* is nil, set it first")
+       (if (eql *search-browser-executable* nil)
+           (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
            (run-shell-command
-            (concatenate 'string *search-browser-command* " \"" uri "\""))))))
+            (concatenate 'string
+                         *search-browser-executable*
+                         " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                         " \"" uri "\"")
+            (,(intern (string-upcase *search-browser-executable*))))))))
 
 (defmacro make-search-engine-augmented (name caption url docstring)
   `(defcommand ,name (augmentation)
@@ -38,10 +49,14 @@
                                (drakma:url-encode augmentation :utf-8) " "
                                (drakma:url-encode (get-x-selection) :utf-8)))
            (uri (format nil ,url search-processed)))
-       (if (eql *search-browser-command* nil)
-           (message-no-timeout "stumpwm::*search-browser-command* is nil, set it first")
+       (if (eql *search-browser-executable* nil)
+           (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
            (run-shell-command
-            (concatenate 'string *search-browser-command* " \"" uri "\""))))))
+            (concatenate 'string
+                         *search-browser-executable*
+                         " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                         " \"" uri "\"")
+            (,(intern (string-upcase *search-browser-executable*))))))))
 
 (defparameter *URL-AMAZON*          "http://www.amazon.com/exec/obidos/external-search?index=all&keyword=~a")
 (defparameter *URL-ALPHA*           "http://www.wolframalpha.com/input/?i=~a")
@@ -65,7 +80,6 @@
 (defparameter *URL-WIKTIONARY-EN*   "http://en.wiktionary.org/wiki/Special:Search?go=Go&search=~a")
 (defparameter *URL-YOUTUBE*         "http://www.youtube.com/results?search_type=search_videos&search_query=~a")
 (defparameter *URL-WAYBACK*         "http://web.archive.org/web/*/~a")
-;; ===========================
 (defparameter *URL-EMACSWIKI*       "http://www.google.com/cse?cx=004774160799092323420%3A6-ff2s0o6yi&sa=Search&siteurl=www.emacswiki.org%2F&q=~a")
 (defparameter *URL-VIMSCRIPT*       "http://www.vim.org/scripts/script_search_results.php?order_by=rating&direction=descending&search=search&keywords=~a")
 (defparameter *URL-DELICIOUS*       "http://del.icio.us/tag/~a")
@@ -97,3 +111,5 @@
 (defparameter *URL-CANIUSE*         "http://caniuse.com/#search=~a")
 (defparameter *URL-OHLOH-CODE*      "http://code.ohloh.net/search?s=~a")
 (defparameter *URL-LIBGEN-SCIMAG*   "http://libgen.org/scimag/?s=~a")
+(defparameter *URL-CRATE-IO*        "http://crate.io/?q=~a")
+(defparameter *URL-RUTRACKER*       "http://rutracker.org/forum/tracker.php?nm=~a")
