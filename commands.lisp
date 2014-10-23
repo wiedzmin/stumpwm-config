@@ -183,7 +183,10 @@ rules."
 (defcommand custom/open-selection () ()
   "Open selection in browser as URL"
   (run-shell-command
-   (concatenate 'string *search-browser-command* " \"" (get-x-selection) "\"")))
+   (concatenate 'string
+                *search-browser-executable*
+                " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                " \"" (get-x-selection) "\"")))
 
 (defcommand custom/choose-group-layout () ()
   "Select windows layout from menu"
