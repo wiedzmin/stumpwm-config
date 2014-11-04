@@ -77,6 +77,7 @@
                                ("o"  "custom/open-toodledo")
                                ("l"  "custom/open-lumosity")
                                ("d"  "custom/open-feedly")
+                               ("s"  "custom/open-delicious")
                                ))
 
 (defparameter *heads-keymap* (build-keymap

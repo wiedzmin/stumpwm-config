@@ -213,6 +213,7 @@ rules."
 (defwebjump "Toodledo" "http://www.toodledo.com/")
 (defwebjump "Lumosity" "http://lumosity.com/")
 (defwebjump "Feedly" "http://cloud.feedly.com/")
+(defwebjump "Delicious" "https://delicious.com/")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
