@@ -75,5 +75,11 @@
 (defparameter *BROWSER* "firefox"
   "What shall be the command run when we want a browser?")
 
+(defparameter *BROWSER-PARAMS* '("-new-tab")
+  "What shall be CLI params for the browser?")
+
 (defparameter *ALTERNATIVE-BROWSER* "google-chrome-stable"
   "What shall be the command run when we want an alternative browser?")
+
+(defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
+  "What shall be CLI params for the browser?")
