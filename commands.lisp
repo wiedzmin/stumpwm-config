@@ -184,8 +184,8 @@ rules."
   "Open selection in browser as URL"
   (run-shell-command
    (concatenate 'string
-                *search-browser-executable*
-                " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                *BROWSER*
+                " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*)
                 " \"" (get-x-selection) "\"")))
 
 (defcommand custom/choose-group-layout () ()
@@ -199,8 +199,8 @@ rules."
      ,(format nil "Open ~a" caption)
      (run-shell-command
       (concatenate 'string
-                   ,*search-browser-executable*
-                   " " ,(format nil "~{~A~^ ~}" *search-browser-params*) " "
+                   ,*BROWSER*
+                   " " ,(format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
                    ,url)) ;FIXME: someway reorganize these browser commandlines
      (,(intern (string-upcase *BROWSER*)))))
 
