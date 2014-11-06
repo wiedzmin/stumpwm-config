@@ -155,7 +155,7 @@
   ("s-Down"    "move-focus down" )
   ;;
   ("C-\\"    "switch-window-layout")
-  ("s-e"     "raise-urgent")
+  ("s-u"     "raise-urgent")
   ("s-f"     "fullscreen")
   ;;
   ("s-/"       '*search-keymap*)
