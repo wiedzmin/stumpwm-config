@@ -13,17 +13,18 @@
   `(defcommand ,name (search)
      ((:string ,(concatenate 'string "Search in " caption " for: ")))
      ,docstring
-     (check-type search string)
-     (let* ((search-processed (drakma:url-encode search :utf-8))
-           (uri (format nil ,url search-processed)))
-       (if (eql *search-browser-executable* nil)
-           (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
-           (run-shell-command
-            (concatenate 'string
-                         *search-browser-executable*
-                         " " (format nil "~{~A~^ ~}" *search-browser-params*)
-                         " \"" uri "\"")
-            (,(intern (string-upcase *search-browser-executable*))))))))
+     (when search
+       (check-type search string)
+       (let* ((search-processed (drakma:url-encode search :utf-8))
+              (uri (format nil ,url search-processed)))
+         (if (eql *search-browser-executable* nil)
+             (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
+             (run-shell-command
+              (concatenate 'string
+                           *search-browser-executable*
+                           " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                           " \"" uri "\"")
+              (,(intern (string-upcase *search-browser-executable*)))))))))
 
 (defmacro make-search-engine-selection (name url docstring)
   `(defcommand ,name () ()
@@ -43,20 +44,21 @@
   `(defcommand ,name (augmentation)
      ((:string ,(concatenate 'string "Augment " caption " search: ")))
      ,docstring
-     (check-type augmentation string)
-     (let* ((search-processed (concatenate
-                               'string
-                               (drakma:url-encode augmentation :utf-8) " "
-                               (drakma:url-encode (get-x-selection) :utf-8)))
-           (uri (format nil ,url search-processed)))
-       (if (eql *search-browser-executable* nil)
-           (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
-           (run-shell-command
-            (concatenate 'string
-                         *search-browser-executable*
-                         " " (format nil "~{~A~^ ~}" *search-browser-params*)
-                         " \"" uri "\"")
-            (,(intern (string-upcase *search-browser-executable*))))))))
+     (when augmentation
+       (check-type augmentation string)
+       (let* ((search-processed (concatenate
+                                 'string
+                                 (drakma:url-encode augmentation :utf-8) " "
+                                 (drakma:url-encode (get-x-selection) :utf-8)))
+              (uri (format nil ,url search-processed)))
+         (if (eql *search-browser-executable* nil)
+             (message-no-timeout "stumpwm::*search-browser-executable* is nil, set it first")
+             (run-shell-command
+              (concatenate 'string
+                           *search-browser-executable*
+                           " " (format nil "~{~A~^ ~}" *search-browser-params*)
+                           " \"" uri "\"")
+              (,(intern (string-upcase *search-browser-executable*)))))))))
 
 (defparameter *URL-AMAZON*          "http://www.amazon.com/exec/obidos/external-search?index=all&keyword=~a")
 (defparameter *URL-ALPHA*           "http://www.wolframalpha.com/input/?i=~a")
