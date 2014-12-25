@@ -1,3 +1,4 @@
 credentials.lisp
-ssh-servers.lisp
 layouts/.stumpwm-group
+private.lisp
+ssh-servers.lisp

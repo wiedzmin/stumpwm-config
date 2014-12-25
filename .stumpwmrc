@@ -38,6 +38,7 @@
 (load-config-module "commands.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "groups.lisp")
+(load-config-module "private.lisp")
 
 (load-transitional-module "urgent-windows.lisp")
 (load-transitional-module "ssh-servers.lisp")
