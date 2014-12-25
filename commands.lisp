@@ -148,7 +148,7 @@ rules."
   emacs conkeror libreoffice
   qmpdclient konsole
   vlc fbreader zathura
-  (firefox "Firefox" "firefox")
+  firefox skype
   (urxvt "URxvt")
   (VirtualBox "VirtualBox" "VirtualBox")
   (google-chrome "Google-chrome")

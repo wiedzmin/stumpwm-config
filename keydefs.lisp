@@ -52,6 +52,7 @@
                              ("l"  "p-vlc")
                              ("2"  "p-fbreader")
                              ("z"  "p-zathura")
+                             ("s"  "p-skype")
                              ))
 
 (defparameter *raise-keymap* (build-keymap
@@ -65,6 +66,7 @@
                               ("l"  "vlc")
                               ("2"  "fbreader")
                               ("z"  "zathura")
+                              ("s"  "skype")
                               ))
 
 (defparameter *web-keymap* (build-keymap
