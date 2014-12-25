@@ -115,3 +115,4 @@
 (defparameter *URL-LIBGEN-SCIMAG*   "http://libgen.org/scimag/?s=~a")
 (defparameter *URL-CRATE-IO*        "http://crate.io/?q=~a")
 (defparameter *URL-RUTRACKER*       "http://rutracker.org/forum/tracker.php?nm=~a")
+(defparameter *URL-ALTS-IO*         "http://alts.io/s?q=~a")
