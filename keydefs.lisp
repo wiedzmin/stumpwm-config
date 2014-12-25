@@ -109,6 +109,10 @@
                               ("s"  "swank-status")
                               ))
 
+(defparameter *shell-keymap* (build-keymap
+                              ("h"  "custom/run-htop")
+                              ("w"  "custom/run-wicd-curses")
+                              ))
 
 (defkeys-root
   ("0" "remove-split")
@@ -168,6 +172,7 @@
   ("s-p"       '*desktop-keymap*)
   ("s-w"       '*web-keymap*)
   ("s-e"       '*swank-keymap*)
+  ("s-c"       '*shell-keymap*)
   ;;
   ("s-i" "display-current-window-info")
   )

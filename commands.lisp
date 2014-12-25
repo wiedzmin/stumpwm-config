@@ -218,3 +218,12 @@ rules."
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
   (select-books-from-menu))
+
+;TODO: abstract away terminal shell command
+(defcommand custom/run-htop () ()
+  "Testing htop run in terminal"
+  (run-shell-command "urxvt -e htop"))
+
+(defcommand custom/run-wicd-curses () ()
+  "Testing htop run in terminal"
+  (run-shell-command "urxvt -e wicd-curses"))
