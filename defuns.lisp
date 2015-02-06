@@ -233,3 +233,12 @@ in which case focus it."
         (when book-file
           ;; TODO parametrize viewer below
           (run-shell-command (format nil "zathura \"~a\"" book-file) nil))))))
+
+(defun open-in-browser (url &optional (background nil))
+  (run-shell-command
+   (concatenate 'string
+                *BROWSER*
+                " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
+                url)) ;FIXME: someway reorganize these browser commandlines
+  (unless background
+    (funcall (intern (string-upcase *BROWSER*)))))

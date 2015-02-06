@@ -178,15 +178,10 @@ rules."
   (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/" filename)))
     (dump-to-file (dump-group (current-group)) group-file)))
 
-;; TDB Refactor to generalize with search macros
-;; TDB Disengage from *search-browser-command*
+;; TBD Refactor to generalize with search macros
 (defcommand custom/open-selection () ()
   "Open selection in browser as URL"
-  (run-shell-command
-   (concatenate 'string
-                *BROWSER*
-                " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*)
-                " \"" (get-x-selection) "\"")))
+  (open-in-browser (get-x-selection)))
 
 (defcommand custom/choose-group-layout () ()
   "Select windows layout from menu"
@@ -197,12 +192,7 @@ rules."
        ,(concat-as-symbol "custom/open-" (string-downcase caption))
        () ()
      ,(format nil "Open ~a" caption)
-     (run-shell-command
-      (concatenate 'string
-                   ,*BROWSER*
-                   " " ,(format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
-                   ,url)) ;FIXME: someway reorganize these browser commandlines
-     (,(intern (string-upcase *BROWSER*)))))
+     (open-in-browser ,url)))
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox")
 (defwebjump "Github" "https://github.com/wiedzmin")
