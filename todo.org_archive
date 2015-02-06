@@ -1,0 +1,53 @@
+
+Archived entries from file /home/octocat/.stumpwm.d/todo.org
+
+
+* DONE "webjump" for multitran [2014-07-20 Вс 21:53]       :stumpwm:ticket:
+  CLOSED: [2014-08-27 Ср 01:19]
+  - State "DONE"       from "TODO"       [2014-08-27 Ср 01:19]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-01-06 Вт 18:29
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE [#A] stumpwm: fix update-heads to always correctly resize internal head only [2014-06-29 Вс 23:28] :stumpwm:ticket:
+  CLOSED: [2014-08-27 Ср 01:22]
+  - State "DONE"       from "TODO"       [2014-08-27 Ср 01:22]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-01-06 Вт 18:29
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE [#A] fix showing window titles in modeline [2014-10-08 Ср 01:47] :stumpwm:ticket:
+  CLOSED: [2014-10-22 Ср 23:54]
+  - State "DONE"       from "TODO"       [2014-10-22 Ср 23:54]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-01-06 Вт 18:29
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE [#A] defwebjump involves some entities being undefined in compile time [2014-10-25 Сб 15:33] :stumpwm:ticket:
+  CLOSED: [2014-11-05 Ср 02:25]
+  - State "DONE"       from "TODO"       [2014-11-05 Ср 02:25]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-01-06 Вт 18:30
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
+
+* DONE [#A] make an external config/sourcefile for some private data/commands/whatever (e.g. job urls) [2014-12-08 Пн 18:54] :stumpwm:ticket:
+  CLOSED: [2014-12-09 Вт 16:53]
+  - State "DONE"       from "TODO"       [2014-12-09 Вт 16:53]
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-01-06 Вт 18:30
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
