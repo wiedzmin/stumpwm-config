@@ -209,30 +209,28 @@ in which case focus it."
       :directory `(:absolute ,@(split-seq pathspec "/"))
       :name :wild :type :wild))))
 
-(defun select-layout-from-menu ()
-  (let ((filelist (directory-file-list :subdir "layouts")))
-    (unless (null filelist)
-      (let ((group-file (select-from-menu
-                         (current-screen)
-                         (mapcar
-                          (lambda (pathname) (namestring pathname))
-                          filelist))))
-        (when group-file
-          (restore-group (current-group) (read-dump-from-file group-file)))))))
 
-;; TODO abstract away as macro (see above)
-(defun select-books-from-menu ()
-  ;; TODO parametrize :basedir value
-  (let ((filelist (directory-file-list :basedir "/home/octocat/bookshelf")))
-    (unless (null filelist)
-      (let ((book-file (select-from-menu
-                         (current-screen)
-                         (mapcar
-                          (lambda (pathname) (namestring pathname))
-                          filelist))))
-        (when book-file
-          ;; TODO parametrize viewer below
-          (run-shell-command (format nil "zathura \"~a\"" book-file) nil))))))
+(defmacro define-filelist-selector (fn doc pathspec &body body)
+  `(defun ,(intern (string-upcase fn)) ()
+      ,doc
+      (let ((filelist (directory-file-list ,@pathspec)))
+        (let ((selected-file (select-from-menu
+                              (current-screen)
+                              (mapcar (lambda (pathname) (namestring pathname)) filelist))))
+          (when selected-file ;TODO: make more robust
+            ,@body)))))
+
+(define-filelist-selector
+    "select-layout-from-menu"
+    "Select and apply saved window layout"
+    (:subdir "layouts")
+  (restore-group (current-group) (read-dump-from-file selected-file)))
+
+(define-filelist-selector
+    "select-books-from-menu"
+    "Select from current virtual bookshelf"
+    (:basedir "/home/octocat/bookshelf")
+  (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil))
 
 (defun open-in-browser (url &optional (background nil))
   (run-shell-command

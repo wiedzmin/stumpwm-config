@@ -83,3 +83,6 @@
 
 (defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
   "What shall be CLI params for the browser?")
+
+(defparameter *PDF-VIEWER* "zathura"
+  "Default PDF viewer")
