@@ -240,3 +240,10 @@ in which case focus it."
                 url)) ;FIXME: someway reorganize these browser commandlines
   (unless background
     (funcall (intern (string-upcase *BROWSER*)))))
+
+(defun select-links-from-var (linkslist)
+  (let ((link (select-from-menu
+                    (current-screen)
+                    linkslist)))
+    (when link
+      (open-in-browser link))))
