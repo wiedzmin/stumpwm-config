@@ -80,7 +80,7 @@ rules."
 
 (defcommand lock-screen () ()
   "Lock the screen."
-  (run-shell-command "slimlock"))
+  (run-shell-command "slock"))
 
 (defcommand reinit () ()
   "Reload stumpwm config file"
