@@ -113,6 +113,8 @@
 
 (defparameter *shell-keymap* (build-keymap
                               ("h"  "custom/run-htop")
+                              ("i"  "custom/run-iotop")
+                              ("p"  "custom/run-powertop")
                               ("w"  "custom/run-wicd-curses")
                               ))
 

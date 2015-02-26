@@ -217,3 +217,11 @@ rules."
 (defcommand custom/run-wicd-curses () ()
   "Testing htop run in terminal"
   (run-shell-command "urxvt -e wicd-curses"))
+
+(defcommand custom/run-iotop () ()
+  "Testing htop run in terminal"
+  (run-shell-command "urxvt -e sudo iotop"))
+
+(defcommand custom/run-powertop () ()
+  "Testing htop run in terminal"
+  (run-shell-command "urxvt -e sudo powertop"))
