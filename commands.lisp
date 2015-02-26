@@ -189,7 +189,7 @@ rules."
 
 (defmacro defwebjump (caption url)
   `(defcommand
-       ,(concat-as-symbol "custom/open-" (string-downcase caption))
+       ,(concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))
        () ()
      ,(format nil "Open ~a" caption)
      (open-in-browser ,url)))
