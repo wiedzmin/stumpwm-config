@@ -11,7 +11,7 @@
 
 ;; TODO add hook so I get notified when people say my name on IRC or IM me
 (defun echo-urgent-window (target)
-  (message-no-timeout "~a has an message for you." (window-title target))
+  (message-no-timeout "~a has a message for you." (window-title target))
   (push target *urgent-windows-stack*))
 
 (defun raise-urgent-window ()
