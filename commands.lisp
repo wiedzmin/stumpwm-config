@@ -84,20 +84,20 @@ rules."
 
 (defcommand reinit () ()
   "Reload stumpwm config file"
-            (run-commands "reload" "loadrc"))
+  (run-commands "reload" "loadrc"))
 
 ;; This command runs the stumpwm "quit" command, but only if there aren't any windows open.
 (defcommand safequit () ()
-            "Checks if any windows are open before quitting."
-            (let ((win-count 0))
-              ;; Count the windows in each group
-              (dolist (group (screen-groups (current-screen)))
-                (setq win-count (+ (length (group-windows group)) win-count)))
-              ;; Display the number of open windows or quit
-              (if (= win-count 0)
-                  (run-commands "quit")
-                  (message (format nil "You have ~d ~a open" win-count
-                                   (if (= win-count 1) "window" "windows"))))))
+  "Checks if any windows are open before quitting."
+  (let ((win-count 0))
+    ;; Count the windows in each group
+    (dolist (group (screen-groups (current-screen)))
+      (setq win-count (+ (length (group-windows group)) win-count)))
+    ;; Display the number of open windows or quit
+    (if (= win-count 0)
+        (run-commands "quit")
+        (message (format nil "You have ~d ~a open" win-count
+                         (if (= win-count 1) "window" "windows"))))))
 
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
