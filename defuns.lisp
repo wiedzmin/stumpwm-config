@@ -44,7 +44,7 @@
 (defun screenshot-filename ()
   (concatenate
    'string
-   "~/images/screenshots/screenshot-"
+   "~/screenshots/screenshot-"
    (run-shell-command "date +\"%d-%m-%Y-%T\" | tr -d '[:cntrl:]'" t)
    ".png"))
 
