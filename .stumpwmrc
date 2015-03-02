@@ -26,8 +26,8 @@
 (load-module "globalwindows")
 (load-module "urgentwindows")
 (load-module "searchengines")
+(load-module "perwindowlayout")
 
-(load-config-module "perwindowlayout.lisp")
 (load-config-module "constants.lisp")
 (load-config-module "variables.lisp")
 (load-config-module "defuns.lisp")
