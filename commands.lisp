@@ -80,7 +80,8 @@ rules."
 
 (defcommand lock-screen () ()
   "Lock the screen."
-  (run-shell-command "slock"))
+  (run-shell-command "slock")
+  (run-shell-command "sleep 1 && xset dpms force off"))
 
 (defcommand reinit () ()
   "Reload stumpwm config file"
