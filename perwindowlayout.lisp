@@ -1,5 +1,7 @@
 ;;;; Save keyboard layout per window for stumpwm.
 
+;TODO: move to stumpwm-contrib someday
+
 (asdf:compute-source-registry)
 (asdf:load-system :xkeyboard)
 

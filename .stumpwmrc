@@ -8,13 +8,8 @@
 (defun load-config-module (name)
   (load (concatenate 'string *STUMPWM-LIB-DIR* name)))
 
-(defun load-contrib (name)
-  (load (concatenate 'string *STUMPWM-LIB-DIR* "contribs/" name)))
-
 (load (concatenate 'string *SLIME-DIR* "swank-loader.lisp"))
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
-
-(pushnew "/home/octocat/.commonlisp/clx-xkeyboard/" asdf:*central-registry*)
 
 (setf *contrib-dir* (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
 (init-load-path *contrib-dir*)
@@ -31,8 +26,8 @@
 (load-module "globalwindows")
 (load-module "urgentwindows")
 (load-module "searchengines")
-(load-contrib "perwindowlayout.lisp")
 
+(load-config-module "perwindowlayout.lisp")
 (load-config-module "constants.lisp")
 (load-config-module "variables.lisp")
 (load-config-module "defuns.lisp")
