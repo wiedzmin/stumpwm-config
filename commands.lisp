@@ -52,11 +52,11 @@
 
 (defcommand screenshot-default () ()
   "Make screenshot of root window"
-  (%screenshot-window (screen-root (current-screen)) (screenshot-filename)))
+  (screenshot:screenshot (screenshot-filename)))
 
 (defcommand screenshot-window-default () ()
   "Make screenshot of focus window"
-  (%screenshot-window (window-xwin (current-window)) (screenshot-filename)))
+  (screenshot:screenshot-window (screenshot-filename)))
 
 (defcommand update-mode-line () ()
   "Update the mode-line sooner than usual."
