@@ -115,7 +115,7 @@
                               ("h"  "custom/run-htop")
                               ("i"  "custom/run-iotop")
                               ("p"  "custom/run-powertop")
-                              ("w"  "custom/run-wicd-curses")
+                              ("w"  "custom/run-wicd-gtk")
                               ))
 
 (defkeys-root

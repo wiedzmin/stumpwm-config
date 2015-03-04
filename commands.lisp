@@ -219,6 +219,10 @@ rules."
   "Testing htop run in terminal"
   (run-shell-command "urxvt -e wicd-curses"))
 
+(defcommand custom/run-wicd-gtk () ()
+  "Run wicd-gtk"
+  (run-shell-command "wicd-gtk"))
+
 (defcommand custom/run-iotop () ()
   "Testing htop run in terminal"
   (run-shell-command "urxvt -e sudo iotop"))
