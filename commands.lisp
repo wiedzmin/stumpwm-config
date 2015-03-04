@@ -212,11 +212,11 @@ rules."
 
 ;TODO: abstract away terminal shell command
 (defcommand custom/run-htop () ()
-  "Testing htop run in terminal"
+  "Run htop"
   (run-shell-command "urxvt -e htop"))
 
 (defcommand custom/run-wicd-curses () ()
-  "Testing htop run in terminal"
+  "Run wicd-curses"
   (run-shell-command "urxvt -e wicd-curses"))
 
 (defcommand custom/run-wicd-gtk () ()
@@ -224,9 +224,9 @@ rules."
   (run-shell-command "wicd-gtk"))
 
 (defcommand custom/run-iotop () ()
-  "Testing htop run in terminal"
+  "Run iotop"
   (run-shell-command "urxvt -e sudo iotop"))
 
 (defcommand custom/run-powertop () ()
-  "Testing htop run in terminal"
+  "Run powertop"
   (run-shell-command "urxvt -e sudo powertop"))
