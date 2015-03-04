@@ -51,3 +51,15 @@ Archived entries from file /home/octocat/.stumpwm.d/todo.org
   :ARCHIVE_CATEGORY: todo
   :ARCHIVE_TODO: DONE
   :END:
+
+* DONE [#C] fix window title displaying in modeline, it somehow interferes with sensors markup [2014-10-23 Чт 14:42] :stumpwm:ticket:
+  CLOSED: [2015-03-04 Ср 13:19]
+  :LOGBOOK:  
+  - State "DONE"       from "TODO"       [2015-03-04 Ср 13:19]
+  :END:      
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-03-04 Ср 13:19
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:
