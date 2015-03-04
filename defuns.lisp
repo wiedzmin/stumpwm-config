@@ -137,7 +137,8 @@
 (defun current-window-title ()
   (let ((current-window (current-window)))
     (if current-window
-        (window-title current-window)
+        (let ((title (window-title current-window)))
+          (subseq title 0 (search " - http" title)))
         (cat "No Window In ::"
            (group-name (current-group)) "::"))))
 
