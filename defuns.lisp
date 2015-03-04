@@ -35,12 +35,6 @@
      ,@(mapcar #'(lambda (k) `(defkey-in-map m ,(first k) ,(second k))) keys)
      m)))
 
-(defun current-window-title ()
-  (let ((current-window (current-window)))
-    (if current-window
-        (window-title current-window)
-        "No Windows")))
-
 (defun screenshot-filename ()
   (concatenate
    'string
