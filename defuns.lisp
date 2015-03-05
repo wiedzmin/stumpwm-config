@@ -38,28 +38,34 @@
         (cat "No Window In ::"
            (group-name (current-group)) "::"))))
 
-(defmacro define-pull-raise-pairs (&body items)
-  "Defines pairs of pull/raise commands for applications in 'items'. Credits to ivan4th"
+(defmacro define-application (name &key (command (string-downcase (string name)))
+                                     (class (string-capitalize command) )
+                                     (instance nil)
+                                     (title nil)
+                                     (map '*top-map*)
+                                     (key (subseq command 0 1))
+                                     (pullp nil)
+                                     (pull-map nil)
+                                     (pull-name (intern1 (concat "p-" (string name))))
+                                     (pull-key (subseq command 0 1)))
+  "Define a command and key binding to run or raise a program. If
+@var{pullp} is set, also define a command and key binding to run or
+pull the program."
   `(progn
-     ,@(loop for item in items
-             for %name = (if (consp item) (first item) item)
-             for class = (if (consp item) (second item) (string-capitalize %name))
-             for name = (if (symbolp %name) (string-downcase %name) %name)
-             for command = (or (when (consp item) (third item)) name)
-             for instance = (or (when (and (consp item) (>= (list-length item) 4)) (fourth item)) nil)
-             for title = (or (when (and (consp item) (>= (list-length item) 5)) (fifth item)) nil)
-             collect
-             `(defcommand ,(intern (format nil "P-~a" (string-upcase name))) () ()
-                ,(format nil "Start ~a unless it is already running, ~
-in which case pull it into the current frame."
-                         name)
-                (run-or-pull ,command '(:class ,class :instance ,instance :title ,title)))
-             collect
-             `(defcommand ,(intern (string-upcase name)) () ()
-                ,(format nil "Start ~a unless it is already running, ~
+     (defcommand ,name () ()
+                 ,(format nil "Start ~a unless it is already running, ~
 in which case focus it."
-                         name)
-                (run-or-raise ,command '(:class ,class :instance ,instance :title ,title))))))
+                          name)
+       (run-or-raise ,command '(:class ,class :title ,title)))
+     (define-key ,map (kbd ,key) ,(string-downcase (string name)))
+     ,(when pullp
+        `(progn
+           (defcommand (,pull-name tile-group) () ()
+                       ,(format nil "Start ~a unless it is already running, ~
+in which case pull it into the current frame."
+                                name)
+             (run-or-pull ,command '(:class ,class :instance ,instance :title ,title)))
+           (define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name)))))))
 
 (defun enable-mode-line-all-heads ()
   (dolist (screen *screen-list*)

@@ -9,6 +9,9 @@
 
 (defparameter *simple-resize-increment* 100)
 
+(defparameter *pull-keymap* (make-sparse-keymap))
+(defparameter *raise-keymap* (make-sparse-keymap))
+
 ;; borders
 (setf *maxsize-border-width* 2)
 (setf *transient-border-width* 1)

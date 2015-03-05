@@ -63,3 +63,16 @@ Archived entries from file /home/octocat/.stumpwm.d/todo.org
   :ARCHIVE_CATEGORY: todo
   :ARCHIVE_TODO: DONE
   :END:
+
+* DONE [#C] borrow ideas from "defprogram-shortcut" [2015-02-21 Сб 22:31] :stumpwm:ticket:
+  CLOSED: [2015-03-05 Чт 16:39]
+  :LOGBOOK:
+  - State "DONE"       from "GOING"      [2015-03-05 Чт 16:39]
+  - State "GOING"      from "TODO"       [2015-03-05 Чт 15:25]
+  :END:
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2015-03-05 Чт 18:10
+  :ARCHIVE_FILE: ~/.stumpwm.d/todo.org
+  :ARCHIVE_CATEGORY: todo
+  :ARCHIVE_TODO: DONE
+  :END:

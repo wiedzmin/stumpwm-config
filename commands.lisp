@@ -122,21 +122,16 @@ rules."
   "Cycle through the frame tree to the previous frame."
   (focus-prev-frame (current-group)))
 
-(define-pull-raise-pairs
-  emacs conkeror libreoffice
-  qmpdclient konsole
-  vlc fbreader zathura
-  firefox skype
-  (urxvt "URxvt")
-  (VirtualBox "VirtualBox" "VirtualBox")
-  (google-chrome "Google-chrome")
-  ;; TBD find out a way to make shell singletones with apps below
-  ;; (ranger "URxvt" "urxvt -e ranger-python2.7" "ranger" "ranger")
-  ;; (vifm "URxvt" "urxvt -e vifm" "vifm" "vifm")
-  ;; (htop "URxvt" "urxvt -e sudo htop" "htop" "htop")
-  ;; (ipython "URxvt" "urxvt -e ipython" "ipython" "ipython")
-  ;; (mc "URxvt" "urxvt -e mc" "mc" "Midnight Commander")
-  )
+(define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application urxvt :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application google-chrome :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application virtualbox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application qmpdclient :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application vlc :map *raise-keymap* :key "l" :pullp t :pull-map *pull-keymap* :pull-key "l")
+(define-application fbreader :map *raise-keymap* :key "2" :pullp t :pull-map *pull-keymap* :pull-key "2")
+(define-application zathura :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application skype :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 
 (defcommand update-all-modelines () ()
   "Update modelines on all heads."

@@ -43,34 +43,6 @@
                                ("C-g"  "search-google-augmented")
                                ))
 
-(defparameter *pull-keymap* (build-keymap
-                             ("c"  "p-conkeror")
-                             ("e"  "p-emacs")
-                             ("u"  "p-urxvt")
-                             ("f"  "p-firefox")
-                             ("g"  "p-google-chrome")
-                             ("v"  "p-virtualbox")
-                             ("q"  "p-qmpdclient")
-                             ("l"  "p-vlc")
-                             ("2"  "p-fbreader")
-                             ("z"  "p-zathura")
-                             ("s"  "p-skype")
-                             ))
-
-(defparameter *raise-keymap* (build-keymap
-                              ("c"  "conkeror")
-                              ("e"  "emacs")
-                              ("u"  "urxvt")
-                              ("f"  "firefox")
-                              ("g"  "google-chrome")
-                              ("v"  "virtualbox")
-                              ("q"  "qmpdclient")
-                              ("l"  "vlc")
-                              ("2"  "fbreader")
-                              ("z"  "zathura")
-                              ("s"  "skype")
-                              ))
-
 (defparameter *web-keymap* (build-keymap
                             ("m"  "custom/open-gmail")
                             ("g"  "custom/open-github")
