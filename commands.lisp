@@ -83,23 +83,6 @@ rules."
   (run-shell-command "slock")
   (run-shell-command "sleep 1 && xset dpms force off"))
 
-(defcommand reinit () ()
-  "Reload stumpwm config file"
-  (run-commands "reload" "loadrc"))
-
-;; This command runs the stumpwm "quit" command, but only if there aren't any windows open.
-(defcommand safequit () ()
-  "Checks if any windows are open before quitting."
-  (let ((win-count 0))
-    ;; Count the windows in each group
-    (dolist (group (screen-groups (current-screen)))
-      (setq win-count (+ (length (group-windows group)) win-count)))
-    ;; Display the number of open windows or quit
-    (if (= win-count 0)
-        (run-commands "quit")
-        (message (format nil "You have ~d ~a open" win-count
-                         (if (= win-count 1) "window" "windows"))))))
-
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
@@ -134,12 +117,6 @@ rules."
                    (- (head-height internal-head) 15)
                    )
       (setf *heads-updated* t))))
-
-(defcommand rule-them-all () ()
-  "Make rules for all currently active windows"
-  (clear-window-placement-rules)
-  (dolist (w (all-windows))
-    (make-rule-for-window w t)))
 
 (defcommand (fprev tile-group) () ()
   "Cycle through the frame tree to the previous frame."

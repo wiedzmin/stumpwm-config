@@ -33,7 +33,6 @@
 (load-config-module "defuns.lisp")
 (load-config-module "commands.lisp")
 (load-config-module "keydefs.lisp")
-(load-config-module "groups.lisp")
 (load-config-module "searches.lisp")
 (load-config-module "private.lisp")
 

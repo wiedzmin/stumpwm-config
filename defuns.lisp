@@ -22,92 +22,8 @@
    (run-shell-command "date +\"%d-%m-%Y-%T\" | tr -d '[:cntrl:]'" t)
    ".png"))
 
-(defun show-key-seq (key seq val)
-  (declare (ignore key val))
-  (message "Key sequence: ~A" (print-key-seq (reverse seq))))
-
-;;; find window and to what your whant.
-(defun find-window-group (group props)
-  (find-if (lambda (w)
-             (apply 'window-matches-properties-p w props))
-           (group-windows group)))
-
-(defun find-window-range (props &optional all-groups all-screens)
-  (let ((screens (if all-screens
-                     *screen-list*
-                     (list (current-screen)))))
-    (if all-groups
-        (loop named outer
-           for s in screens
-           do (loop
-                 for g in (screen-groups s)
-                 for win = (find-window-group g props)
-                 when win
-                 do (return-from outer win)))
-        (find-window-group (current-group) props))))
-
-
-(defun to-window (win)
-  (let* ((group (window-group win))
-         (frame (window-frame win))
-         (old-frame (tile-group-current-frame group)))
-    (frame-raise-window group frame win)
-    (focus-all win)
-    (unless (eq frame old-frame)
-      (show-frame-indicator group))))
-
-(defun find-window-dwim (props &key all-groups all-screens do-func send-str exec-shell switch-to to-and-back)
-  (let ((win (find-window-range props all-groups all-screens))
-        (last-window (if to-and-back
-                         (current-window))))
-    (if win
-        (if (or switch-to to-and-back)
-            (progn
-              (to-window win)
-              do-func
-              (if exec-shell (if (run-shell-command exec-shell t)
-                                 (if to-and-back (to-window last-window)))))
-            (progn
-              (eval do-func)
-              (if send-str (window-send-string win send-str))
-              (if exec-shell (run-shell-command exec-shell))))
-        (message "No such windows!"))))
-(export 'find-window-dwim)
-
-;; macro for faster startups
-(defmacro replace-hook (hook fn)
-  `(remove-hook, hook, fn)
-  `(add-hook, hook, fn))
-
-;; todo: use function user-homedir-pathname and merge-pathnames to update it.
-(defun expand-file-name (path &optional default-directory)
-  (let ((first-char (subseq path 0 1))
-        (home-dir (concat (getenv "HOME") "/"))
-        (dir (if default-directory
-                 (if (string= (subseq (reverse default-directory) 0 1) "/")
-                     default-directory
-                     (concat default-directory "/")))))
-    (cond ((string= first-char "~") (concat home-dir (subseq path 2)))
-          ((string= first-char "/") path)
-          (dir (if (string= (subseq dir 0 1) "/")
-                   (concat dir path)
-                   (expand-file-name (concat dir path))))
-          (t (concat home-dir path)))))
-
 (defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
-
-;TODO: actualize this copypaste
-(defmacro program-with-layout (name &key (command (string-downcase (string name)))
-                               (props `'(:class ,(string-capitalize command))))
-  `(defcommand ,name () ()
-     (gnew ,command)
-     (restore-from-file ,(concat "/home/dima/.stumpwm_files/"
-                                 command "-layout"))
-     (restore-window-placement-rules ,(concat "/home/dima/.stumpwm_files/"
-                                              command "-rules"))
-     (run-or-raise ,command ,props)
-     (place-existing-windows))) ; needed if the command has already been run
 
 (defun fix-str-length (str length)
   (if (> (length str) length)
@@ -152,18 +68,6 @@ in which case focus it."
 
 (defun concat-as-symbol (prefix suffix)
   (intern (string-upcase (cat prefix suffix))))
-
-(defmacro restore-group-multihead-command (key relfilename)
-  `(defcommand
-       ,(concat-as-symbol "custom/restore-group-multihead-" key)
-       () ()
-     "Restore group windows placement for multihead setup"
-     (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* ,relfilename)))
-       (cond ((not (probe-file group-file))
-              (message "~s not found" group-file))
-             (t
-              (restore-group (current-group) (read-dump-from-file group-file))
-              )))))
 
 (defun update-emacs-frames ()
   (let ((heads-count (length (screen-heads (car *screen-list*)))))
