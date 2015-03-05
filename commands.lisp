@@ -176,7 +176,7 @@ rules."
 
 (defcommand custom/dump-group (filename) ((:string "Set filename: "))
   "Dump group for future use"
-  (let ((group-file (concatenate 'string  *STUMPWM-LIB-DIR* "layouts/" filename)))
+  (let ((group-file (cat *STUMPWM-LIB-DIR* "layouts/" filename)))
     (dump-to-file (dump-group (current-group)) group-file)))
 
 ;; TBD Refactor to generalize with search macros

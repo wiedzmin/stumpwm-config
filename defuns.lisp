@@ -17,8 +17,7 @@
      keymap))
 
 (defun screenshot-filename ()
-  (concatenate
-   'string
+  (cat
    "~/screenshots/screenshot-"
    (run-shell-command "date +\"%d-%m-%Y-%T\" | tr -d '[:cntrl:]'" t)
    ".png"))
@@ -152,7 +151,7 @@ in which case focus it."
       (enable-mode-line screen head t))))
 
 (defun concat-as-symbol (prefix suffix)
-  (intern (string-upcase (concatenate 'string prefix suffix))))
+  (intern (string-upcase (cat prefix suffix))))
 
 (defmacro restore-group-multihead-command (key relfilename)
   `(defcommand
@@ -178,7 +177,7 @@ in which case focus it."
 
 (defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
   (let ((pathspec (if subdir
-                      (concatenate 'string basedir "/" subdir)
+                      (cat basedir "/" subdir)
                       basedir)))
     (directory
      (make-pathname
@@ -210,10 +209,10 @@ in which case focus it."
 
 (defun open-in-browser (url &optional (background nil))
   (run-shell-command
-   (concatenate 'string
-                *BROWSER*
-                " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
-                url)) ;FIXME: someway reorganize these browser commandlines
+   (cat
+    *BROWSER*
+    " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
+    url)) ;FIXME: someway reorganize these browser commandlines
   (unless background
     (funcall (intern (string-upcase *BROWSER*)))))
 
