@@ -11,6 +11,13 @@
 
 (defparameter *pull-keymap* (make-sparse-keymap))
 (defparameter *raise-keymap* (make-sparse-keymap))
+(defparameter *search-keymap* (make-sparse-keymap))
+(defparameter *web-keymap* (make-sparse-keymap))
+(defparameter *heads-keymap* (make-sparse-keymap))
+(defparameter *frames-keymap* (make-sparse-keymap))
+(defparameter *desktop-keymap* (make-sparse-keymap))
+(defparameter *swank-keymap* (make-sparse-keymap))
+(defparameter *shell-keymap* (make-sparse-keymap))
 
 ;; borders
 (setf *maxsize-border-width* 2)
