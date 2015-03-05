@@ -123,7 +123,7 @@ rules."
   (focus-prev-frame (current-group)))
 
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
-(define-application urxvt :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application urxvt :class "URxvt" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application google-chrome :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application virtualbox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
