@@ -118,7 +118,7 @@
                               ("w"  "custom/run-wicd-gtk")
                               ))
 
-(defkeys-root
+(define-keys *root-map*
   ("0" "remove-split")
   ("1" "only")
   ("2" "vsplit")
@@ -142,7 +142,7 @@
   ("b" "custom/choose-book")
   )
 
-(defkeys-top
+(define-keys *top-map*
   ("s-P" "exec gmrun")
   ("s-L" "update-mode-line")
   ("s-C" "kill-window")
@@ -168,15 +168,15 @@
   ("s-u"     "raise-urgent")
   ("s-f"     "fullscreen")
   ;;
-  ("s-/"       '*search-keymap*)
-  ("s-x"       '*pull-keymap*)
-  ("s-r"       '*raise-keymap*)
-  ("s-v"       '*heads-keymap*)
-  ("s-s"       '*frames-keymap*)
-  ("s-p"       '*desktop-keymap*)
-  ("s-w"       '*web-keymap*)
-  ("s-e"       '*swank-keymap*)
-  ("s-c"       '*shell-keymap*)
+  ("s-/"       *search-keymap*)
+  ("s-x"       *pull-keymap*)
+  ("s-r"       *raise-keymap*)
+  ("s-v"       *heads-keymap*)
+  ("s-s"       *frames-keymap*)
+  ("s-p"       *desktop-keymap*)
+  ("s-w"       *web-keymap*)
+  ("s-e"       *swank-keymap*)
+  ("s-c"       *shell-keymap*)
   ;;
   ("s-i" "display-current-window-info")
   )
