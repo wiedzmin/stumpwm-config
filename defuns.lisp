@@ -75,10 +75,14 @@ in which case pull it into the current frame."
 (defun concat-as-symbol (prefix suffix)
   (intern (string-upcase (cat prefix suffix))))
 
+(defmacro with-emacs (&body body)
+  `(when (find-matching-windows '(:class "Emacs") t t)
+     (emacs)
+     (progn ,@body)))
+
 (defun update-emacs-frames ()
   (let ((heads-count (length (screen-heads (car *screen-list*)))))
-    (when (find-matching-windows '(:class "Emacs") t t)
-      (emacs)
+    (with-emacs
       (send-meta-key (current-screen) (kbd "M-x"))
       (window-send-string "update-frames")
       (send-meta-key (current-screen) (kbd "RET"))
