@@ -202,3 +202,7 @@ rules."
 (defcommand custom/run-powertop () ()
   "Run powertop"
   (run-shell-command "urxvt -e sudo powertop"))
+
+(defcommand custom/org-clock-goto () ()
+  "Go to recently clocked-in Org heading in emacs"
+  (emacs-org-clock-goto))

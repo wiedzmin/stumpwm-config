@@ -89,6 +89,12 @@ in which case pull it into the current frame."
       (window-send-string (write-to-string heads-count))
       (send-meta-key (current-screen) (kbd "RET")))))
 
+(defun emacs-org-clock-goto ()
+  (with-emacs
+    (send-meta-key (current-screen) (kbd "M-x"))
+    (window-send-string "org-clock-goto")
+    (send-meta-key (current-screen) (kbd "RET"))))
+
 (defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
   (let ((pathspec (if subdir
                       (cat basedir "/" subdir)
