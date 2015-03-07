@@ -71,7 +71,8 @@
 (define-keys *desktop-keymap*
   ("a"  "update-all-modelines")
   ("d"  "custom/dump-group")
-  ("t"  "stumptray"))
+  ("t"  "stumptray")
+  ("g"  "custom/org-clock-goto"))
 
 (define-keys *swank-keymap*
   ("t"  "swank-toggle")

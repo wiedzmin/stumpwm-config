@@ -80,6 +80,13 @@ in which case pull it into the current frame."
      (emacs)
      (progn ,@body)))
 
+(defmacro with-emacs-noninteractive (&body body)
+  `(when (find-matching-windows '(:class "Emacs") t t)
+     (run-shell-command
+      ,(string-downcase (format nil "emacsclient --eval '~a'" (prin1 `(progn ,@body)))))
+     (emacs)
+     ))
+
 (defun update-emacs-frames ()
   (let ((heads-count (length (screen-heads (car *screen-list*)))))
     (with-emacs
@@ -90,10 +97,8 @@ in which case pull it into the current frame."
       (send-meta-key (current-screen) (kbd "RET")))))
 
 (defun emacs-org-clock-goto ()
-  (with-emacs
-    (send-meta-key (current-screen) (kbd "M-x"))
-    (window-send-string "org-clock-goto")
-    (send-meta-key (current-screen) (kbd "RET"))))
+  (with-emacs-noninteractive
+    (org-clock-goto)))
 
 (defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
   (let ((pathspec (if subdir
