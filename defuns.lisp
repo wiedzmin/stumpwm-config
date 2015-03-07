@@ -88,13 +88,9 @@ in which case pull it into the current frame."
      ))
 
 (defun update-emacs-frames ()
-  (let ((heads-count (length (screen-heads (car *screen-list*)))))
-    (with-emacs
-      (send-meta-key (current-screen) (kbd "M-x"))
-      (window-send-string "update-frames")
-      (send-meta-key (current-screen) (kbd "RET"))
-      (window-send-string (write-to-string heads-count))
-      (send-meta-key (current-screen) (kbd "RET")))))
+  (if (> (length (screen-heads (car *screen-list*))) 1)
+      (with-emacs-noninteractive (update-frames 2))
+      (with-emacs-noninteractive (update-frames 1))))
 
 (defun emacs-org-clock-goto ()
   (with-emacs-noninteractive
