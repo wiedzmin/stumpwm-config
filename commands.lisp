@@ -125,7 +125,7 @@ rules."
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
-(define-application google-chrome :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application google-chrome-stable :class "Google-chrome-stable" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application virtualbox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application qmpdclient :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application vlc :map *raise-keymap* :key "l" :pullp t :pull-map *pull-keymap* :pull-key "l")
