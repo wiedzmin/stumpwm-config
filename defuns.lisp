@@ -84,8 +84,8 @@ in which case pull it into the current frame."
   `(when (find-matching-windows '(:class "Emacs") t t)
      (run-shell-command
       ,(string-downcase (format nil "emacsclient --eval '~a'" (prin1 `(progn ,@body)))))
-     (emacs)
-     ))
+     (unless (search "emacs" (window-title (current-window)))
+       (emacs))))
 
 (defun update-emacs-frames ()
   (if (> (length (screen-heads (car *screen-list*))) 1)
