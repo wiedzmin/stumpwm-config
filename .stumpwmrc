@@ -11,8 +11,7 @@
 (load (concatenate 'string *SLIME-DIR* "swank-loader.lisp"))
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
 
-(setf *contrib-dir* (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
-(init-load-path *contrib-dir*)
+(init-load-path (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
 
 (load-module "battery")
 (load-module "cpu")

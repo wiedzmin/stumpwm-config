@@ -16,14 +16,14 @@
      (define-keys keymap ,@keys)
      keymap))
 
+(defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
+  (apply 'concatenate 'string strings))
+
 (defun screenshot-filename ()
   (cat
    "~/screenshots/screenshot-"
    (run-shell-command "date +\"%d-%m-%Y-%T\" | tr -d '[:cntrl:]'" t)
    ".png"))
-
-(defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
-  (apply 'concatenate 'string strings))
 
 (defun fix-str-length (str length)
   (if (> (length str) length)

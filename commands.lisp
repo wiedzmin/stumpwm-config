@@ -32,6 +32,7 @@
         (stop-swank)
         (start-swank)))
   (defcommand swank-status () ()
+    "Echo swank running status"
     (if swank-p
         (echo-string (current-screen) "Swank is ON")
         (echo-string (current-screen) "Swank is OFF")))
