@@ -81,8 +81,7 @@
 (define-keys *shell-keymap*
   ("h"  "custom/run-htop")
   ("i"  "custom/run-iotop")
-  ("p"  "custom/run-powertop")
-  ("w"  "custom/run-wicd-gtk"))
+  ("p"  "custom/run-powertop"))
 
 (define-keys *root-map*
   ("0" "remove-split")
