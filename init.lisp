@@ -35,6 +35,7 @@
 (load-config-module "searches.lisp")
 (load-config-module "private.lisp")
 
+(setf *emacs-toggle-input-method-key* "C-\\")
 ;; (xft:cache-fonts)
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
 (enable-mode-line-all-heads)
