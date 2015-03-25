@@ -66,7 +66,12 @@
   ("Left"  "exchange-direction left")
   ("Up"  "exchange-direction up")
   ("Down"  "exchange-direction down")
-  ("s" "fselect"))
+  ("s" "fselect")
+  ("0" "remove-split")
+  ("1" "only")
+  ("2" "vsplit")
+  ("3" "hsplit")
+  ("\\" "balance-frames"))
 
 (define-keys *desktop-keymap*
   ("a"  "update-all-modelines")
@@ -84,14 +89,9 @@
   ("p"  "custom/run-powertop"))
 
 (define-keys *root-map*
-  ("0" "remove-split")
-  ("1" "only")
-  ("2" "vsplit")
-  ("3" "hsplit")
   ("Delete" "toggle-modeline")
   ("ESC" "abort")
   ("Q" "restart-hard") ;was "quit"
-  ("\\" "balance-frames")
   ("p" "global-pull-windowlist")
   ("s-Down" "move-window down")
   ("s-Left" "move-window left")
@@ -109,7 +109,6 @@
 
 (define-keys *top-map*
   ("s-P" "exec gmrun")
-  ("s-L" "update-mode-line")
   ("s-C" "kill-window")
   ;;
   ("XF86AudioRaiseVolume" "raise-volume")
@@ -138,7 +137,7 @@
   ("s-2"       *raise-keymap*)
   ("s-`"       *heads-keymap*)
   ("s-3"       *frames-keymap*)
-  ("s-p"       *desktop-keymap*)
+  ("s-q"       *desktop-keymap*)
   ("s-w"       *web-keymap*)
   ("s-s"       *swank-keymap*)
   ("s-4"       *shell-keymap*)
