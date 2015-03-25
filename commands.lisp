@@ -79,8 +79,17 @@ rules."
                          "width:    " (format nil "~a" (window-width w)) nl
                          "height    " (format nil "~a" (window-height w))))))
 
+(defcommand suspend-dunst () ()
+   "Suspend dunst"
+   (run-shell-command "killall -SIGUSR1 dunst"))
+
+(defcommand resume-dunst () ()
+   "Resume dunst and receive suspended messages"
+   (run-shell-command "killall -SIGUSR2 dunst"))
+
 (defcommand lock-screen () ()
   "Lock the screen."
+  (suspend-dunst)
   (run-shell-command "slock")
   (run-shell-command "sleep 1 && xset dpms force off"))
 

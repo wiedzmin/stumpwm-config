@@ -77,7 +77,8 @@
   ("a"  "update-all-modelines")
   ("d"  "custom/dump-group")
   ("t"  "stumptray")
-  ("g"  "custom/org-clock-goto"))
+  ("g"  "custom/org-clock-goto")
+  ("r"  "resume-dunst"))
 
 (define-keys *swank-keymap*
   ("t"  "swank-toggle")
