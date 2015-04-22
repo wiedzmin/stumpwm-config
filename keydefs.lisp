@@ -56,6 +56,9 @@
   ("d"  "custom/open-feedly")
   ("s"  "custom/open-delicious"))
 
+(define-keys *raise-keymap*
+  ("DEL"  "other"))
+
 (define-keys *heads-keymap*
   ("Right"  "enable-external-monitor-right")
   ("Left"  "enable-external-monitor-left")
