@@ -66,6 +66,7 @@
 (defparameter *URL-CRATE-IO*        "http://crate.io/?q=~a")
 (defparameter *URL-RUTRACKER*       "http://rutracker.org/forum/tracker.php?nm=~a")
 (defparameter *URL-ALTS-IO*         "http://alts.io/s?q=~a")
+(defparameter *URL-LAUNCHPAD*       "https://launchpad.net/+search?field.text=~a")
 
 (searchengines:make-searchengine-selection "search-google-selection" *URL-GOOGLE* "Google search")
 (searchengines:make-searchengine-selection "search-yandex-selection" *URL-YANDEX* "Yandex search")
@@ -98,6 +99,7 @@
 (searchengines:make-searchengine-selection "search-crate-io-selection" *URL-CRATE-IO* "Crate.io Python packages index")
 (searchengines:make-searchengine-selection "search-rutracker-selection" *URL-RUTRACKER* "Rutracker torrents")
 (searchengines:make-searchengine-selection "search-alts-io-selection" *URL-ALTS-IO* "Python reference")
+(searchengines:make-searchengine-selection "search-launchpad-selection" *URL-LAUNCHPAD* "Search on Launchpad")
 (searchengines:make-searchengine-selection "search-open-selection" "" "Just open selection")
 
 (searchengines:make-searchengine-prompt "search-google-prompt" "Google" *URL-GOOGLE* "Google search")
@@ -131,5 +133,6 @@
 (searchengines:make-searchengine-prompt "search-crate-io-prompt" "Crate.io index" *URL-CRATE-IO* "Crate.io Python packages index")
 (searchengines:make-searchengine-prompt "search-alts-io-prompt" "Python reference" *URL-ALTS-IO* "Python reference")
 (searchengines:make-searchengine-prompt "search-rutracker-prompt" "Rutracker" *URL-RUTRACKER* "Rutracker torrents")
+(searchengines:make-searchengine-prompt "search-launchpad-prompt" "Launchpad" *URL-LAUNCHPAD* "Search on Launchpad")
 
 (searchengines:make-searchengine-augmented "search-google-augmented" "Augmented Google" *URL-GOOGLE* "Google search")

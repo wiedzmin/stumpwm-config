@@ -28,6 +28,7 @@
   ("s-z"  "search-zugaina-selection")
   ("s-r"  "search-rutracker-selection")
   ("s-a"  "search-alts-io-selection")
+  ("s-l"  "search-launchpad-selection")
   ("s-o"  "custom/open-selection")
   ("s-C-g"  "search-google-prompt")
   ("s-C-y"  "search-yandex-prompt")
@@ -40,6 +41,7 @@
   ("s-C-z"  "search-zugaina-prompt")
   ("s-C-r"  "search-rutracker-prompt")
   ("s-C-a"  "search-alts-io-prompt")
+  ("s-C-l"  "search-launchpad-prompt")
   ("C-g"  "search-google-augmented"))
 
 (define-keys *web-keymap*
