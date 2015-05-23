@@ -133,7 +133,7 @@ rules."
   (focus-prev-frame (current-group)))
 
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
-(define-application urxvt :class "URxvt" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application google-chrome-stable :class "Google-chrome-stable" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application virtualbox :command "VirtualBox" :class "VirtualBox" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
