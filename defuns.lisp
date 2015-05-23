@@ -89,8 +89,8 @@ in which case pull it into the current frame."
 
 (defun update-emacs-frames ()
   (if (> (length (screen-heads (car *screen-list*))) 1)
-      (with-emacs-noninteractive (update-frames 2))
-      (with-emacs-noninteractive (update-frames 1))))
+      (with-emacs-noninteractive (custom/update-frames 2))
+      (with-emacs-noninteractive (custom/update-frames 1))))
 
 (defun emacs-org-clock-goto ()
   (with-emacs-noninteractive
