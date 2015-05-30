@@ -117,6 +117,10 @@
   ;;
   ("XF86AudioRaiseVolume" "raise-volume")
   ("XF86AudioLowerVolume" "lower-volume")
+  ("XF86AudioMute" "toggle-volume")
+  ;;
+  ("XF86MonBrightnessUp" "brightness-up")
+  ("XF86MonBrightnessDown" "brightness-down")
   ;;
   ("s-TAB" "next")
   ("s-C-TAB" "prev")

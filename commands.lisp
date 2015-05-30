@@ -46,6 +46,9 @@
   "Lower volume."
   (run-shell-command "amixer -c 0 set Master 10-"))
 
+(defcommand toggle-volume () ()
+  (run-shell-command "amixer set Master toggle >> /dev/null" t))
+
 (defcommand toggle-modeline () ()
   "Toggle mode line."
   (stumpwm:toggle-mode-line (stumpwm:current-screen)
@@ -218,3 +221,9 @@ rules."
 (defcommand custom/org-clock-goto () ()
   "Go to recently clocked-in Org heading in emacs"
   (emacs-org-clock-goto))
+
+(defcommand brightness-up () ()
+  (run-shell-command "xbacklight -inc 10"))
+
+(defcommand brightness-down () ()
+  (run-shell-command "xbacklight -dec 10"))
