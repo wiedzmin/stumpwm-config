@@ -147,6 +147,7 @@ rules."
 (define-application skype :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application wicd-gtk :command "wicd-gtk -n" :class "Wicd-client.py" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application pavucontrol :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application krdc :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 
 (defcommand update-all-modelines () ()
   "Update modelines on all heads."
