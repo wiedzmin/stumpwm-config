@@ -69,11 +69,11 @@
   ("Left"  "exchange-direction left")
   ("Up"  "exchange-direction up")
   ("Down"  "exchange-direction down")
-  ("s" "fselect")
   ("0" "remove-split")
   ("1" "only")
   ("2" "vsplit")
   ("3" "hsplit")
+  ("4" "fselect")
   ("\\" "balance-frames"))
 
 (define-keys *desktop-keymap*
