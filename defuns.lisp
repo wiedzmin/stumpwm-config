@@ -145,8 +145,8 @@ in which case pull it into the current frame."
       (open-in-browser link))))
 
 (defun mouse-follow-focus (window cw)
-  (declare (ignore cw))
-  (when (frame-window window)
+  (when (and (not (window-transient-p (frame-window cw)))
+             (frame-window window))
     (unless (window-transient-p (current-window))
       (let ((pointer-x (+ 100 (frame-x (tile-group-current-frame (current-group)))))
             (pointer-y (+ 100 (frame-y (tile-group-current-frame (current-group))))))
