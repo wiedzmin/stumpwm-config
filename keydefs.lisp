@@ -52,7 +52,8 @@
   ("o"  "custom/open-toodledo")
   ("l"  "custom/open-lumosity")
   ("d"  "custom/open-feedly")
-  ("s"  "custom/open-delicious"))
+  ("s"  "custom/open-delicious")
+  ("r"  "custom/open-gismeteo-radar"))
 
 (define-keys *raise-keymap*
   ("DEL"  "other"))

@@ -193,6 +193,7 @@ rules."
 (defwebjump "Lumosity" "http://lumosity.com/")
 (defwebjump "Feedly" "http://cloud.feedly.com/")
 (defwebjump "Delicious" "https://delicious.com/")
+(defwebjump "Gismeteo radar" "http://www.gismeteo.ru/map/647/")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
