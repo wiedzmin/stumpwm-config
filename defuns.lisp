@@ -144,14 +144,14 @@ in which case pull it into the current frame."
     (when link
       (open-in-browser link))))
 
-(defun mouse-follow-focus (currentframe lastframe)
-  (when (and (frame-window lastframe)
-             (frame-window currentframe)
-             (not (window-transient-p (frame-window lastframe)))
-             (not (window-transient-p (current-window))))
-    (let* ((current-frame (tile-group-current-frame (current-group)))
-           (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
-           (pointer-y (+ 100 (frame-y current-frame))))
-      (warp-pointer (current-screen) pointer-x pointer-y))))
-
-(add-hook *focus-frame-hook* 'mouse-follow-focus)
+;;FIXME: mouse-follow-focus suffers from some transient and annoying bugs so turn it off till it can be fixed in some sane manner
+;; (defun mouse-follow-focus (currentframe lastframe)
+;;   (when (and (frame-window lastframe)
+;;              (frame-window currentframe)
+;;              (not (window-transient-p (frame-window lastframe)))
+;;              (not (window-transient-p (current-window))))
+;;     (let* ((current-frame (tile-group-current-frame (current-group)))
+;;            (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
+;;            (pointer-y (+ 100 (frame-y current-frame))))
+;;       (warp-pointer (current-screen) pointer-x pointer-y))))
+;; (add-hook *focus-frame-hook* 'mouse-follow-focus)

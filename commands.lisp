@@ -228,3 +228,9 @@ rules."
 
 (defcommand brightness-down () ()
   (run-shell-command "xbacklight -dec 10"))
+
+(defcommand warp-mouse-active-frame () ()
+  (let* ((current-frame (tile-group-current-frame (current-group)))
+         (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
+         (pointer-y (+ 100 (frame-y current-frame))))
+    (warp-pointer (current-screen) pointer-x pointer-y)))

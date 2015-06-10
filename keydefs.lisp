@@ -74,6 +74,7 @@
   ("2" "vsplit")
   ("3" "hsplit")
   ("4" "fselect")
+  ("5" "warp-mouse-active-frame")
   ("\\" "balance-frames"))
 
 (define-keys *desktop-keymap*
