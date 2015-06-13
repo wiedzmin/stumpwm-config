@@ -42,7 +42,7 @@
            (string #\NewLine)
            " "
            "^n"
-           "^7*(^[^n ^]" `(:eval (fix-str-length (current-window-title) 200)) ")^n "
+           "^7" `(:eval (fix-str-length (current-window-title) 200))
            ))
 (setf *mode-line-foreground-color* "DarkSeaGreen")
 (setf *mode-line-background-color* "Gray15")
