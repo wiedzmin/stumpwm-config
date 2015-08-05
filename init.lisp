@@ -1,9 +1,18 @@
 (in-package #:stumpwm)
 
-(defparameter *SLIME-DIR* "/home/octocat/.emacs.d/el-get/slime/")
-(defparameter *CL-USER-DIR* "/home/octocat/.commonlisp/")
-(defparameter *STUMPWM-LIB-DIR* "/home/octocat/.stumpwm.d/")
-(defparameter *STUMPWM-GIT-DIR* (concatenate 'string *CL-USER-DIR* "stumpwm-git/"))
+(defun at-homedir (&optional suffix)
+  (concatenate 'string (namestring (user-homedir-pathname)) suffix))
+
+(defun find-subpath (path substring)
+  (car
+   (loop for dir in (directory path)
+      when (search substring (namestring dir))
+      collect (namestring dir))))
+
+(defparameter *SLIME-DIR* (find-subpath (at-homedir ".emacs.d/elpa/*/") "/slime-"))
+(defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
+(defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
+(defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
 
 (defun load-config-module (name)
   (load (concatenate 'string *STUMPWM-LIB-DIR* name)))
