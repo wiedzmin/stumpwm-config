@@ -148,6 +148,7 @@ rules."
 (define-application wicd-gtk :command "wicd-gtk -n" :class "Wicd-client.py" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application pavucontrol :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application krdc :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application vncviewer :map *raise-keymap* :key "i" :pullp t :pull-map *pull-keymap* :pull-key "i")
 
 (defcommand update-all-modelines () ()
   "Update modelines on all heads."
