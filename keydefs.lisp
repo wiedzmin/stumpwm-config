@@ -42,19 +42,6 @@
   ("s-C-l"  "search-launchpad-prompt")
   ("C-g"  "search-google-augmented"))
 
-(define-keys *web-keymap*
-  ("m"  "custom/open-gmail")
-  ("g"  "custom/open-github")
-  ("y"  "custom/open-yandex")
-  ("f"  "custom/open-facebook")
-  ("t"  "custom/open-multitran")
-  ("b"  "custom/open-youtube")
-  ("o"  "custom/open-toodledo")
-  ("l"  "custom/open-lumosity")
-  ("d"  "custom/open-feedly")
-  ("s"  "custom/open-delicious")
-  ("r"  "custom/open-gismeteo-radar"))
-
 (define-keys *raise-keymap*
   ("DEL"  "other"))
 
