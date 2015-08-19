@@ -197,6 +197,7 @@ rules."
 (defwebjump "Feedly" "http://cloud.feedly.com/")
 (defwebjump "Delicious" "https://delicious.com/")
 (defwebjump "Gismeteo radar" "http://www.gismeteo.ru/map/647/")
+(defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
 
 (defcommand custom/choose-book () ()
   "Select books to read from menu"
