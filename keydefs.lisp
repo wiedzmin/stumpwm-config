@@ -21,7 +21,6 @@
   ("s-o"  "search-ohloh-selection")
   ("s-m"  "search-yandex-maps-selection")
   ("s-h"  "search-github-selection")
-  ("s-h"  "search-github-selection")
   ("s-p"  "search-pypi-selection")
   ("s-s"  "search-libgen-scimag-selection")
   ("s-z"  "search-zugaina-selection")
