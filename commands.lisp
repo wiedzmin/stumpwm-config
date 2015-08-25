@@ -177,16 +177,6 @@ rules."
   "Select windows layout from menu"
   (select-layout-from-menu))
 
-(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil))
-  (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))))
-    `(progn
-       (defcommand
-           ,command-name () ()
-         ,(format nil "Open ~a" caption)
-         (open-in-browser ,url))
-       (when ,key
-         (define-key ,map (kbd ,key) ,(string-downcase command-name))))))
-
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
 (defwebjump "Yandex" "http://yandex.ru" :key "y")
