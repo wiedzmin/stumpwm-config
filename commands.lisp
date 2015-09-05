@@ -220,6 +220,14 @@ rules."
   "Go to recently clocked-in Org heading in emacs"
   (emacs-org-clock-goto))
 
+(defcommand custom/org-agenda () ()
+  "Open generic orgmode agenda in emacs"
+  (emacs-org-open-agenda))
+
+(defcommand custom/org-agenda-list () ()
+  "Open calendar-pinned orgmode agenda in emacs"
+  (emacs-org-open-agenda-list))
+
 (defcommand brightness-up () ()
   (run-shell-command "xbacklight -inc 10"))
 

@@ -69,7 +69,9 @@
   ("d"  "custom/dump-group")
   ("t"  "stumptray")
   ("g"  "custom/org-clock-goto")
-  ("r"  "resume-dunst"))
+  ("r"  "resume-dunst")
+  ("O"  "custom/org-agenda")
+  ("o"  "custom/org-agenda-list"))
 
 (define-keys *swank-keymap*
   ("t"  "swank-toggle")

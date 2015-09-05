@@ -106,6 +106,14 @@ in which case pull it into the current frame."
   (with-emacs-noninteractive
     (org-clock-goto)))
 
+(defun emacs-org-open-agenda ()
+  (with-emacs-noninteractive
+    (org-agenda)))
+
+(defun emacs-org-open-agenda-list ()
+  (with-emacs-noninteractive
+    (org-agenda-list)))
+
 (defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
   (let ((pathspec (if subdir
                       (cat basedir "/" subdir)
