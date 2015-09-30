@@ -93,7 +93,7 @@ rules."
 (defcommand lock-screen () ()
   "Lock the screen."
   (suspend-dunst)
-  (run-shell-command "slock")
+  (run-shell-command "i3lock")
   (run-shell-command "sleep 1 && xset dpms force off"))
 
 (defcommand enable-external-monitor-right () ()
