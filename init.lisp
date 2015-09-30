@@ -28,6 +28,7 @@
 (load-module "mem")
 (load-module "net")
 (load-module "wifi")
+(load-module "mpd")
 (load-module "screenshot")
 (load-module "notifications")
 (load-module "ttf-fonts")
@@ -48,4 +49,4 @@
 ;; (xft:cache-fonts)
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
 (enable-mode-line-all-heads)
-(run-commands "enable-per-window-layout")
+(run-commands "enable-per-window-layout" "mpd-connect")
