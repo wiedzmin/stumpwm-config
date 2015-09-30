@@ -218,6 +218,12 @@ rules."
     (dolist (head (screen-heads screen))
       (toggle-mode-line screen head))))
 
+(defcommand custom/start-job-vpn () ()
+  (run-shell-command "~/scripts/start-job-vpn.sh"))
+
+(defcommand custom/stop-job-vpn () ()
+  (run-shell-command "sudo killall openvpn"))
+
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)

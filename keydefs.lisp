@@ -80,7 +80,9 @@
 (define-keys *shell-keymap*
   ("h"  "custom/run-htop")
   ("i"  "custom/run-iotop")
-  ("p"  "custom/run-powertop"))
+  ("p"  "custom/run-powertop")
+  ("Up"  "custom/start-job-vpn")
+  ("Down"  "custom/stop-job-vpn"))
 
 (define-keys *root-map*
   ("Delete" "toggle-modeline")
