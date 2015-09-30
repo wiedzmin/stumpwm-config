@@ -142,7 +142,8 @@ rules."
 (defcommand update-heads-layout () ()
   "Update stuff after attaching external head(s)"
   (let ((update-commands nil))
-    (push "update-all-modelines" update-commands)
+    (when *update-all-modelines*
+      (push "update-all-modelines" update-commands))
     (when *reserve-tray-placement*
       (push "resize-heads" update-commands))
     (apply #'run-commands update-commands))
@@ -210,6 +211,12 @@ rules."
          (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
          (pointer-y (+ 100 (frame-y current-frame))))
     (warp-pointer (current-screen) pointer-x pointer-y)))
+
+(defcommand mode-lines () ()
+  "A command to toggle the mode line visibility for all screens/heads."
+  (dolist (screen *screen-list*)
+    (dolist (head (screen-heads screen))
+      (toggle-mode-line screen head))))
 
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")

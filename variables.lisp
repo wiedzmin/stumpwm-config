@@ -76,6 +76,9 @@
 (defparameter *reserve-tray-placement* nil
   "Should we reserve screen real estate for system tray app?")
 
+(defparameter *update-all-modelines* nil
+  "Should we update all modelines while updating heads?")
+
 (defvar *heads-updated* nil
   "Tracks status of heads updates")
 

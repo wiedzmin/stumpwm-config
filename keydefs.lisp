@@ -91,7 +91,7 @@
   ("s-Left" "move-window left")
   ("s-Right" "move-window right")
   ("s-Up" "move-window up")
-  ("s-b" "mode-line")
+  ("s-b" "mode-lines")
   ("s-c" "screenshot-window-default")
   ("s-i" "iresize")
   ("s-l" "lock-screen")
