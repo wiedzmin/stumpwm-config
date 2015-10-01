@@ -6,6 +6,7 @@
 ;;;
 ;;;
 ;;;
+(in-package #:stumpwm)
 
 (defparameter *simple-resize-increment* 100)
 

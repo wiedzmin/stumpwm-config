@@ -7,6 +7,8 @@
 ;;;
 ;;;
 
+(in-package #:stumpwm)
+
 (defparameter *FOREGROUND-COLOR* "green")
 (defparameter *BACKGROUND-COLOR* "black")
 (defparameter *BORDER-COLOR* "green")

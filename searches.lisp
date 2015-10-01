@@ -7,6 +7,8 @@
 ;;;
 ;;;
 
+(in-package #:stumpwm)
+
 (setf searchengines:*search-browser-executable* "firefox")
 (setf searchengines:*search-browser-params* '("-new-tab"))
 

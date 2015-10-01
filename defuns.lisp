@@ -7,6 +7,8 @@
 ;;;
 ;;;
 
+(in-package #:stumpwm)
+
 (defmacro define-keys (keymap &rest keys)
   `(dolist (keydef (quote ,keys))
      (define-key ,keymap (kbd (car keydef)) (cadr keydef))))
