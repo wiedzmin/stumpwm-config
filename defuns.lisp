@@ -21,6 +21,9 @@
 (defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
 
+(defun concat-as-symbol (prefix suffix)
+  (intern (string-upcase (cat prefix suffix))))
+
 (defun screenshot-filename ()
   (cat
    "~/screenshots/screenshot-"
@@ -83,9 +86,6 @@ in which case pull it into the current frame."
   (dolist (screen *screen-list*)
     (dolist (head (screen-heads screen))
       (enable-mode-line screen head t))))
-
-(defun concat-as-symbol (prefix suffix)
-  (intern (string-upcase (cat prefix suffix))))
 
 (defmacro with-emacs (&body body)
   `(when (find-matching-windows '(:class "Emacs") t t)
