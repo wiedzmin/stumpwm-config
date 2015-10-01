@@ -18,6 +18,24 @@
 (defparameter *desktop-keymap* (make-sparse-keymap))
 (defparameter *swank-keymap* (make-sparse-keymap))
 (defparameter *shell-keymap* (make-sparse-keymap))
+(defparameter *reserve-tray-placement* nil
+  "Should we reserve screen real estate for system tray app?")
+(defparameter *update-all-modelines* nil
+  "Should we update all modelines while updating heads?")
+(defvar *heads-updated* nil
+  "Tracks status of heads updates")
+(defparameter *BROWSER* "firefox"
+  "What shall be the command run when we want a browser?")
+(defparameter *BROWSER-PARAMS* '("-new-tab")
+  "What shall be CLI params for the browser?")
+(defparameter *ALTERNATIVE-BROWSER* "google-chrome-stable"
+  "What shall be the command run when we want an alternative browser?")
+(defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
+  "What shall be CLI params for the browser?")
+(defparameter *PDF-VIEWER* "zathura"
+  "Default PDF viewer")
+(defparameter *autostarts* nil
+  "a list of application names that should be automatically started on session start")
 
 ;; borders
 (setf *maxsize-border-width* 2)
@@ -29,7 +47,6 @@
 (set-win-bg-color "black")
 (set-border-color "grey16")
 (set-msg-border-width 0)
-
 
 ;; modeline
 (setf *mode-line-position* :bottom)
@@ -59,7 +76,6 @@
 (set-maxsize-gravity :center)
 (set-transient-gravity :center)
 
-
 ;; various
 (setf *frame-number-map* "1234567890")
 (setf *startup-message* "Never Stop Hacking!")
@@ -72,27 +88,3 @@
 (setf *grab-pointer-character-mask* 41)
 (setf *grab-pointer-foreground* (xlib:make-color :red 0.24 :green 0.70 :blue 0.44))
 (setf *grab-pointer-background* (xlib:make-color :red 0.173 :green 0.325 :blue 0.792))
-
-(defparameter *reserve-tray-placement* nil
-  "Should we reserve screen real estate for system tray app?")
-
-(defparameter *update-all-modelines* nil
-  "Should we update all modelines while updating heads?")
-
-(defvar *heads-updated* nil
-  "Tracks status of heads updates")
-
-(defparameter *BROWSER* "firefox"
-  "What shall be the command run when we want a browser?")
-
-(defparameter *BROWSER-PARAMS* '("-new-tab")
-  "What shall be CLI params for the browser?")
-
-(defparameter *ALTERNATIVE-BROWSER* "google-chrome-stable"
-  "What shall be the command run when we want an alternative browser?")
-
-(defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
-  "What shall be CLI params for the browser?")
-
-(defparameter *PDF-VIEWER* "zathura"
-  "Default PDF viewer")
