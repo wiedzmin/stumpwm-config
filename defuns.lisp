@@ -164,14 +164,34 @@ in which case pull it into the current frame."
     (when link
       (open-in-browser link))))
 
-;;FIXME: mouse-follow-focus suffers from some transient and annoying bugs so turn it off till it can be fixed in some sane manner
-;; (defun mouse-follow-focus (currentframe lastframe)
-;;   (when (and (frame-window lastframe)
-;;              (frame-window currentframe)
-;;              (not (window-transient-p (frame-window lastframe)))
-;;              (not (window-transient-p (current-window))))
-;;     (let* ((current-frame (tile-group-current-frame (current-group)))
-;;            (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
-;;            (pointer-y (+ 100 (frame-y current-frame))))
-;;       (warp-pointer (current-screen) pointer-x pointer-y))))
-;; (add-hook *focus-frame-hook* 'mouse-follow-focus)
+(defun global-pointer-position ()
+  "Get global position of the mouse pointer."
+  (xlib:global-pointer-position *display*))
+
+(defun mouse-in-frame (frame)
+  (multiple-value-bind (pointer-x pointer-y window)
+      (global-pointer-position)
+    (let* ((frame-start-x (frame-x frame))
+           (frame-start-y (frame-y frame))
+           (frame-end-x (+ frame-start-x (frame-width frame)))
+           (frame-end-y (+ frame-start-y (frame-height frame))))
+      (and (> pointer-x frame-start-x)
+           (< pointer-x frame-end-x)
+           (> pointer-y frame-start-y)
+           (< pointer-y frame-end-y)))))
+
+(defun mouse-follow-focus (currentframe lastframe)
+  (when *mouse-follows-focus*
+    (let* ((current-frame currentframe)
+           (current-frame-window (frame-window currentframe))
+           (last-frame-window (frame-window lastframe))
+           (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
+           (pointer-y (+ 100 (frame-y current-frame))))
+      (when (and
+             (not (mouse-in-frame currentframe))
+             last-frame-window
+             current-frame-window
+             (not (window-transient-p last-frame-window))
+             (not (window-transient-p current-frame-window)))
+        (warp-pointer (current-screen) pointer-x pointer-y)))))
+(add-hook *focus-frame-hook* 'mouse-follow-focus)

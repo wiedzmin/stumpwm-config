@@ -37,6 +37,8 @@
   "Default PDF viewer")
 (defparameter *autostarts* nil
   "a list of application names that should be automatically started on session start")
+(defparameter *mouse-follows-focus* nil
+  "Should mouse pointer follow window focus?")
 
 ;; borders
 (setf *maxsize-border-width* 2)
