@@ -180,18 +180,24 @@ in which case pull it into the current frame."
            (> pointer-y frame-start-y)
            (< pointer-y frame-end-y)))))
 
+(defun mouse-location-in-frame (frame)
+  (values
+   (- (+ (frame-x frame) (frame-width frame)) 100)
+   (+ (frame-y frame)
+      (floor (/ (frame-height frame) 2)))))
+
 (defun mouse-follow-focus (currentframe lastframe)
   (when *mouse-follows-focus*
     (let* ((current-frame currentframe)
            (current-frame-window (frame-window currentframe))
-           (last-frame-window (frame-window lastframe))
-           (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
-           (pointer-y (+ 100 (frame-y current-frame))))
+           (last-frame-window (frame-window lastframe)))
       (when (and
              (not (mouse-in-frame currentframe))
              last-frame-window
              current-frame-window
              (not (window-transient-p last-frame-window))
              (not (window-transient-p current-frame-window)))
-        (warp-pointer (current-screen) pointer-x pointer-y)))))
+        (multiple-value-bind (pointer-x pointer-y)
+            (mouse-location-in-frame currentframe)
+          (warp-pointer (current-screen) pointer-x pointer-y))))))
 (add-hook *focus-frame-hook* 'mouse-follow-focus)
