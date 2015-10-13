@@ -114,9 +114,8 @@ rules."
 (defcommand disable-external-monitor () ()
   "Disables external monitor"
   (run-shell-command "xrandr --output VGA1 --off")
-  (setf *heads-updated* nil)
-  (banish :head)
-  (banish :frame))
+  (warp-mouse-active-frame)
+  (setf *heads-updated* nil))
 
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
