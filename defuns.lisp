@@ -201,3 +201,13 @@ in which case pull it into the current frame."
             (mouse-location-in-frame currentframe)
           (warp-pointer (current-screen) pointer-x pointer-y))))))
 (add-hook *focus-frame-hook* 'mouse-follow-focus)
+
+(defmacro define-list (pname clear &rest listdata)
+  `(progn
+    (unless (boundp ',pname)
+      (defparameter ,pname nil))
+    (when ,clear
+      (setf ,pname nil))
+    (dolist (item (quote ,listdata))
+      (push item ,pname))
+    (setf ,pname (reverse ,pname))))
