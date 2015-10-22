@@ -9,6 +9,15 @@
       when (search substring (namestring dir))
       collect (namestring dir))))
 
+(defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
+  (let ((pathspec (if subdir
+                      (cat basedir "/" subdir)
+                      basedir)))
+    (directory
+     (make-pathname
+      :directory `(:absolute ,@(split-seq pathspec "/"))
+      :name :wild :type :wild))))
+
 (defparameter *SLIME-DIR* (find-subpath (at-homedir ".emacs.d/elpa/*/") "/slime-"))
 (defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
 (defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
@@ -16,6 +25,10 @@
 
 (defun load-config-module (name)
   (load (concatenate 'string *STUMPWM-LIB-DIR* name)))
+
+(defun load-rc ()
+  (dolist (rc (directory-file-list :subdir "rc"))
+    (load rc)))
 
 (load (concatenate 'string *SLIME-DIR* "swank-loader.lisp"))
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
@@ -43,7 +56,8 @@
 (load-config-module "commands.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "searches.lisp")
-(load-config-module "private.lisp")
+
+(load-rc)
 
 (setf perwindowlayout:*emacs-toggle-input-method-key* "C-\\")
 ;; (xft:cache-fonts)

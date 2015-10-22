@@ -116,16 +116,6 @@ in which case pull it into the current frame."
   (with-emacs-noninteractive
     (org-agenda-list)))
 
-(defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
-  (let ((pathspec (if subdir
-                      (cat basedir "/" subdir)
-                      basedir)))
-    (directory
-     (make-pathname
-      :directory `(:absolute ,@(split-seq pathspec "/"))
-      :name :wild :type :wild))))
-
-
 (defmacro define-filelist-selector (fn doc pathspec &body body)
   `(defun ,(intern (string-upcase fn)) ()
       ,doc
