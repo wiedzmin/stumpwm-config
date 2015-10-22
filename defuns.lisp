@@ -157,10 +157,14 @@ in which case pull it into the current frame."
   (unless background
     (funcall (intern (string-upcase *BROWSER*)))))
 
-(defun select-links-from-var (linkslist)
-  (let ((link (select-from-menu
-                    (current-screen)
-                    linkslist)))
+(defun select-links-from-var (linkslist &key (with-captions nil))
+  (let ((link (if with-captions
+                  (cadr (assoc (select-from-menu
+                                (current-screen)
+                                (mapcar
+                                 #'(lambda (x) (car x)) linkslist))
+                               linkslist))
+                  (select-from-menu (current-screen) linkslist))))
     (when link
       (open-in-browser link))))
 
