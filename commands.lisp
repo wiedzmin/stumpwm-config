@@ -251,3 +251,4 @@ rules."
 (defwebjump "Gismeteo radar" "http://www.gismeteo.ru/map/647/" :key "r")
 (defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
 (defwebjump "Chillout music" "http://www.di.fm/chillout" :key "c")
+(defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
