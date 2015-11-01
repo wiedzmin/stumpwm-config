@@ -100,7 +100,7 @@
   ("s-i" "iresize")
   ("s-l" "lock-screen")
   ("s-m" "screenshot-default")
-  ("w" "global-windowlist")
+  ("w" "custom/rofi-windowlist")
   ("l" "custom/choose-group-layout")
   ("b" "custom/choose-book")
   )

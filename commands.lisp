@@ -223,6 +223,9 @@ rules."
 (defcommand custom/stop-job-vpn () ()
   (run-shell-command "sudo killall openvpn"))
 
+(defcommand custom/rofi-windowlist () ()
+  (run-shell-command "rofi -show window"))
+
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
