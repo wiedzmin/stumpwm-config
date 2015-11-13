@@ -126,6 +126,25 @@ in which case pull it into the current frame."
           (when (not (equal selected-file ""))
             ,@body)))))
 
+(defun list-with-newlines (items)
+  (format nil "~{~a~%~}" items))
+
+(defun rofi-dmenu (items)
+  (string-trim
+   '(#\Newline)
+   (run-shell-command
+    (format nil "echo -e \"~a\" | rofi -dmenu"
+            (list-with-newlines items)) t)))
+
+(defmacro define-rofi-filelist-selector (fn doc pathspec &body body)
+  `(defun ,(intern (string-upcase fn)) ()
+      ,doc
+      (let ((filelist (directory-file-list ,@pathspec)))
+        (let ((selected-file (rofi-dmenu
+                              (mapcar (lambda (pathname) (namestring pathname)) filelist))))
+          (when (not (equal selected-file ""))
+            ,@body)))))
+
 (define-filelist-selector
     "select-layout-from-menu"
     "Select and apply saved window layout"
