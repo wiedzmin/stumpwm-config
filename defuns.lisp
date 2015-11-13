@@ -123,7 +123,7 @@ in which case pull it into the current frame."
         (let ((selected-file (select-from-menu
                               (current-screen)
                               (mapcar (lambda (pathname) (namestring pathname)) filelist))))
-          (when selected-file ;TODO: make more robust
+          (when (not (equal selected-file ""))
             ,@body)))))
 
 (define-filelist-selector
