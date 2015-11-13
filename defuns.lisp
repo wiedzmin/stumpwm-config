@@ -145,13 +145,13 @@ in which case pull it into the current frame."
           (when (not (equal selected-file ""))
             ,@body)))))
 
-(define-filelist-selector
+(define-rofi-filelist-selector
     "select-layout-from-menu"
     "Select and apply saved window layout"
     (:subdir "layouts")
   (restore-group (current-group) (read-dump-from-file selected-file)))
 
-(define-filelist-selector
+(define-rofi-filelist-selector
     "select-books-from-menu"
     "Select from current virtual bookshelf"
     (:basedir "/home/octocat/bookshelf")
