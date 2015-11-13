@@ -1,13 +1,42 @@
-;;;
-;;; File: defuns.lisp
-;;; Author: aermolov <aaermolov@gmail.com>
-;;;
-;;; Created: Среда, Февраль  6 2013
-;;;
-;;;
-;;;
-
 (in-package #:stumpwm)
+
+(defparameter *FOREGROUND-COLOR* "green")
+(defparameter *BACKGROUND-COLOR* "black")
+(defparameter *BORDER-COLOR* "green")
+(defparameter *swank-port* 4005)
+
+(defparameter *simple-resize-increment* 100)
+
+(defparameter *pull-keymap* (make-sparse-keymap))
+(defparameter *raise-keymap* (make-sparse-keymap))
+(defparameter *search-keymap* (make-sparse-keymap))
+(defparameter *web-keymap* (make-sparse-keymap))
+(defparameter *heads-keymap* (make-sparse-keymap))
+(defparameter *frames-keymap* (make-sparse-keymap))
+(defparameter *desktop-keymap* (make-sparse-keymap))
+(defparameter *swank-keymap* (make-sparse-keymap))
+(defparameter *shell-keymap* (make-sparse-keymap))
+(defparameter *reserve-tray-placement* nil
+  "Should we reserve screen real estate for system tray app?")
+(defparameter *update-all-modelines* nil
+  "Should we update all modelines while updating heads?")
+(defvar *heads-updated* nil
+  "Tracks status of heads updates")
+(defparameter *BROWSER* "firefox"
+  "What shall be the command run when we want a browser?")
+(defparameter *BROWSER-PARAMS* '("-new-tab")
+  "What shall be CLI params for the browser?")
+(defparameter *ALTERNATIVE-BROWSER* "google-chrome-stable"
+  "What shall be the command run when we want an alternative browser?")
+(defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
+  "What shall be CLI params for the browser?")
+(defparameter *PDF-VIEWER* "zathura"
+  "Default PDF viewer")
+(defparameter *autostarts* nil
+  "a list of application names that should be automatically started on session start")
+(defparameter *mouse-follows-focus* nil
+  "Should mouse pointer follow window focus?")
+
 
 (defmacro define-keys (keymap &rest keys)
   `(dolist (keydef (quote ,keys))

@@ -50,10 +50,8 @@
 (load-module "searchengines")
 (load-module "perwindowlayout")
 
-(load-config-module "constants.lisp")
-(load-config-module "variables.lisp")
-(load-config-module "defuns.lisp")
-(load-config-module "commands.lisp")
+(load-config-module "defs.lisp")
+(load-config-module "custom.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "searches.lisp")
 
