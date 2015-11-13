@@ -202,6 +202,13 @@ in which case pull it into the current frame."
     (when link
       (open-in-browser link))))
 
+(defun select-links-from-var-rofi (linkslist &key (with-captions nil))
+  (let ((link (if with-captions
+                  (cadr (assoc (rofi-dmenu (mapcar #'(lambda (item) (car item)) linkslist)) linkslist :test #'string=))
+                  (select-from-menu (current-screen) linkslist))))
+    (when link
+      (open-in-browser link))))
+
 (defun global-pointer-position ()
   "Get global position of the mouse pointer."
   (xlib:global-pointer-position *display*))
