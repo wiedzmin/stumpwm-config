@@ -162,7 +162,7 @@ in which case pull it into the current frame."
   (string-trim
    '(#\Newline)
    (run-shell-command
-    (format nil "echo -e \"~a\" | rofi -dmenu"
+    (format nil "echo -e \"~a\" | rofi -dmenu -i"
             (list-with-newlines items)) t)))
 
 (defmacro define-rofi-filelist-selector (fn doc pathspec &body body)
