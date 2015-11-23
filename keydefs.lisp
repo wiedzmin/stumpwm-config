@@ -62,7 +62,6 @@
   ("1" "only")
   ("2" "vsplit")
   ("3" "hsplit")
-  ("4" "fselect")
   ("5" "warp-mouse-active-frame")
   ("\\" "balance-frames"))
 
@@ -143,6 +142,7 @@
   ("s-w"       *web-keymap*)
   ("s-s"       *swank-keymap*)
   ("s-4"       *shell-keymap*)
+  ("s-e"       "fselect")
   ;;
   ("s-i" "display-current-window-info")
   )
