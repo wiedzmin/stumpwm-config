@@ -142,6 +142,12 @@ rules."
   (run-shell-command "i3lock")
   (run-shell-command "sleep 1 && xset dpms force off"))
 
+(defcommand warp-mouse-active-frame () ()
+  (let* ((current-frame (tile-group-current-frame (current-group)))
+         (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
+         (pointer-y (+ 100 (frame-y current-frame))))
+    (warp-pointer (current-screen) pointer-x pointer-y)))
+
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
@@ -250,12 +256,6 @@ rules."
 
 (defcommand brightness-down () ()
   (run-shell-command "xbacklight -dec 10"))
-
-(defcommand warp-mouse-active-frame () ()
-  (let* ((current-frame (tile-group-current-frame (current-group)))
-         (pointer-x (- (+ (frame-x current-frame) (frame-width current-frame)) 100))
-         (pointer-y (+ 100 (frame-y current-frame))))
-    (warp-pointer (current-screen) pointer-x pointer-y)))
 
 (defcommand mode-lines () ()
   "A command to toggle the mode line visibility for all screens/heads."

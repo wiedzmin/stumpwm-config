@@ -9,6 +9,14 @@
       when (search substring (namestring dir))
       collect (namestring dir))))
 
+(defparameter *SLIME-DIR* (find-subpath (at-homedir ".emacs.d/elpa/*/") "/slime-"))
+(defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
+(defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
+(defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
+
+(defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
+  (apply 'concatenate 'string strings))
+
 (defun directory-file-list (&key (basedir *STUMPWM-LIB-DIR*) (subdir nil))
   (let ((pathspec (if subdir
                       (cat basedir "/" subdir)
@@ -17,11 +25,6 @@
      (make-pathname
       :directory `(:absolute ,@(split-seq pathspec "/"))
       :name :wild :type :wild))))
-
-(defparameter *SLIME-DIR* (find-subpath (at-homedir ".emacs.d/elpa/*/") "/slime-"))
-(defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
-(defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
-(defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
 
 (defun load-config-module (name)
   (load (concatenate 'string *STUMPWM-LIB-DIR* name)))

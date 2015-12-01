@@ -47,9 +47,6 @@
      (define-keys keymap ,@keys)
      keymap))
 
-(defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
-  (apply 'concatenate 'string strings))
-
 (defun concat-as-symbol (prefix suffix)
   (intern (string-upcase (cat prefix suffix))))
 
@@ -216,6 +213,7 @@ in which case pull it into the current frame."
 (defun mouse-in-frame (frame)
   (multiple-value-bind (pointer-x pointer-y window)
       (global-pointer-position)
+    (declare (ignore window))
     (let* ((frame-start-x (frame-x frame))
            (frame-start-y (frame-y frame))
            (frame-end-x (+ frame-start-x (frame-width frame)))
@@ -233,8 +231,7 @@ in which case pull it into the current frame."
 
 (defun mouse-follow-focus (currentframe lastframe)
   (when *mouse-follows-focus*
-    (let* ((current-frame currentframe)
-           (current-frame-window (frame-window currentframe))
+    (let* ((current-frame-window (frame-window currentframe))
            (last-frame-window (frame-window lastframe)))
       (when (and
              (not (mouse-in-frame currentframe))
