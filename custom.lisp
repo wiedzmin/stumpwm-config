@@ -278,6 +278,9 @@ rules."
 (defcommand custom/rofi-windowlist () ()
   (run-shell-command "rofi -show window"))
 
+(defcommand custom/bother-stuck-emacs () ()
+  (run-shell-command "pkill -SIGUSR2 emacs"))
+
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
