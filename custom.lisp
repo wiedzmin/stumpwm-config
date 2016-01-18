@@ -306,3 +306,4 @@ rules."
 (defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
 (defwebjump "Chillout music" "http://www.di.fm/chillout" :key "c")
 (defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
+(defwebjump "Telegram" "https://web.telegram.org/#/im" :key "4")
