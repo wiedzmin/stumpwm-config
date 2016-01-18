@@ -36,6 +36,8 @@
   "a list of application names that should be automatically started on session start")
 (defparameter *mouse-follows-focus* nil
   "Should mouse pointer follow window focus?")
+(defparameter *rotate-external-head* nil
+  "Should we rotate external head?")
 
 
 (defmacro define-keys (keymap &rest keys)

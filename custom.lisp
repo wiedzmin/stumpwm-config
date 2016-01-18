@@ -151,11 +151,15 @@ rules."
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
+  (when *rotate-external-head*
+    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
   (setf *heads-updated* nil))
 
 (defcommand enable-external-monitor-left () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
+  (when *rotate-external-head*
+    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
   (setf *heads-updated* nil))
 
 (defcommand enable-external-monitor-above () ()
