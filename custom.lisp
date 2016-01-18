@@ -55,6 +55,8 @@
 (setf *reserve-tray-placement* t)
 (setf *mouse-follows-focus* t)
 
+(setf *rotate-external-head* t)
+
 (let ((swank-p nil))
   (defun stop-swank ()
     (setf stumpwm:*top-level-error-action* :break)
