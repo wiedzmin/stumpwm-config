@@ -296,6 +296,7 @@ rules."
 (define-application krdc :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application vncviewer :map *raise-keymap* :key "i" :pullp t :pull-map *pull-keymap* :pull-key "i")
 (define-application copyq :command "copyq show" :map *raise-keymap* :key "c" :pullp t :pull-map *pull-keymap* :pull-key "c")
+(define-application sonata :map *raise-keymap* :key "m" :pullp t :pull-map *pull-keymap* :pull-key "m")
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
