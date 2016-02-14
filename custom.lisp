@@ -281,6 +281,14 @@ rules."
 (defcommand custom/bother-stuck-emacs () ()
   (run-shell-command "pkill -SIGUSR2 emacs"))
 
+(defcommand custom/set-default-browser () ()
+  (set-default-browser)
+  (save-default-browser))
+
+(defcommand current-browser () ()
+  "Echo current browser"
+  (echo-string (current-screen) (browser-name default-browser)))
+
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)

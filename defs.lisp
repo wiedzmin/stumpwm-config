@@ -22,14 +22,6 @@
   "Should we update all modelines while updating heads?")
 (defvar *heads-updated* nil
   "Tracks status of heads updates")
-(defparameter *BROWSER* "firefox"
-  "What shall be the command run when we want a browser?")
-(defparameter *BROWSER-PARAMS* '("-new-tab")
-  "What shall be CLI params for the browser?")
-(defparameter *ALTERNATIVE-BROWSER* "google-chrome-stable"
-  "What shall be the command run when we want an alternative browser?")
-(defparameter *ALTERNATIVE-BROWSER-PARAMS* nil
-  "What shall be CLI params for the browser?")
 (defparameter *PDF-VIEWER* "zathura"
   "Default PDF viewer")
 (defparameter *autostarts* nil
@@ -185,15 +177,6 @@ in which case pull it into the current frame."
     (:basedir "/home/octocat/bookshelf")
   (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil))
 
-(defun open-in-browser (url &optional (background nil))
-  (run-shell-command
-   (cat
-    *BROWSER*
-    " " (format nil "~{~A~^ ~}" *BROWSER-PARAMS*) " "
-    url)) ;FIXME: someway reorganize these browser commandlines
-  (unless background
-    (funcall (intern (string-upcase *BROWSER*)))))
-
 (defun select-links-from-var (linkslist &key (with-captions nil))
   (let ((link (if with-captions
                   (cadr (select-from-menu (current-screen) linkslist))
@@ -255,3 +238,47 @@ in which case pull it into the current frame."
     (dolist (item (quote ,listdata))
       (push item ,pname))
     (setf ,pname (reverse ,pname))))
+
+(defstruct browser name executable cliargs)
+(defparameter default-browser-file (concatenate 'string *STUMPWM-LIB-DIR* "default-browser"))
+
+(defparameter available-browsers
+  `(("Firefox"
+     ,(make-browser
+       :name "Firefox"
+       :executable "firefox"
+       :cliargs '("-new-tab")))
+    ("Google Chrome"
+     ,(make-browser
+       :name "Google Chrome"
+       :executable "google-chrome-stable"
+       :cliargs '("--new-tab")))))
+
+(defun save-default-browser ()
+  (dump-to-file default-browser default-browser-file))
+
+(defun load-default-browser ()
+  (handler-case (setf default-browser (read-dump-from-file default-browser-file))
+    (error (e)
+      (progn
+        (message "Encountered error: ~a~%Falling back to first available browser." e)
+        (setf default-browser (cadar available-browsers))))))
+
+(defparameter default-browser (load-default-browser))
+
+(defun set-default-browser ()
+  (let ((browser (select-from-menu
+                  (current-screen)
+                  (mapcar (lambda (pair) (car pair)) available-browsers))))
+    (when browser
+      (setf default-browser
+            (cadr (assoc browser available-browsers :test #'equalp))))))
+
+(defun open-in-browser (url &optional (background nil))
+  (run-shell-command
+   (cat
+    (browser-executable default-browser)
+    " " (format nil "~{~A~^ ~}" (browser-cliargs default-browser))
+    " " url))
+  (unless background
+    (funcall (intern (string-upcase (browser-executable default-browser))))))

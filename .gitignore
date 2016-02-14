@@ -1,4 +1,5 @@
 credentials.lisp
+default-browser
 layouts/.stumpwm-group
 private.lisp
 rc/**

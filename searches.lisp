@@ -9,8 +9,8 @@
 
 (in-package #:stumpwm)
 
-(setf searchengines:*search-browser-executable* "firefox")
-(setf searchengines:*search-browser-params* '("-new-tab"))
+(setf searchengines:*search-browser-executable* (browser-executable default-browser))
+(setf searchengines:*search-browser-params* (browser-cliargs default-browser))
 
 (defparameter *URL-AMAZON*          "http://www.amazon.com/exec/obidos/external-search?index=all&keyword=~a")
 (defparameter *URL-ALPHA*           "http://www.wolframalpha.com/input/?i=~a")
