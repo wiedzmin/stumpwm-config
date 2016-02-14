@@ -72,25 +72,28 @@
                                      (pullp nil)
                                      (pull-map nil)
                                      (pull-name (intern1 (concat "p-" (string name))))
-                                     (pull-key (subseq command 0 1)))
+                                     (pull-key (subseq command 0 1))
+                                     (binded t))
   "Define a command and key binding to run or raise a program. If
 @var{pullp} is set, also define a command and key binding to run or
 pull the program."
   `(progn
      (defcommand ,name () ()
-                 ,(format nil "Start ~a unless it is already running, ~
+       ,(format nil "Start ~a unless it is already running, ~
 in which case focus it."
-                          name)
+                name)
        (run-or-raise ,command '(:class ,class :title ,title)))
-     (define-key ,map (kbd ,key) ,(string-downcase (string name)))
+     ,(when binded
+            `(define-key ,map (kbd ,key) ,(string-downcase (string name))))
      ,(when pullp
-        `(progn
-           (defcommand (,pull-name tile-group) () ()
-                       ,(format nil "Start ~a unless it is already running, ~
+            `(progn
+               (defcommand (,pull-name tile-group) () ()
+                 ,(format nil "Start ~a unless it is already running, ~
 in which case pull it into the current frame."
-                                name)
-             (run-or-pull ,command '(:class ,class :instance ,instance :title ,title)))
-           (define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name)))))))
+                          name)
+                 (run-or-pull ,command '(:class ,class :instance ,instance :title ,title)))
+               ,(when binded
+                      `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))))
 
 (defmacro defwebjump (caption url &key (map *web-keymap*) (key nil))
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))))
