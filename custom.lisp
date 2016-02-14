@@ -321,3 +321,4 @@ rules."
 (defwebjump "Chillout music" "http://www.di.fm/chillout" :key "c")
 (defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
 (defwebjump "Telegram" "https://web.telegram.org/#/im" :key "4")
+(defwebjump "Orgmode maillist" "http://news.gmane.org/gmane.emacs.orgmode" :key "O")
