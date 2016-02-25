@@ -95,15 +95,16 @@ in which case pull it into the current frame."
                ,(when binded
                       `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))))
 
-(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil))
+(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t))
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))))
     `(progn
        (defcommand
            ,command-name () ()
          ,(format nil "Open ~a" caption)
          (open-in-browser ,url))
-       (when ,key
-         (define-key ,map (kbd ,key) ,(string-downcase command-name))))))
+       ,(when (and binded
+									 key)
+         `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
 
 (defun enable-mode-line-all-heads ()
   (dolist (screen *screen-list*)
