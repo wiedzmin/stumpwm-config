@@ -78,6 +78,7 @@
 @var{pullp} is set, also define a command and key binding to run or
 pull the program."
   `(progn
+     (define-key ,map (kbd ,key) nil)
      (defcommand ,name () ()
        ,(format nil "Start ~a unless it is already running, ~
 in which case focus it."
@@ -87,6 +88,7 @@ in which case focus it."
             `(define-key ,map (kbd ,key) ,(string-downcase (string name))))
      ,(when pullp
             `(progn
+               (define-key ,pull-map (kbd ,pull-key) nil)
                (defcommand (,pull-name tile-group) () ()
                  ,(format nil "Start ~a unless it is already running, ~
 in which case pull it into the current frame."
@@ -98,6 +100,7 @@ in which case pull it into the current frame."
 (defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t))
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))))
     `(progn
+       (define-key ,map (kbd ,key) nil)
        (defcommand
            ,command-name () ()
          ,(format nil "Open ~a" caption)
