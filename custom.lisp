@@ -291,7 +291,7 @@ rules."
 
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
-(define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application firefox :map *raise-keymap* :pullp t :pull-map *pull-keymap* :binded nil)
 (define-application google-chrome-stable :class "google-chrome" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application virtualbox :command "VirtualBox" :class "VirtualBox" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application qmpdclient :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
@@ -309,7 +309,7 @@ rules."
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
 (defwebjump "Yandex" "http://yandex.ru" :key "y")
-(defwebjump "Facebook" "https://facebook.com/" :key "f")
+(defwebjump "Facebook" "https://facebook.com/" :key "f" :binded nil)
 (defwebjump "Multitran" "http://www.multitran.ru/" :key "t")
 (defwebjump "Youtube" "http://youtube.com/" :key "b")
 (defwebjump "Toodledo" "http://www.toodledo.com/" :key "o")
