@@ -299,6 +299,7 @@ rules."
 (define-application fbreader :map *raise-keymap* :key "2" :pullp t :pull-map *pull-keymap* :pull-key "2")
 (define-application zathura :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application sakura :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
+(define-application skype :map *raise-keymap* :pullp t :pull-map *pull-keymap* :binded nil)
 (define-application wicd-gtk :command "wicd-gtk -n" :class "Wicd-client.py" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application pavucontrol :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application krdc :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
