@@ -63,5 +63,4 @@
 (setf perwindowlayout:*emacs-toggle-input-method-key* "C-\\")
 ;; (xft:cache-fonts)
 (set-font (make-instance 'xft:font :family "Consolas" :subfamily "Regular" :size 10))
-(enable-mode-line-all-heads)
 (run-commands "enable-per-window-layout" "mpd-connect" "resize-heads")
