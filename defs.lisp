@@ -30,6 +30,8 @@
   "Should mouse pointer follow window focus?")
 (defparameter *rotate-external-head* nil
   "Should we rotate external head?")
+(defparameter *internal-head-initial-height* (head-height (nth 0 (screen-heads (current-screen)))))
+(defparameter *tray-height* 15)
 
 
 (defmacro define-keys (keymap &rest keys)

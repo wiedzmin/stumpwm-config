@@ -162,10 +162,9 @@ rules."
     (unless *heads-updated*
       (resize-head 0
                    (head-x internal-head)
-                   (+ (head-y internal-head) 15)
+                   *tray-height*
                    (head-width internal-head)
-                   (- (head-height internal-head) 15)
-                   )
+                   (- *internal-head-initial-height* *tray-height*))
       (setf *heads-updated* t))))
 
 (defcommand (fprev tile-group) () ()
