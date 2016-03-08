@@ -38,12 +38,6 @@
 
 (init-load-path (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
 
-(load-module "battery")
-(load-module "cpu")
-(load-module "disk")
-(load-module "mem")
-(load-module "net")
-(load-module "wifi")
 (load-module "mpd")
 (load-module "screenshot")
 (load-module "notifications")
