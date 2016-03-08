@@ -108,7 +108,7 @@ in which case pull it into the current frame."
          ,(format nil "Open ~a" caption)
          (open-in-browser ,url))
        ,(when (and binded
-									 key)
+                   key)
          `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
 
 (defun enable-mode-line-all-heads ()
