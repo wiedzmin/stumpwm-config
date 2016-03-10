@@ -99,14 +99,15 @@ in which case pull it into the current frame."
                ,(when binded
                       `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))))
 
-(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t))
-  (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption)))))
+(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t) (browser (browser-name default-browser)))
+  (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption))))
+        (browserobj (get-browser-by-name browser)))
     `(progn
        (define-key ,map (kbd ,key) nil)
        (defcommand
            ,command-name () ()
          ,(format nil "Open ~a" caption)
-         (open-in-browser ,url))
+         (open-in-browser ,url :browser ,browserobj))
        ,(when (and binded
                    key)
          `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
@@ -263,6 +264,9 @@ in which case pull it into the current frame."
        :executable "google-chrome-stable"
        :cliargs '("--new-tab")))))
 
+(defun get-browser-by-name (name)
+  (cadr (assoc name available-browsers :test #'equalp)))
+
 (defun save-default-browser ()
   (dump-to-file default-browser default-browser-file))
 
@@ -280,17 +284,21 @@ in which case pull it into the current frame."
                   (current-screen)
                   (mapcar (lambda (pair) (car pair)) available-browsers))))
     (when browser
-      (setf default-browser
-            (cadr (assoc browser available-browsers :test #'equalp))))))
+      (setf default-browser (get-browser-by-name browser)))))
 
-(defun open-in-browser (url &optional (background nil))
-  (run-shell-command
-   (cat
-    (browser-executable default-browser)
-    " " (format nil "~{~A~^ ~}" (browser-cliargs default-browser))
-    " " url))
-  (unless background
-    (funcall (intern (string-upcase (browser-executable default-browser))))))
+(defun open-in-browser (url &key (background nil) (browser nil))
+  (let ((effective-binary (browser-executable default-browser))
+        (effective-cliargs (browser-cliargs default-browser)))
+    (when browser
+      (setf effective-binary (browser-executable browser))
+      (setf effective-cliargs (browser-cliargs browser)))
+    (run-shell-command
+     (cat
+      effective-binary
+      " " (format nil "~{~A~^ ~}" effective-cliargs)
+      " " url))
+    (unless background
+      (funcall (intern (string-upcase effective-binary))))))
 
 (let ((swank-p nil))
   (defun stop-swank ()
