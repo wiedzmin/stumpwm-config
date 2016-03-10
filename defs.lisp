@@ -286,19 +286,16 @@ in which case pull it into the current frame."
     (when browser
       (setf default-browser (get-browser-by-name browser)))))
 
-(defun open-in-browser (url &key (background nil) (browser nil))
-  (let ((effective-binary (browser-executable default-browser))
-        (effective-cliargs (browser-cliargs default-browser)))
-    (when browser
-      (setf effective-binary (browser-executable browser))
-      (setf effective-cliargs (browser-cliargs browser)))
+(defun open-in-browser (url &key (background nil) (browser (browser-name default-browser)))
+  (let ((browser-program (browser-executable browser))
+        (browser-args (browser-cliargs browser)))
     (run-shell-command
      (cat
-      effective-binary
-      " " (format nil "~{~A~^ ~}" effective-cliargs)
+      browser-program
+      " " (format nil "~{~A~^ ~}" browser-args)
       " " url))
     (unless background
-      (funcall (intern (string-upcase effective-binary))))))
+      (funcall (intern (string-upcase browser-program))))))
 
 (let ((swank-p nil))
   (defun stop-swank ()
