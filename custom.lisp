@@ -58,7 +58,7 @@
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
 (defwebjump "Yandex" "http://yandex.ru" :key "y")
-(defwebjump "Facebook" "https://facebook.com/" :key "f" :binded nil)
+(defwebjump "Facebook" "https://facebook.com/" :key "f" :browser "Google chrome")
 (defwebjump "Multitran" "http://www.multitran.ru/" :key "t")
 (defwebjump "Youtube" "http://youtube.com/" :key "b")
 (defwebjump "Toodledo" "http://www.toodledo.com/" :key "o")
