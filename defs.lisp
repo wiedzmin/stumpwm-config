@@ -381,6 +381,7 @@ rules."
 (defcommand lock-screen () ()
   "Lock the screen."
   (suspend-dunst)
+  (xlib:lock-group *display* :group 0)
   (run-shell-command "i3lock")
   (run-shell-command "sleep 1 && xset dpms force off"))
 
