@@ -60,7 +60,7 @@
 (defwebjump "Yandex" "http://yandex.ru" :key "y")
 (defwebjump "Facebook" "https://facebook.com/" :key "f" :browser "Google chrome")
 (defwebjump "Multitran" "http://www.multitran.ru/" :key "t")
-(defwebjump "Youtube" "http://youtube.com/" :key "b")
+(defwebjump "Youtube" "http://youtube.com/" :key "b" :browser "Google chrome")
 (defwebjump "Toodledo" "http://www.toodledo.com/" :key "o")
 (defwebjump "Lumosity" "http://lumosity.com/" :key "l" :browser "Google chrome")
 (defwebjump "Feedly" "http://cloud.feedly.com/" :key "d")
