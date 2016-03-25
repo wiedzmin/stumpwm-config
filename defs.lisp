@@ -286,7 +286,7 @@ in which case pull it into the current frame."
     (when browser
       (setf default-browser (get-browser-by-name browser)))))
 
-(defun open-in-browser (url &key (background nil) (browser (browser-name default-browser)))
+(defun open-in-browser (url &key (background nil) (browser default-browser))
   (let ((browser-program (browser-executable browser))
         (browser-args (browser-cliargs browser)))
     (run-shell-command
