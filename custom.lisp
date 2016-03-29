@@ -11,6 +11,26 @@
 (set-border-color "grey16")
 (set-msg-border-width 0)
 
+;; modeline
+(setf *mode-line-position* :bottom)
+(setf *screen-mode-line-format*
+     (list " "
+           "^B[^b"
+           "%d"
+           "^B]^b "
+           "[%c %t] [%M / %N] [%D] [%l] [%b] %m"
+           (string #\NewLine)
+           " "
+           "^n"
+           "^7*(^[^n ^]" `(:eval (fix-str-length (current-window-title) 200)) ")^n "
+           ))
+(setf *mode-line-foreground-color* "DarkSeaGreen")
+(setf *mode-line-background-color* "Gray15")
+
+(setf *mode-line-timeout* 10)
+(setf disk::*disk-modeline-fmt* "%m: %a/%s")
+(setf *time-modeline-string* "%d-%m-%Y ^3*^B%H:%M^b^n %a")
+
 ;; gravity
 (setf *input-window-gravity* :center)
 (setf *message-window-gravity* :bottom-right)
