@@ -510,7 +510,7 @@ rules."
       (toggle-mode-line screen head))))
 
 (defcommand custom/start-job-vpn () ()
-  (run-shell-command "~/scripts/start-job-vpn.sh"))
+  (run-shell-command "start-job-vpn.sh"))
 
 (defcommand custom/stop-job-vpn () ()
   (run-shell-command "sudo killall openvpn"))
