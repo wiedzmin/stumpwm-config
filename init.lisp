@@ -9,7 +9,7 @@
       when (search substring (namestring dir))
       collect (namestring dir))))
 
-(defparameter *SLIME-DIR* (find-subpath (at-homedir ".emacs.d/elpa/*/") "/slime-"))
+(defparameter *SLIME-DIR* "/home/octocat/quicklisp/dists/quicklisp/software/slime-v2.17/")
 (defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
 (defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
 (defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
