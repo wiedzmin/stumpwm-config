@@ -117,22 +117,18 @@ in which case pull it into the current frame."
     (dolist (head (screen-heads screen))
       (enable-mode-line screen head t))))
 
-(defmacro with-emacs (&body body)
-  `(when (find-matching-windows '(:class "Emacs") t t)
-     (emacs)
-     (progn ,@body)))
-
-(defmacro with-emacs-noninteractive (&body body)
-  `(when (find-matching-windows '(:class "Emacs") t t)
-     (run-shell-command
-      ,(string-downcase (format nil "emacsclient --eval '~a'" (prin1 `(progn ,@body)))))
-     (unless (search "emacs" (window-title (current-window)))
-       (emacs))))
+(defun with-emacs-noninteractive (body)
+  (when (find-matching-windows '(:class "Emacs") t t)
+    (run-shell-command
+     (string-downcase
+      (format nil "emacsclient --eval '~a'" (prin1 `(progn ,@body)))))
+    (unless (search "emacs" (window-title (current-window)))
+      (emacs))))
 
 (defun update-emacs-frames ()
-  (if (> (length (screen-heads (car *screen-list*))) 1)
-      (with-emacs-noninteractive (custom/update-frames 2))
-      (with-emacs-noninteractive (custom/update-frames 1))))
+  (let ((heads-count (length (screen-heads (car *screen-list*)))))
+    (with-emacs-noninteractive
+      `((custom/update-frames ,heads-count)))))
 
 (defun emacs-org-clock-goto ()
   (with-emacs-noninteractive
