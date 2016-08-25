@@ -506,10 +506,10 @@ rules."
       (toggle-mode-line screen head))))
 
 (defcommand custom/start-job-vpn () ()
-  (run-shell-command "start-job-vpn.sh"))
+  (run-shell-command "sudo /etc/init.d/job-vpn start"))
 
 (defcommand custom/stop-job-vpn () ()
-  (run-shell-command "sudo killall openvpn"))
+  (run-shell-command "sudo /etc/init.d/job-vpn stop"))
 
 (defcommand custom/rofi-windowlist () ()
   (run-shell-command "rofi -show window"))
