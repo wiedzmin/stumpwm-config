@@ -64,7 +64,7 @@
 (define-application google-chrome-stable :class "google-chrome" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application virtualbox :command "VirtualBox" :class "VirtualBox" :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application qmpdclient :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
-(define-application vlc :map *raise-keymap* :key "l" :pullp t :pull-map *pull-keymap* :pull-key "l")
+(define-application vlc :class "vlc" :map *raise-keymap* :key "l" :pullp t :pull-map *pull-keymap* :pull-key "l")
 (define-application fbreader :map *raise-keymap* :key "2" :pullp t :pull-map *pull-keymap* :pull-key "2")
 (define-application zathura :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application skype :map *raise-keymap* :pullp t :pull-map *pull-keymap* :binded nil)
