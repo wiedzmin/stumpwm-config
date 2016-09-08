@@ -103,14 +103,16 @@ in which case pull it into the current frame."
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption))))
         (browserobj (get-browser-by-name browser)))
     `(progn
-       (define-key ,map (kbd ,key) nil)
+       ,(when (and binded
+                   key)
+              `(define-key ,map (kbd ,key) nil))
        (defcommand
            ,command-name () ()
          ,(format nil "Open ~a" caption)
          (open-in-browser ,url :browser ,browserobj))
        ,(when (and binded
                    key)
-         `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
+              `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
 
 (defun enable-mode-line-all-heads ()
   (dolist (screen *screen-list*)
