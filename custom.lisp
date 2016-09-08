@@ -83,7 +83,7 @@
 (defwebjump "Youtube" "http://youtube.com/" :key "b")
 (defwebjump "Toodledo" "http://www.toodledo.com/" :key "o")
 (defwebjump "Lumosity" "http://lumosity.com/" :key "l" :browser "Google chrome")
-(defwebjump "Feedly" "http://cloud.feedly.com/" :key "d")
+(defwebjump "Feedly" "http://cloud.feedly.com/" :key "d" :binded nil)
 (defwebjump "Delicious" "https://delicious.com/" :key "s")
 (defwebjump "Gismeteo radar" "http://www.gismeteo.ru/map/647/" :key "r")
 (defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
