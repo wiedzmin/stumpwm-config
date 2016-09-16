@@ -72,7 +72,9 @@
   ("g"  "custom/org-clock-goto")
   ("r"  "resume-dunst")
   ("O"  "custom/org-agenda")
-  ("o"  "custom/org-agenda-list"))
+  ("o"  "custom/org-agenda-list")
+  ("Left" "winner-undo")
+  ("Right" "winner-redo"))
 
 (define-keys *swank-keymap*
   ("t"  "swank-toggle")

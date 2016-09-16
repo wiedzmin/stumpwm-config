@@ -324,6 +324,10 @@ in which case pull it into the current frame."
         (echo-string (current-screen) "Swank is OFF")))
   (add-hook *quit-hook* 'stop-swank-on-quit))
 
+(add-hook *post-command-hook* (lambda (command)
+                                (when (member command winner-mode:*default-commands*)
+                                  (winner-mode:dump-group-to-file))))
+
 (defcommand raise-volume () ()
   "Raise volume."
   (run-shell-command "amixer -c 0 set Master 10+"))
