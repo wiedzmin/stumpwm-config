@@ -57,7 +57,8 @@
   ("i"  "custom/run-iotop")
   ("p"  "custom/run-powertop")
   ("Up"  "custom/start-job-vpn")
-  ("Down"  "custom/stop-job-vpn"))
+  ("Down"  "custom/stop-job-vpn")
+  ("s"  "custom/job-vpn-status"))
 
 (define-keys *root-map*
   ("Delete" "toggle-modeline")

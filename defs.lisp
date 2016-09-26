@@ -516,6 +516,9 @@ rules."
 (defcommand custom/stop-job-vpn () ()
   (run-shell-command "sudo /etc/init.d/job-vpn stop"))
 
+(defcommand custom/job-vpn-status () ()
+  (run-shell-command "sudo /etc/init.d/job-vpn status" t))
+
 (defcommand custom/rofi-windowlist () ()
   (run-shell-command "rofi -show window"))
 
