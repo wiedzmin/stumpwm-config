@@ -9,7 +9,7 @@
 
 (in-package #:stumpwm)
 
-(set-prefix-key (kbd "s-d"))
+(set-prefix-key (kbd "s-z"))
 
 (define-keysym #x1008ff11 "XF86AudioLowerVolume")
 (define-keysym #x1008ff12 "XF86AudioMute")
