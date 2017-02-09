@@ -92,3 +92,6 @@
 (defwebjump "Telegram" "https://web.telegram.org/#/im" :key "4")
 (defwebjump "Orgmode maillist" "http://news.gmane.org/gmane.emacs.orgmode" :key "O")
 (defwebjump "Storm locator" "http://ru.blitzortung.org/live_dynamic_maps.php" :binded nil)
+(defwebjump "Yandex Music" "https://music.yandex.ru" :key "Y")
+(defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
+(defwebjump "E-lactancia" "http://e-lactancia.org/" :key "e")
