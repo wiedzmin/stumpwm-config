@@ -532,3 +532,6 @@ rules."
 (defcommand current-browser () ()
   "Echo current browser"
   (echo-string (current-screen) (browser-name default-browser)))
+
+(defcommand custom/spawn-emacs-frame () ()
+  (run-shell-command "emacsclient -c -n -e '(switch-to-buffer nil)'"))

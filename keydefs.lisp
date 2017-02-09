@@ -16,7 +16,8 @@
 (define-keysym #x1008ff13 "XF86AudioRaiseVolume")
 
 (define-keys *raise-keymap*
-  ("DEL"  "other"))
+  ("DEL"  "other")
+  ("3" "custom/spawn-emacs-frame"))
 
 (define-keys *heads-keymap*
   ("Right"  "enable-external-monitor-right")
