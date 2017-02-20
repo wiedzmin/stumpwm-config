@@ -55,8 +55,6 @@
 (setf *reserve-tray-placement* t)
 (setf *mouse-follows-focus* t)
 
-(setf *rotate-external-head* t)
-
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
 (define-application urxvt :class "URxvt" :map *raise-keymap* :key "t" :pullp t :pull-map *pull-keymap* :pull-key "t")
 (define-application sakura :map *raise-keymap* :key "s" :pullp t :pull-map *pull-keymap* :pull-key "s")

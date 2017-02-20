@@ -24,6 +24,7 @@
   ("Left"  "enable-external-monitor-left")
   ("Up"  "enable-external-monitor-above")
   ("Down"  "disable-external-monitor")
+  ("r"  "toggle-external-head-rotation")
   ("u"  "update-heads-layout"))
 
 (define-keys *frames-keymap*

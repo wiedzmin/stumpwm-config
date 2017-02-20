@@ -392,30 +392,32 @@ rules."
          (pointer-y (+ 100 (frame-y current-frame))))
     (warp-pointer (current-screen) pointer-x pointer-y)))
 
-(defcommand enable-external-monitor-right () ()
-  "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
-  (when *rotate-external-head*
-    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
-  (setf *heads-updated* nil))
 
-(defcommand enable-external-monitor-left () ()
-  "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
-  (when *rotate-external-head*
-    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
-  (setf *heads-updated* nil))
-
-(defcommand enable-external-monitor-above () ()
-  "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
-  (setf *heads-updated* nil))
-
-(defcommand disable-external-monitor () ()
-  "Disables external monitor"
-  (run-shell-command "xrandr --output VGA1 --off")
-  (warp-mouse-active-frame)
-  (setf *heads-updated* nil))
+(let ((rotate-external-head t))
+  (defcommand toggle-external-head-rotation () ()
+    (setf rotate-external-head (not rotate-external-head))
+    (disable-external-monitor))
+  (defcommand enable-external-monitor-right () ()
+    "Enables external monitor"
+    (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
+    (when rotate-external-head
+      (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+    (setf *heads-updated* nil))
+  (defcommand enable-external-monitor-left () ()
+    "Enables external monitor"
+    (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
+    (when rotate-external-head
+      (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+    (setf *heads-updated* nil))
+  (defcommand enable-external-monitor-above () ()
+    "Enables external monitor"
+    (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
+    (setf *heads-updated* nil))
+  (defcommand disable-external-monitor () ()
+    "Disables external monitor"
+    (run-shell-command "xrandr --output VGA1 --off")
+    (warp-mouse-active-frame)
+    (setf *heads-updated* nil)))
 
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
