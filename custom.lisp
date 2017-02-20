@@ -94,3 +94,4 @@
 (defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "e")
 (defwebjump "Facebook messenger" "https://www.facebook.com/messages/t/" :key "C")
+(defwebjump "Todoist" "https://todoist.com/" :key "T")
