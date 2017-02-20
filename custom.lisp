@@ -93,3 +93,4 @@
 (defwebjump "Yandex Music" "https://music.yandex.ru" :key "Y")
 (defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "e")
+(defwebjump "Facebook messenger" "https://www.facebook.com/messages/t/" :key "C")
