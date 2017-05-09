@@ -81,7 +81,6 @@
 (defwebjump "Multitran" "http://www.multitran.ru/" :key "t")
 (defwebjump "Youtube" "http://youtube.com/" :key "b" :browser "Google chrome")
 (defwebjump "Lumosity" "http://lumosity.com/" :key "l" :browser "Google chrome")
-(defwebjump "Gismeteo radar" "http://www.gismeteo.ru/map/647/" :key "r")
 (defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
 (defwebjump "Chillout music" "http://www.di.fm/chillout" :key "c" :browser "Google chrome")
 (defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
