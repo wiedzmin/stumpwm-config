@@ -284,6 +284,20 @@ in which case pull it into the current frame."
     (when browser
       (setf default-browser (get-browser-by-name browser)))))
 
+;;TODO: think of single customization entity (+default-browser +whatever) and respective machinery
+(defparameter heads-config-file (concatenate 'string *STUMPWM-LIB-DIR* "heads-config"))
+
+(defun save-heads-config ()
+  (dump-to-file *rotate-external-head* heads-config-file))
+
+(defun load-heads-config ()
+  (handler-case (setf *rotate-external-head* (read-dump-from-file heads-config-file))
+    (error (e)
+      (progn
+        (message "Encountered error: ~a~%Falling back to default heads state." e)
+        (setf *rotate-external-head* nil))))
+  *rotate-external-head*)
+
 (defun open-in-browser (url &key (background nil) (browser default-browser))
   (let ((browser-program (browser-executable browser))
         (browser-args (browser-cliargs browser)))
@@ -392,32 +406,39 @@ rules."
          (pointer-y (+ 100 (frame-y current-frame))))
     (warp-pointer (current-screen) pointer-x pointer-y)))
 
+(defcommand toggle-external-head-rotation () ()
+  (setf *rotate-external-head* (not *rotate-external-head*))
+  (disable-external-monitor)
+  (save-heads-config))
 
-(let ((rotate-external-head t))
-  (defcommand toggle-external-head-rotation () ()
-    (setf rotate-external-head (not rotate-external-head))
-    (disable-external-monitor))
-  (defcommand enable-external-monitor-right () ()
-    "Enables external monitor"
-    (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
-    (when rotate-external-head
-      (run-shell-command "xrandr --output VGA1 --rotate left" nil))
-    (setf *heads-updated* nil))
-  (defcommand enable-external-monitor-left () ()
-    "Enables external monitor"
-    (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
-    (when rotate-external-head
-      (run-shell-command "xrandr --output VGA1 --rotate left" nil))
-    (setf *heads-updated* nil))
-  (defcommand enable-external-monitor-above () ()
-    "Enables external monitor"
-    (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
-    (setf *heads-updated* nil))
-  (defcommand disable-external-monitor () ()
-    "Disables external monitor"
-    (run-shell-command "xrandr --output VGA1 --off")
-    (warp-mouse-active-frame)
-    (setf *heads-updated* nil)))
+(defcommand enable-external-monitor-right () ()
+  "Enables external monitor"
+  (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
+  (when *rotate-external-head*
+    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+  (setf *heads-updated* nil)
+  (save-heads-config))
+
+(defcommand enable-external-monitor-left () ()
+  "Enables external monitor"
+  (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
+  (when *rotate-external-head*
+    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+  (setf *heads-updated* nil)
+  (save-heads-config))
+
+(defcommand enable-external-monitor-above () ()
+  "Enables external monitor"
+  (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
+  (setf *heads-updated* nil)
+  (save-heads-config))
+
+(defcommand disable-external-monitor () ()
+  "Disables external monitor"
+  (run-shell-command "xrandr --output VGA1 --off")
+  (warp-mouse-active-frame)
+  (setf *heads-updated* nil)
+  (save-heads-config))
 
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()

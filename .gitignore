@@ -1,5 +1,6 @@
 credentials.lisp
 default-browser
+heads-config
 layouts/*winner*
 layouts/.stumpwm-group
 private.lisp
