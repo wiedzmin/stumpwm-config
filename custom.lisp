@@ -72,6 +72,7 @@
 (define-application copyq :command "copyq show" :map *raise-keymap* :key "c" :pullp t :pull-map *pull-keymap* :pull-key "c")
 (define-application sonata :map *raise-keymap* :key "m" :pullp t :pull-map *pull-keymap* :pull-key "m")
 (define-application telegram :command "Telegram" :map *raise-keymap* :key "T" :pullp t :pull-map *pull-keymap* :pull-key "T")
+(define-application nautilus :map *raise-keymap* :key "n" :pullp t :pull-map *pull-keymap* :pull-key "n")
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
