@@ -542,6 +542,10 @@ rules."
 (defcommand custom/job-vpn-status () ()
   (run-shell-command "sudo /etc/init.d/job-vpn status" t))
 
+(defcommand custom/restart-job-vpn () ()
+  (custom/stop-job-vpn)
+  (custom/start-job-vpn))
+
 (defcommand custom/rofi-windowlist () ()
   (run-shell-command "rofi -show window"))
 
