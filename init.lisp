@@ -55,13 +55,13 @@
 (load-module "perwindowlayout")
 
 (load-config-module "defs.lisp")
+(load-persistent-setup)
+
 (load-config-module "custom.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "searches.lisp")
 
 (load-rc)
-(load-default-browser)
-(load-heads-config)
 
 (setf perwindowlayout:*emacs-toggle-input-method-key* "C-\\")
 (xft:cache-fonts)

@@ -1,6 +1,7 @@
 (in-package #:stumpwm)
 
 (defstruct browser name executable cliargs)
+(defstruct (persistent-setup (:conc-name psetup-)) default-browser ext-head-rotated)
 
 (defparameter *FOREGROUND-COLOR* "green")
 (defparameter *BACKGROUND-COLOR* "black")
@@ -30,11 +31,8 @@
   "a list of application names that should be automatically started on session start")
 (defparameter *mouse-follows-focus* nil
   "Should mouse pointer follow window focus?")
-(defparameter *rotate-external-head* nil
-  "Should we rotate external head?")
 (defparameter *internal-head-initial-height* (head-height (nth 0 (screen-heads (current-screen)))))
 (defparameter *tray-height* 15)
-(defparameter *default-browser-file* (concatenate 'string *STUMPWM-LIB-DIR* "default-browser"))
 (defparameter *available-browsers*
   `(("Firefox"
      ,(make-browser
@@ -46,8 +44,28 @@
        :name "Google Chrome"
        :executable "google-chrome-stable"
        :cliargs '("--new-tab")))))
-(defparameter *default-browser* (cadar *available-browsers*))
+(defparameter *persistent-setup-file* (concatenate 'string *STUMPWM-LIB-DIR* "persistent-setup"))
+(defparameter *persistent-setup* nil)
 
+(defun init-persistent-setup ()
+  (setf *persistent-setup*
+        (make-persistent-setup
+         :default-browser (cadar *available-browsers*)
+         :ext-head-rotated nil)))
+
+(defun save-persistent-setup ()
+  (dump-to-file *persistent-setup* *persistent-setup-file*))
+
+(defun load-persistent-setup ()
+  (handler-case (setf *persistent-setup* (read-dump-from-file *persistent-setup-file*))
+    (error (e)
+      (progn
+        (message "Encountered error: ~a~%Falling back to defaults." e)
+        (init-persistent-setup)
+        (save-persistent-setup))))
+  *persistent-setup*)
+
+(add-hook *quit-hook* 'save-persistent-setup)
 
 (defmacro define-keys (keymap &rest keys)
   `(dolist (keydef (quote ,keys))
@@ -114,7 +132,8 @@ in which case pull it into the current frame."
                ,(when binded
                       `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))))
 
-(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t) (browser (browser-name default-browser)))
+(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t)
+                                    (browser (browser-name (psetup-default-browser *persistent-setup*))))
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption))))
         (browserobj (get-browser-by-name browser)))
     `(progn
@@ -265,39 +284,14 @@ in which case pull it into the current frame."
 (defun get-browser-by-name (name)
   (cadr (assoc name *available-browsers* :test #'equalp)))
 
-(defun save-default-browser ()
-  (dump-to-file *default-browser* *default-browser-file*))
-
-(defun load-default-browser ()
-  (handler-case (setf *default-browser* (read-dump-from-file *default-browser-file*))
-    (error (e)
-      (progn
-        (message "Encountered error: ~a~%Falling back to first available browser." e)
-        (setf *default-browser* (cadar *available-browsers*)))))
-  *default-browser*)
-
 (defun set-default-browser ()
   (let ((browser (select-from-menu
                   (current-screen)
                   (mapcar (lambda (pair) (car pair)) *available-browsers*))))
     (when browser
-      (setf *default-browser* (get-browser-by-name browser)))))
+      (setf (psetup-default-browser *persistent-setup*) (get-browser-by-name browser)))))
 
-;;TODO: think of single customization entity (+default-browser +whatever) and respective machinery
-(defparameter heads-config-file (concatenate 'string *STUMPWM-LIB-DIR* "heads-config"))
-
-(defun save-heads-config ()
-  (dump-to-file *rotate-external-head* heads-config-file))
-
-(defun load-heads-config ()
-  (handler-case (setf *rotate-external-head* (read-dump-from-file heads-config-file))
-    (error (e)
-      (progn
-        (message "Encountered error: ~a~%Falling back to default heads state." e)
-        (setf *rotate-external-head* nil))))
-  *rotate-external-head*)
-
-(defun open-in-browser (url &key (background nil) (browser default-browser))
+(defun open-in-browser (url &key (background nil) (browser (psetup-default-browser *persistent-setup*)))
   (let ((browser-program (browser-executable browser))
         (browser-args (browser-cliargs browser)))
     (run-shell-command
@@ -406,38 +400,39 @@ rules."
     (warp-pointer (current-screen) pointer-x pointer-y)))
 
 (defcommand toggle-external-head-rotation () ()
-  (setf *rotate-external-head* (not *rotate-external-head*))
+  (setf (psetup-ext-head-rotated *persistent-setup*)
+        (not (psetup-ext-head-rotated *persistent-setup*)))
   (disable-external-monitor)
-  (save-heads-config))
+  (save-persistent-setup))
 
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
-  (when *rotate-external-head*
+  (when (psetup-ext-head-rotated *persistent-setup*)
     (run-shell-command "xrandr --output VGA1 --rotate left" nil))
   (setf *heads-updated* nil)
-  (save-heads-config))
+  (save-persistent-setup))
 
 (defcommand enable-external-monitor-left () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
-  (when *rotate-external-head*
+  (when (psetup-ext-head-rotated *persistent-setup*)
     (run-shell-command "xrandr --output VGA1 --rotate left" nil))
   (setf *heads-updated* nil)
-  (save-heads-config))
+  (save-persistent-setup))
 
 (defcommand enable-external-monitor-above () ()
   "Enables external monitor"
   (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
   (setf *heads-updated* nil)
-  (save-heads-config))
+  (save-persistent-setup))
 
 (defcommand disable-external-monitor () ()
   "Disables external monitor"
   (run-shell-command "xrandr --output VGA1 --off")
   (warp-mouse-active-frame)
   (setf *heads-updated* nil)
-  (save-heads-config))
+  (save-persistent-setup))
 
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
@@ -553,11 +548,11 @@ rules."
 
 (defcommand custom/set-default-browser () ()
   (set-default-browser)
-  (save-default-browser))
+  (save-persistent-setup))
 
 (defcommand current-browser () ()
   "Echo current browser"
-  (echo-string (current-screen) (browser-name default-browser)))
+  (echo-string (current-screen) (browser-name (psetup-default-browser *persistent-setup*))))
 
 (defcommand custom/spawn-emacs-frame () ()
   (run-shell-command "emacsclient -c -n -e '(switch-to-buffer nil)'"))
