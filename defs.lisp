@@ -1,5 +1,7 @@
 (in-package #:stumpwm)
 
+(defstruct browser name executable cliargs)
+
 (defparameter *FOREGROUND-COLOR* "green")
 (defparameter *BACKGROUND-COLOR* "black")
 (defparameter *BORDER-COLOR* "green")
@@ -32,6 +34,19 @@
   "Should we rotate external head?")
 (defparameter *internal-head-initial-height* (head-height (nth 0 (screen-heads (current-screen)))))
 (defparameter *tray-height* 15)
+(defparameter *default-browser-file* (concatenate 'string *STUMPWM-LIB-DIR* "default-browser"))
+(defparameter *available-browsers*
+  `(("Firefox"
+     ,(make-browser
+       :name "Firefox"
+       :executable "firefox"
+       :cliargs '("-new-tab")))
+    ("Google Chrome"
+     ,(make-browser
+       :name "Google Chrome"
+       :executable "google-chrome-stable"
+       :cliargs '("--new-tab")))))
+(defparameter *default-browser* (cadar *available-browsers*))
 
 
 (defmacro define-keys (keymap &rest keys)
@@ -247,42 +262,26 @@ in which case pull it into the current frame."
       (push item ,pname))
     (setf ,pname (reverse ,pname))))
 
-(defstruct browser name executable cliargs)
-(defparameter default-browser-file (concatenate 'string *STUMPWM-LIB-DIR* "default-browser"))
-
-(defparameter available-browsers
-  `(("Firefox"
-     ,(make-browser
-       :name "Firefox"
-       :executable "firefox"
-       :cliargs '("-new-tab")))
-    ("Google Chrome"
-     ,(make-browser
-       :name "Google Chrome"
-       :executable "google-chrome-stable"
-       :cliargs '("--new-tab")))))
-
 (defun get-browser-by-name (name)
-  (cadr (assoc name available-browsers :test #'equalp)))
+  (cadr (assoc name *available-browsers* :test #'equalp)))
 
 (defun save-default-browser ()
-  (dump-to-file default-browser default-browser-file))
+  (dump-to-file *default-browser* *default-browser-file*))
 
 (defun load-default-browser ()
-  (handler-case (setf default-browser (read-dump-from-file default-browser-file))
+  (handler-case (setf *default-browser* (read-dump-from-file *default-browser-file*))
     (error (e)
       (progn
         (message "Encountered error: ~a~%Falling back to first available browser." e)
-        (setf default-browser (cadar available-browsers))))))
-
-(defparameter default-browser (load-default-browser))
+        (setf *default-browser* (cadar *available-browsers*)))))
+  *default-browser*)
 
 (defun set-default-browser ()
   (let ((browser (select-from-menu
                   (current-screen)
-                  (mapcar (lambda (pair) (car pair)) available-browsers))))
+                  (mapcar (lambda (pair) (car pair)) *available-browsers*))))
     (when browser
-      (setf default-browser (get-browser-by-name browser)))))
+      (setf *default-browser* (get-browser-by-name browser)))))
 
 ;;TODO: think of single customization entity (+default-browser +whatever) and respective machinery
 (defparameter heads-config-file (concatenate 'string *STUMPWM-LIB-DIR* "heads-config"))

@@ -60,6 +60,7 @@
 (load-config-module "searches.lisp")
 
 (load-rc)
+(load-default-browser)
 (load-heads-config)
 
 (setf perwindowlayout:*emacs-toggle-input-method-key* "C-\\")
