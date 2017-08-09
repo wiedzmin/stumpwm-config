@@ -87,7 +87,7 @@
 (defwebjump "Telegram" "https://web.telegram.org/#/im" :key "T")
 (defwebjump "Storm locator" "http://ru.blitzortung.org/live_dynamic_maps.php" :binded nil)
 (defwebjump "Yandex Music" "https://music.yandex.ru" :key "Y")
-(defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
+(defwebjump "RelaxFM" "http://relax-fm.ru" :key "R" :browser "Google chrome")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "E")
 (defwebjump "Facebook messenger" "https://www.facebook.com/messages/t/" :key "C")
 (defwebjump "Todoist" "https://todoist.com/" :key "D")
