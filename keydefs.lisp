@@ -11,9 +11,9 @@
 
 (set-prefix-key (kbd "s-z"))
 
-(define-keysym #x1008ff11 "XF86AudioLowerVolume")
-(define-keysym #x1008ff12 "XF86AudioMute")
-(define-keysym #x1008ff13 "XF86AudioRaiseVolume")
+;; (define-keysym #x1008ff11 "XF86AudioLowerVolume")
+;; (define-keysym #x1008ff12 "XF86AudioMute")
+;; (define-keysym #x1008ff13 "XF86AudioRaiseVolume")
 
 (define-keys *raise-keymap*
   ("DEL"  "other")
