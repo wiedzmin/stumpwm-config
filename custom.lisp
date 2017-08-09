@@ -52,7 +52,7 @@
 (setf *grab-pointer-foreground* (xlib:make-color :red 0.24 :green 0.70 :blue 0.44))
 (setf *grab-pointer-background* (xlib:make-color :red 0.173 :green 0.325 :blue 0.792))
 
-(setf *reserve-tray-placement* t)
+(setf *reserve-tray-placement* nil)
 (setf *mouse-follows-focus* t)
 
 (define-application emacs :map *raise-keymap* :pullp t :pull-map *pull-keymap*)
