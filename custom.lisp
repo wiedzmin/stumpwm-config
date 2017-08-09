@@ -86,6 +86,8 @@
 (defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
 (defwebjump "Telegram" "https://web.telegram.org/#/im" :key "T")
 (defwebjump "Storm locator" "http://ru.blitzortung.org/live_dynamic_maps.php" :binded nil)
+(defwebjump "Lightning maps" "http://www.lightningmaps.org/" :binded nil)
+(defwebjump "Weather maps (temperature)" "https://www.ventusky.com/?l=temperature" :binded nil)
 (defwebjump "Yandex Music" "https://music.yandex.ru" :key "Y")
 (defwebjump "RelaxFM" "http://relax-fm.ru" :key "R" :browser "Google chrome")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "E")
