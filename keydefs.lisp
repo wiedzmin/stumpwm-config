@@ -47,6 +47,7 @@
   ("r"  "resume-dunst")
   ("O"  "custom/org-agenda")
   ("o"  "custom/org-agenda-list")
+  ("s"  "custom/statusbar-osd")
   ("Left" "winner-undo")
   ("Right" "winner-redo"))
 

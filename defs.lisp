@@ -556,3 +556,6 @@ rules."
 
 (defcommand custom/spawn-emacs-frame () ()
   (run-shell-command "emacsclient -c -n -e '(switch-to-buffer nil)'"))
+
+(defcommand custom/statusbar-osd () ()
+  (run-shell-command "statusbar_osd"))
