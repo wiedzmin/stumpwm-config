@@ -67,5 +67,4 @@
 (xft:cache-fonts)
 (set-font (make-instance 'xft:font :family "IosevkaCC" :subfamily "Bold" :size 10))
 (setf winner-mode:*tmp-folder* (cat *STUMPWM-LIB-DIR* "layouts/"))
-(enable-mode-line-all-heads)
 (run-commands "enable-per-window-layout" "mpd-connect")
