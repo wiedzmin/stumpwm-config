@@ -39,6 +39,11 @@
        :name "Firefox"
        :executable "firefox"
        :cliargs '("-new-tab")))
+    ("Palemoon"
+     ,(make-browser
+       :name "Palemoon"
+       :executable "palemoon"
+       :cliargs '("-new-tab")))
     ("Google Chrome"
      ,(make-browser
        :name "Google Chrome"
