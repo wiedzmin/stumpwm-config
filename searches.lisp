@@ -70,6 +70,7 @@
 (defparameter *URL-LAUNCHPAD*       "https://launchpad.net/+search?field.text=~a")
 (defparameter *URL-EMACS-BUGS*      "http://debbugs.gnu.org/cgi/search.cgi?search=search&skip=0&phrase=~a")
 (defparameter *URL-SEARCHCODE*      "https://searchcode.com/?q=~a")
+(defparameter *URL-DOCKER*          "https://hub.docker.com/search/?isAutomated=0&isOfficial=0&page=1&pullCount=0&starCount=0&q=~a")
 
 (searchengines:make-searchengine-selection "search-google-selection" *URL-GOOGLE* "Google search" :map *search-keymap* :key "s-g")
 (searchengines:make-searchengine-selection "search-yandex-selection" *URL-YANDEX* "Yandex search" :map *search-keymap* :key "s-y")
@@ -104,6 +105,7 @@
 (searchengines:make-searchengine-selection "search-launchpad-selection" *URL-LAUNCHPAD* "Search on Launchpad" :map *search-keymap* :key "s-l")
 (searchengines:make-searchengine-selection "search-emacs-bugs-selection" *URL-EMACS-BUGS* "Search for Emacs bugs")
 (searchengines:make-searchengine-selection "search-searchcode-selection" *URL-SEARCHCODE* "Search for CODE" :map *search-keymap* :key "s-c")
+(searchengines:make-searchengine-selection "search-docker-selection" *URL-DOCKER* "Search for CODE" :map *search-keymap* :key "s-d")
 (searchengines:make-searchengine-selection "search-open-selection" "" "Just open selection"  :map *search-keymap* :key "s-o")
 
 (searchengines:make-searchengine-prompt "search-google-prompt" "Google" *URL-GOOGLE* "Google search" :map *search-keymap* :key "s-C-g")
@@ -139,5 +141,6 @@
 (searchengines:make-searchengine-prompt "search-launchpad-prompt" "Launchpad" *URL-LAUNCHPAD* "Search on Launchpad" :map *search-keymap* :key "s-C-l")
 (searchengines:make-searchengine-prompt "search-emacs-bugs-prompt" "Emacs bugs" *URL-EMACS-BUGS* "Search for Emacs bugs")
 (searchengines:make-searchengine-prompt "search-searchcode-prompt" "SearchCode" *URL-SEARCHCODE* "Search for CODE" :map *search-keymap* :key "s-C-c")
+(searchengines:make-searchengine-prompt "search-docker-prompt" "Docker" *URL-DOCKER* "Search for Docker images" :map *search-keymap* :key "s-C-d")
 
 (searchengines:make-searchengine-augmented "search-google-augmented" "Augmented Google" *URL-GOOGLE* "Google search" :map *search-keymap* :key "C-g")
