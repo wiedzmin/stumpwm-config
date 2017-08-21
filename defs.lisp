@@ -27,8 +27,6 @@
   "Tracks status of heads updates")
 (defparameter *PDF-VIEWER* "zathura"
   "Default PDF viewer")
-(defparameter *autostarts* nil
-  "a list of application names that should be automatically started on session start")
 (defparameter *mouse-follows-focus* nil
   "Should mouse pointer follow window focus?")
 (defparameter *internal-head-initial-height* (head-height (nth 0 (screen-heads (current-screen)))))
