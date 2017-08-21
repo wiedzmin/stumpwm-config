@@ -99,3 +99,9 @@
 (defwebjump "Docker Hub" "https://hub.docker.com/" :key "d")
 (defwebjump "Evernote" "https://www.evernote.com/Home.action" :key "e")
 (defwebjump "Feedly" "https://feedly.com/i/latest" :key "F")
+
+(defun update-searches-browser ()
+  (setf searchengines:*search-browser-executable* (browser-executable (psetup-default-browser *persistent-setup*)))
+  (setf searchengines:*search-browser-params* (browser-cliargs (psetup-default-browser *persistent-setup*))))
+
+(pushnew #'update-searches-browser *default-browser-changed-hook*)
