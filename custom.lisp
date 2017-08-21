@@ -11,6 +11,8 @@
 (set-border-color "grey16")
 (set-msg-border-width 0)
 
+(setf battery-portable:*prefer-sysfs* nil)
+
 ;; modeline
 (setf *mode-line-position* :bottom)
 (setf *screen-mode-line-format*
@@ -18,7 +20,7 @@
            "^B[^b"
            "%d"
            "^B]^b "
-           "[%c %t] [%M / %N] [%D] [%l] [%b] %m"
+           "[%c %t] [%M / %N] [%D] [%l] [%B] %m"
            (string #\NewLine)
            " "
            "^n"

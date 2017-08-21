@@ -38,7 +38,7 @@
 
 (init-load-path (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
 
-(load-module "battery")
+(load-module "battery-portable") ;TODO: investigate/setup/maillist
 (load-module "cpu")
 (load-module "disk")
 (load-module "mem")
