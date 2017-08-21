@@ -289,12 +289,18 @@ in which case pull it into the current frame."
 (defun get-browser-by-name (name)
   (cadr (assoc name *available-browsers* :test #'equalp)))
 
+;;TODO: incapsulate/relocate/improve
+(defparameter *default-browser-changed-hook* '())
+
 (defun set-default-browser ()
   (let ((browser (select-from-menu
                   (current-screen)
                   (mapcar (lambda (pair) (car pair)) *available-browsers*))))
     (when browser
-      (setf (psetup-default-browser *persistent-setup*) (get-browser-by-name browser)))))
+      (setf (psetup-default-browser *persistent-setup*) (get-browser-by-name browser)))
+    (when *default-browser-changed-hook*
+      (dolist (func *default-browser-changed-hook*)
+        (funcall func)))))
 
 (defun open-in-browser (url &key (background nil) (browser (psetup-default-browser *persistent-setup*)))
   (let ((browser-program (browser-executable browser))
