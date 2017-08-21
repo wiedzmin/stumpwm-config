@@ -40,7 +40,7 @@
     ("Palemoon"
      ,(make-browser
        :name "Palemoon"
-       :executable "palemoon"
+       :executable "palemoon-bin"
        :cliargs '("-new-tab")))
     ("Google Chrome"
      ,(make-browser
