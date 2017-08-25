@@ -86,7 +86,7 @@
 (defwebjump "Lumosity" "http://lumosity.com/" :key "l" :browser "Google chrome")
 (defwebjump "Pocket" "https://getpocket.com/a/queue/1" :key "p")
 (defwebjump "Chillout music" "http://www.di.fm/chillout" :key "c" :browser "Google chrome")
-(defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u")
+(defwebjump "Google Docs" "https://docs.google.com/document/u/0/" :key "u" :browser "Google chrome")
 (defwebjump "Telegram" "https://web.telegram.org/#/im" :key "T")
 (defwebjump "Storm locator" "http://ru.blitzortung.org/live_dynamic_maps.php" :binded nil)
 (defwebjump "Lightning maps" "http://www.lightningmaps.org/" :binded nil)
