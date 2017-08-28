@@ -311,7 +311,7 @@ in which case pull it into the current frame."
       " " (format nil "~{~A~^ ~}" browser-args)
       " " url))
     (unless background
-      (funcall (intern (string-upcase browser-program))))))
+      (funcall (intern (string-downcase browser-program))))))
 
 (let ((swank-p nil))
   (defun stop-swank ()
