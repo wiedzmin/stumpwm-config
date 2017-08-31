@@ -101,6 +101,8 @@
         (cat "No Window In ::"
            (group-name (current-group)) "::"))))
 
+(defparameter *applications* (make-hash-table :test #'equal))
+
 (defmacro define-application (name &key (command (string-downcase (string name)))
                                      (class (string-capitalize command) )
                                      (instance nil)
@@ -133,7 +135,10 @@ in which case pull it into the current frame."
                           name)
                  (run-or-pull ,command '(:class ,class :instance ,instance :title ,title)))
                ,(when binded
-                      `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))))
+                      `(define-key ,pull-map (kbd ,pull-key) ,(string-downcase (string pull-name))))))
+     (setf (gethash ',command *applications*)
+           #',name
+           )))
 
 (defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t) (browser nil))
   (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption))))
