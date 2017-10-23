@@ -98,6 +98,7 @@
 (defwebjump "Docker Hub" "https://hub.docker.com/" :key "d")
 (defwebjump "Evernote" "https://www.evernote.com/Home.action" :key "e")
 (defwebjump "Feedly" "https://feedly.com/i/latest" :key "F")
+(defwebjump "Yandex.Money" "https://money.yandex.ru/actions" :key "Y" :browser "Google chrome")
 
 (defun update-searches-browser ()
   (setf searchengines:*search-browser-executable* (browser-executable (psetup-default-browser *persistent-setup*)))
