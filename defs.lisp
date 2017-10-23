@@ -191,10 +191,9 @@ in which case pull it into the current frame."
 (defmacro define-filelist-selector (fn doc pathspec &body body)
   `(defun ,(intern (string-upcase fn)) ()
       ,doc
-      (let ((filelist (directory-file-list ,@pathspec)))
-        (let ((selected-file (select-from-menu
-                              (current-screen)
-                              (mapcar (lambda (pathname) (namestring pathname)) filelist))))
+      (let ((filelist (mapcar (lambda (pathname) (namestring pathname))
+                              (directory-file-list ,@pathspec))))
+        (let ((selected-file (select-from-menu (current-screen) filelist)))
           (when (not (equal selected-file ""))
             ,@body)))))
 
@@ -211,9 +210,8 @@ in which case pull it into the current frame."
 (defmacro define-rofi-filelist-selector (fn doc pathspec &body body)
   `(defun ,(intern (string-upcase fn)) ()
       ,doc
-      (let ((filelist (directory-file-list ,@pathspec)))
-        (let ((selected-file (rofi-dmenu
-                              (mapcar (lambda (pathname) (namestring pathname)) filelist))))
+      (let ((filelist (mapcar (lambda (pathname) (namestring pathname)) (directory-file-list ,@pathspec))))
+        (let ((selected-file (rofi-dmenu filelist)))
           (when (not (equal selected-file ""))
             ,@body)))))
 
