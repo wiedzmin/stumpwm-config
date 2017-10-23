@@ -197,6 +197,15 @@ in which case pull it into the current frame."
           (when (not (equal selected-file ""))
             ,@body)))))
 
+(defmacro define-filelist-selector-recursive (fn doc path filterfn &body body)
+  `(defun ,(intern (string-upcase fn)) ()
+      ,doc
+      (let ((filelist nil))
+        (cl-fad:walk-directory ,path (lambda (fname) (push (namestring fname) filelist)) :test ,filterfn)
+        (let ((selected-file (select-from-menu (current-screen) filelist)))
+          (when (not (equal selected-file ""))
+            ,@body)))))
+
 (defun list-with-newlines (items)
   (format nil "~{~a~%~}" items))
 
@@ -211,6 +220,15 @@ in which case pull it into the current frame."
   `(defun ,(intern (string-upcase fn)) ()
       ,doc
       (let ((filelist (mapcar (lambda (pathname) (namestring pathname)) (directory-file-list ,@pathspec))))
+        (let ((selected-file (rofi-dmenu filelist)))
+          (when (not (equal selected-file ""))
+            ,@body)))))
+
+(defmacro define-rofi-filelist-selector-recursive (fn doc path filterfn &body body)
+  `(defun ,(intern (string-upcase fn)) ()
+      ,doc
+      (let ((filelist nil))
+        (cl-fad:walk-directory ,path (lambda (fname) (push (namestring fname) filelist)) :test ,filterfn)
         (let ((selected-file (rofi-dmenu filelist)))
           (when (not (equal selected-file ""))
             ,@body)))))
