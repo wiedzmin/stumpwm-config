@@ -48,6 +48,7 @@
   ("O"  "custom/org-agenda")
   ("o"  "custom/org-agenda-list")
   ("s"  "custom/statusbar-osd")
+  ("e"  "custom/sbcl-send-exit")
   ("Left" "winner-undo")
   ("Right" "winner-redo"))
 

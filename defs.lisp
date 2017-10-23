@@ -596,3 +596,6 @@ rules."
 
 (defcommand custom/statusbar-osd () ()
   (run-shell-command "statusbar_osd"))
+
+(defcommand custom/sbcl-send-exit () () ;TODO: generalize
+  (window-send-string "(exit)"))
