@@ -239,10 +239,15 @@ in which case pull it into the current frame."
     (:subdir "layouts")
   (restore-group (current-group) (read-dump-from-file selected-file)))
 
-(define-rofi-filelist-selector
+(defparameter *ebook-formats*
+	'("pdf" "djvu")
+	"ebook formats to consider")
+
+(define-rofi-filelist-selector-recursive
     "select-books-from-menu"
     "Select from current virtual bookshelf"
-    (:basedir "/home/octocat/bookshelf")
+    "/home/octocat/bookshelf"
+    (lambda (filespec) (member (pathname-type filespec) *ebook-formats* :test #'equal))
   (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil))
 
 (defun select-links-from-var (linkslist &key (with-captions nil))
