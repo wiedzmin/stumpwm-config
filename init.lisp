@@ -35,6 +35,7 @@
 
 (load (concatenate 'string *SLIME-DIR* "swank-loader.lisp"))
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
+(swank-loader::setup)
 
 (init-load-path (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
 
