@@ -71,6 +71,7 @@
 (defparameter *URL-EMACS-BUGS*      "http://debbugs.gnu.org/cgi/search.cgi?search=search&skip=0&phrase=~a")
 (defparameter *URL-SEARCHCODE*      "https://searchcode.com/?q=~a")
 (defparameter *URL-DOCKER*          "https://hub.docker.com/search/?isAutomated=0&isOfficial=0&page=1&pullCount=0&starCount=0&q=~a")
+(defparameter *URL-YANDEX-TRANSLATE* "https://translate.yandex.ru/?lang=en-ru&text=~a")
 
 (searchengines:make-searchengine-selection "search-google-selection" *URL-GOOGLE* "Google search" :map *search-keymap* :key "s-g")
 (searchengines:make-searchengine-selection "search-yandex-selection" *URL-YANDEX* "Yandex search" :map *search-keymap* :key "s-y")
