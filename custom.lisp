@@ -78,7 +78,7 @@
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
-(defwebjump "Yandex" "http://yandex.ru" :key "y")
+(defwebjump "Yandex" "http://yandex.ru" :key "y" :browser "Google chrome")
 (defwebjump "Facebook" "https://facebook.com/" :key "f" :browser "Google chrome")
 (defwebjump "Multitran" "http://www.multitran.ru/" :key "t")
 (defwebjump "Youtube" "http://youtube.com/" :key "b" :browser "Google chrome")
