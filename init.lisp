@@ -56,6 +56,7 @@
 (load-module "perwindowlayout")
 
 (load-config-module "defs.lisp")
+(load-config-module "shell.lisp")
 (load-persistent-setup)
 
 (load-config-module "custom.lisp")

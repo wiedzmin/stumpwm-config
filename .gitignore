@@ -4,4 +4,5 @@ layouts/.stumpwm-group
 persistent-setup
 private.lisp
 rc/**
+shell.lisp
 ssh-servers.lisp
