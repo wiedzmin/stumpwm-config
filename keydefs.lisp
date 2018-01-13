@@ -63,7 +63,11 @@
   ("Up"  "custom/start-job-vpn")
   ("Down"  "custom/stop-job-vpn")
   ("DEL"  "custom/restart-job-vpn")
-  ("s"  "custom/job-vpn-status"))
+  (">"  "custom/start-sshuttle")
+  ("<"  "custom/stop-sshuttle")
+  ("s"  "custom/job-vpn-status")
+  ("S"  "custom/sshuttle-status")
+  ("H" "custom/show-hosts-data"))
 
 (define-keys *root-map*
   ("Delete" "toggle-modeline")

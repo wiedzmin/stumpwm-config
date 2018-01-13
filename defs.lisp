@@ -573,6 +573,16 @@ rules."
 (defcommand custom/job-vpn-status () ()
   (run-shell-command "sudo /etc/init.d/job-vpn status" t))
 
+(defcommand custom/start-sshuttle () ()
+  (run-shell-command "sudo /etc/init.d/sshuttle start"))
+
+(defcommand custom/stop-sshuttle () ()
+  (run-shell-command "sudo /etc/init.d/sshuttle stop"))
+
+(defcommand custom/sshuttle-status () ()
+  (format nil "sshuttle: ~a"
+          (car (last (split-seq (run-shell-command "sudo /etc/init.d/sshuttle status" t) " ")))))
+
 (defcommand custom/restart-job-vpn () ()
   (custom/stop-job-vpn)
   (custom/start-job-vpn))
