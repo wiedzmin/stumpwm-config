@@ -610,3 +610,6 @@ rules."
 
 (defcommand custom/sbcl-send-exit () () ;TODO: generalize
   (window-send-string "(exit)"))
+
+(defcommand custom/restart-wifi () ()
+  (run-shell-command "sudo nmcli radio wifi off && sudo nmcli radio wifi on"))

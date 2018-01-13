@@ -84,7 +84,7 @@
   ("w" "custom/rofi-windowlist")
   ("l" "custom/choose-group-layout")
   ("b" "custom/choose-book")
-  )
+  ("s-w" "custom/restart-wifi"))
 
 (define-keys *top-map*
   ("s-P" "exec gmrun")
