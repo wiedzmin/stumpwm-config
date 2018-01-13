@@ -240,8 +240,8 @@ in which case pull it into the current frame."
   (restore-group (current-group) (read-dump-from-file selected-file)))
 
 (defparameter *ebook-formats*
-	'("pdf" "djvu")
-	"ebook formats to consider")
+  '("pdf" "djvu")
+  "ebook formats to consider")
 
 (define-rofi-filelist-selector-recursive
     "select-books-from-menu"
