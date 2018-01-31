@@ -444,29 +444,29 @@ rules."
 
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --right-of LVDS1" nil)
-  (when (psetup-ext-head-rotated *persistent-setup*)
-    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+  (run-shell-command
+   (format nil "ext_head_right.sh~a"
+           (if (psetup-ext-head-rotated *persistent-setup*) " rotate" "")) nil)
   (setf *heads-updated* nil)
   (save-persistent-setup))
 
 (defcommand enable-external-monitor-left () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --left-of LVDS1" nil)
-  (when (psetup-ext-head-rotated *persistent-setup*)
-    (run-shell-command "xrandr --output VGA1 --rotate left" nil))
+  (run-shell-command
+   (format nil "ext_head_left.sh~a"
+           (if (psetup-ext-head-rotated *persistent-setup*) " rotate" "")) nil)
   (setf *heads-updated* nil)
   (save-persistent-setup))
 
 (defcommand enable-external-monitor-above () ()
   "Enables external monitor"
-  (run-shell-command "xrandr --output VGA1 --auto --above LVDS1" nil)
+  (run-shell-command "ext_head_above.sh" nil)
   (setf *heads-updated* nil)
   (save-persistent-setup))
 
 (defcommand disable-external-monitor () ()
   "Disables external monitor"
-  (run-shell-command "xrandr --output VGA1 --off")
+  (run-shell-command "ext_head_off.sh")
   (warp-mouse-active-frame)
   (setf *heads-updated* nil)
   (save-persistent-setup))
