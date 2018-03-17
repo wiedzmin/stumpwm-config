@@ -442,13 +442,25 @@ rules."
   (disable-external-monitor)
   (save-persistent-setup))
 
+;;TODO: incapsulate/relocate/improve
+(defparameter *heads-changed-hook* '())
+
+(defun after-heads-changed ()
+  (when *heads-changed-hook*
+    (dolist (func *heads-changed-hook*)
+      (funcall func))))
+
+;;TODO: incapsulate/relocate/improve
+(pushnew #'save-persistent-setup *heads-changed-hook*)
+(pushnew #'(lambda () (run-shell-command "rescale_wallpaper.sh" nil)) *heads-changed-hook*)
+
 (defcommand enable-external-monitor-right () ()
   "Enables external monitor"
   (run-shell-command
    (format nil "ext_head_right.sh~a"
            (if (psetup-ext-head-rotated *persistent-setup*) " rotate" "")) nil)
   (setf *heads-updated* nil)
-  (save-persistent-setup))
+  (after-heads-changed))
 
 (defcommand enable-external-monitor-left () ()
   "Enables external monitor"
@@ -456,20 +468,20 @@ rules."
    (format nil "ext_head_left.sh~a"
            (if (psetup-ext-head-rotated *persistent-setup*) " rotate" "")) nil)
   (setf *heads-updated* nil)
-  (save-persistent-setup))
+  (after-heads-changed))
 
 (defcommand enable-external-monitor-above () ()
   "Enables external monitor"
   (run-shell-command "ext_head_above.sh" nil)
   (setf *heads-updated* nil)
-  (save-persistent-setup))
+  (after-heads-changed))
 
 (defcommand disable-external-monitor () ()
   "Disables external monitor"
   (run-shell-command "ext_head_off.sh")
   (warp-mouse-active-frame)
   (setf *heads-updated* nil)
-  (save-persistent-setup))
+  (after-heads-changed))
 
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
