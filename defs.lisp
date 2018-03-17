@@ -85,7 +85,7 @@
 (defun screenshot-filename ()
   (cat
    "~/screenshots/screenshot-"
-   (run-shell-command "date +\"%d-%m-%Y-%T\" | tr -d '[:cntrl:]'" t)
+   (run-shell-command "date +\"%Y-%m-%d-%T\" | tr -d '[:cntrl:]'" t)
    ".png"))
 
 (defun fix-str-length (str length)
