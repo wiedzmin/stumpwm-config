@@ -483,6 +483,19 @@ rules."
   (setf *heads-updated* nil)
   (after-heads-changed))
 
+(defcommand ext-heads-dock () ()
+  "Enables dock-stationed monitors"
+  (run-shell-command "ext_heads_dock.sh" nil)
+  (setf *heads-updated* nil)
+  (after-heads-changed))
+
+(defcommand ext-heads-undock () ()
+  "Disables dock-stationed monitors"
+  (run-shell-command "ext_heads_undock.sh")
+  (warp-mouse-active-frame)
+  (setf *heads-updated* nil)
+  (after-heads-changed))
+
 ;TODO: fix "above" config as it fails to navigate windows after calling 'resize-heads
 (defcommand resize-heads () ()
   "Resizes primary head (to see tray)"

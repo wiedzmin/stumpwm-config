@@ -24,6 +24,8 @@
   ("Left"  "enable-external-monitor-left")
   ("Up"  "enable-external-monitor-above")
   ("Down"  "disable-external-monitor")
+  ("d"  "ext-heads-dock")
+  ("D"  "ext-heads-undock")
   ("r"  "toggle-external-head-rotation")
   ("u"  "update-heads-layout"))
 
