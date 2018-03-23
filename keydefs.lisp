@@ -82,7 +82,6 @@
   ("s-Up" "move-window up")
   ("s-b" "mode-lines")
   ("s-i" "iresize")
-  ("s-l" "lock-screen")
   ("w" "custom/rofi-windowlist")
   ("l" "custom/choose-group-layout")
   ("b" "custom/choose-book")
@@ -101,6 +100,8 @@
   ;;
   ("XF86MonBrightnessUp" "brightness-up")
   ("XF86MonBrightnessDown" "brightness-down")
+  ;;
+  ("XF86ScreenSaver" "lock-screen")
   ;;
   ("s-TAB" "next")
   ("s-C-TAB" "prev")
