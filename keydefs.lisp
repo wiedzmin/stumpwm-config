@@ -95,8 +95,9 @@
   ("XF86AudioRaiseVolume" "raise-volume")
   ("XF86AudioLowerVolume" "lower-volume")
   ("XF86AudioMute" "toggle-volume")
-  ("Print" "screenshot-window-default")
-  ("s-Print" "screenshot-default")
+  ("Print" "screenshot-window-active")
+  ("s-Print" "screenshot-selection")
+  ("C-Print" "screenshot-workplace")
   ;;
   ("XF86MonBrightnessUp" "brightness-up")
   ("XF86MonBrightnessDown" "brightness-down")

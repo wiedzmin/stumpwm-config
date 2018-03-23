@@ -46,7 +46,6 @@
 (load-module "net")
 (load-module "wifi")
 (load-module "mpd")
-(load-module "screenshot")
 (load-module "notifications")
 (load-module "ttf-fonts")
 (load-module "winner-mode")

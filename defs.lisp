@@ -396,6 +396,18 @@ in which case pull it into the current frame."
   "Make screenshot of focus window"
   (screenshot:screenshot-window (screenshot-filename)))
 
+(defcommand screenshot-window-active () ()
+  "Make screenshot of focus window"
+  (run-shell-command (format nil "maim -o -i $(xdotool getactivewindow) --format png /dev/stdout | tee ~a | xclip -selection clipboard -t image/png -i" (screenshot-filename)) nil))
+
+(defcommand screenshot-selection () ()
+  "Make screenshot of focus window"
+  (run-shell-command (format nil "maim -o -s --format png /dev/stdout | tee ~a | xclip -selection clipboard -t image/png -i" (screenshot-filename)) nil))
+
+(defcommand screenshot-workplace () ()
+  "Make screenshot of focus window"
+  (run-shell-command (format nil "maim -o --format png /dev/stdout | tee ~a | xclip -selection clipboard -t image/png -i" (screenshot-filename)) nil))
+
 (defcommand update-mode-line () ()
   "Update the mode-line sooner than usual."
   (update-all-mode-lines))
