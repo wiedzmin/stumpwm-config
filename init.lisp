@@ -55,17 +55,16 @@
 (load-module "perwindowlayout")
 
 (load-config-module "defs.lisp")
-(load-config-module "shell.lisp")
 (load-persistent-setup)
 
 (load-config-module "custom.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "searches.lisp")
 
+(load-config-module "common.lisp")
+
 (load-rc)
 
 (setf perwindowlayout:*emacs-toggle-input-method-key* "C-\\")
-(xft:cache-fonts)
-(set-font (make-instance 'xft:font :family "IosevkaCC" :subfamily "Bold" :size 10))
 (setf winner-mode:*tmp-folder* (cat *STUMPWM-LIB-DIR* "layouts/"))
 (run-commands "enable-per-window-layout" "mpd-connect")

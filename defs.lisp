@@ -25,8 +25,6 @@
   "Should we update all modelines while updating heads?")
 (defvar *heads-updated* nil
   "Tracks status of heads updates")
-(defparameter *PDF-VIEWER* "zathura"
-  "Default PDF viewer")
 (defparameter *mouse-follows-focus* nil
   "Should mouse pointer follow window focus?")
 (defparameter *internal-head-initial-height* (head-height (nth 0 (screen-heads (current-screen)))))
