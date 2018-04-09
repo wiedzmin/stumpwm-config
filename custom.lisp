@@ -75,6 +75,7 @@
 (define-application sonata :map *raise-keymap* :key "m" :pullp t :pull-map *pull-keymap* :pull-key "m")
 (define-application telegram :command "Telegram" :map *raise-keymap* :key "T" :pullp t :pull-map *pull-keymap* :pull-key "T")
 (define-application nautilus :map *raise-keymap* :key "n" :pullp t :pull-map *pull-keymap* :pull-key "n")
+(define-application mpv :class "mpv" :map *raise-keymap* :key "v" :pullp t :pull-map *pull-keymap* :pull-key "v")
 
 (defwebjump "Gmail" "https://mail.google.com/mail/u/0/#inbox" :key "m")
 (defwebjump "Github" "https://github.com/wiedzmin" :key "g")
