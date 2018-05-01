@@ -1,7 +1,7 @@
 (in-package #:stumpwm)
 
 (defstruct browser name executable cliargs)
-(defstruct (persistent-setup (:conc-name psetup-)) default-browser ext-head-rotated)
+(defstruct (persistent-setup (:conc-name psetup-)) default-browser ext-head-rotated use-pdf-tools)
 
 (defparameter *FOREGROUND-COLOR* "green")
 (defparameter *BACKGROUND-COLOR* "black")
@@ -52,7 +52,8 @@
   (setf *persistent-setup*
         (make-persistent-setup
          :default-browser (cadar *available-browsers*)
-         :ext-head-rotated nil)))
+         :ext-head-rotated nil
+         :use-pdf-tools nil)))
 
 (defun save-persistent-setup ()
   (dump-to-file *persistent-setup* *persistent-setup-file*))
@@ -79,6 +80,11 @@
 
 (defun concat-as-symbol (prefix suffix)
   (intern (string-upcase (cat prefix suffix))))
+
+(defun ends-with-p (str1 str2)
+  "Determine whether `str1` ends with `str2`"
+  (let ((p (mismatch str2 str1 :from-end T)))
+    (or (not p) (= 0 p))))
 
 (defun screenshot-filename ()
   (cat
@@ -241,12 +247,19 @@ in which case pull it into the current frame."
   '("pdf" "djvu")
   "ebook formats to consider")
 
+(defcommand toggle-pdf-tools-usage () ()
+  (setf (psetup-use-pdf-tools *persistent-setup*)
+        (not (psetup-use-pdf-tools *persistent-setup*)))
+  (save-persistent-setup))
+
 (define-rofi-filelist-selector-recursive
     "select-books-from-menu"
     "Select from current virtual bookshelf"
     "/home/octocat/bookshelf"
     (lambda (filespec) (member (pathname-type filespec) *ebook-formats* :test #'equal))
-  (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil))
+  (if (and (psetup-use-pdf-tools *persistent-setup*) (ends-with-p selected-file "pdf"))
+      (run-shell-command (format nil "emacsclient --eval '(find-file \"~a\")'" selected-file) nil)
+      (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil)))
 
 (defun select-links-from-var (linkslist &key (with-captions nil))
   (let ((link (if with-captions
