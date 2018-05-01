@@ -386,14 +386,6 @@ in which case pull it into the current frame."
   (stumpwm:toggle-mode-line (stumpwm:current-screen)
                             (stumpwm:current-head)))
 
-(defcommand screenshot-default () ()
-  "Make screenshot of root window"
-  (screenshot:screenshot (screenshot-filename)))
-
-(defcommand screenshot-window-default () ()
-  "Make screenshot of focus window"
-  (screenshot:screenshot-window (screenshot-filename)))
-
 (defcommand screenshot-window-active () ()
   "Make screenshot of focus window"
   (run-shell-command (format nil "maim -o -i $(xdotool getactivewindow) --format png /dev/stdout | tee ~a | xclip -selection clipboard -t image/png -i" (screenshot-filename)) nil))
