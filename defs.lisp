@@ -48,6 +48,13 @@
 (defparameter *persistent-setup-file* (concatenate 'string *STUMPWM-LIB-DIR* "persistent-setup"))
 (defparameter *persistent-setup* nil)
 
+;; TODO search for builtin
+(defun run-hook (hook)
+  "helper function for running custom hooks"
+  (when hook
+    (dolist (func hook)
+      (funcall func))))
+
 (defun init-persistent-setup ()
   (setf *persistent-setup*
         (make-persistent-setup
@@ -335,9 +342,7 @@ in which case pull it into the current frame."
                   (mapcar (lambda (pair) (car pair)) *available-browsers*))))
     (when browser
       (setf (psetup-default-browser *persistent-setup*) (get-browser-by-name browser)))
-    (when *default-browser-changed-hook*
-      (dolist (func *default-browser-changed-hook*)
-        (funcall func)))))
+    (run-hook *default-browser-changed-hook*)))
 
 (defun open-in-browser (url &key (background nil) (browser (psetup-default-browser *persistent-setup*)))
   (let ((browser-program (browser-executable browser))
