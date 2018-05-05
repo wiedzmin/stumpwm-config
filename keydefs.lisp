@@ -128,7 +128,7 @@
   ("s-w"       *web-keymap*)
   ("s-s"       *swank-keymap*)
   ("s-4"       *shell-keymap*)
-  ("s-e"       "fselect")
+  ("s-e"       "fselect") ;TODO: tolerate unselected frames/windows within fselect implementation
   ;;
   ("s-i" "display-current-window-info")
   )
