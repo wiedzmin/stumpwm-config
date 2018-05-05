@@ -106,3 +106,8 @@
   (setf searchengines:*search-browser-params* (browser-cliargs (psetup-default-browser *persistent-setup*))))
 
 (pushnew #'update-searches-browser *default-browser-changed-hook*)
+
+(defun restart-imapfilter ()
+  (run-shell-command "sudo /etc/init.d/imapfilter stop && sleep 1 && sudo /etc/init.d/imapfilter start"))
+
+(pushnew #'restart-imapfilter *sshuttle-status-changed-hook*)
