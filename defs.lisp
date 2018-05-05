@@ -609,21 +609,31 @@ rules."
     (dolist (head (screen-heads screen))
       (toggle-mode-line screen head))))
 
+;;TODO: incapsulate/relocate/improve
+(defparameter *job-vpn-status-changed-hook* '())
+
 (defcommand custom/start-job-vpn () ()
-  (run-shell-command "sudo /etc/init.d/job-vpn start"))
+  (run-shell-command "sudo /etc/init.d/job-vpn start")
+  (run-hook *job-vpn-status-changed-hook*))
 
 (defcommand custom/stop-job-vpn () ()
-  (run-shell-command "sudo /etc/init.d/job-vpn stop"))
+  (run-shell-command "sudo /etc/init.d/job-vpn stop")
+  (run-hook *job-vpn-status-changed-hook*))
 
 (defcommand custom/job-vpn-status () ()
   (format nil "job VPN: ~a"
           (car (last (split-seq (run-shell-command "sudo /etc/init.d/job-vpn status" t) " ")))))
 
+;;TODO: incapsulate/relocate/improve
+(defparameter *sshuttle-status-changed-hook* '())
+
 (defcommand custom/start-sshuttle () ()
-  (run-shell-command "sudo /etc/init.d/sshuttle start"))
+  (run-shell-command "sudo /etc/init.d/sshuttle start")
+  (run-hook *sshuttle-status-changed-hook*))
 
 (defcommand custom/stop-sshuttle () ()
-  (run-shell-command "sudo /etc/init.d/sshuttle stop"))
+  (run-shell-command "sudo /etc/init.d/sshuttle stop")
+  (run-hook *sshuttle-status-changed-hook*))
 
 (defcommand custom/sshuttle-status () ()
   (format nil "sshuttle: ~a"
