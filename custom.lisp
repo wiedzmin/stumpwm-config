@@ -92,7 +92,7 @@
 (defwebjump "Lightning maps" "http://www.lightningmaps.org/" :binded nil)
 (defwebjump "Weather maps (temperature)" "https://www.ventusky.com/?l=temperature" :binded nil)
 (defwebjump "Yandex Music" "https://music.yandex.ru" :key "Y")
-(defwebjump "RelaxFM" "http://relax-fm.ru" :key "R" :browser "Google chrome")
+(defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "E")
 (defwebjump "Facebook messenger" "https://www.facebook.com/messages/t/" :key "C")
 (defwebjump "Todoist" "https://todoist.com/" :key "D")
