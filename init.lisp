@@ -54,14 +54,14 @@
 (load-module "searchengines")
 (load-module "perwindowlayout")
 
+(load-config-module "common.lisp")
+
 (load-config-module "defs.lisp")
 (load-persistent-setup)
 
 (load-config-module "custom.lisp")
 (load-config-module "keydefs.lisp")
 (load-config-module "searches.lisp")
-
-(load-config-module "common.lisp")
 
 (load-rc)
 
