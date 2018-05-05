@@ -42,7 +42,7 @@
 (set-transient-gravity :center)
 
 ;; various
-(setf *frame-number-map* "1234567890")
+(setf *frame-number-map* "asdfhjkl")
 (setf *startup-message* "Never Stop Hacking!")
 (setf *run-or-raise-all-screens* t)
 (setf *window-format* "%n%s%t")
