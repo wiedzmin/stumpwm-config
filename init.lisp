@@ -9,7 +9,8 @@
       when (search substring (namestring dir))
       collect (namestring dir))))
 
-(defparameter *SLIME-DIR* "/home/octocat/quicklisp/dists/quicklisp/software/slime-v2.20/")
+(defparameter *username* "alex3rd")
+(defparameter *SLIME-DIR* (format nil "/home/~a/quicklisp/dists/quicklisp/software/slime-v2.20/" *username*))
 (defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
 (defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
 (defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
