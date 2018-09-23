@@ -95,11 +95,11 @@
 (defwebjump "RelaxFM" "http://relax-fm.ru" :key "R")
 (defwebjump "E-lactancia" "http://e-lactancia.org/" :key "E")
 (defwebjump "Facebook messenger" "https://www.facebook.com/messages/t/" :key "C")
-(defwebjump "Todoist" "https://todoist.com/" :key "D")
 (defwebjump "Docker Hub" "https://hub.docker.com/" :key "d")
 (defwebjump "Evernote" "https://www.evernote.com/Home.action" :key "e")
 (defwebjump "Feedly" "https://feedly.com/i/latest" :key "F")
 (defwebjump "Yandex.Money" "https://money.yandex.ru/actions" :key "Y" :browser "Google chrome")
+(defwebjump "DigitalOcean" "https://cloud.digitalocean.com/login" :key "D")
 
 (defun update-searches-browser ()
   (setf searchengines:*search-browser-executable* (browser-executable (psetup-default-browser *persistent-setup*)))
