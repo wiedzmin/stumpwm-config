@@ -597,10 +597,10 @@ rules."
   "Open calendar-pinned orgmode agenda in emacs"
   (emacs-org-open-agenda-list))
 
-(defcommand brightness-up () ()
+(defcommand brightness-up () () ;TODO: think of using "light"
   (run-shell-command "xbacklight -inc 10"))
 
-(defcommand brightness-down () ()
+(defcommand brightness-down () () ;TODO: think of using "light"
   (run-shell-command "xbacklight -dec 10"))
 
 (defcommand mode-lines () ()
