@@ -589,3 +589,267 @@ rules."
 
 
 ;; (deftoggle toggle-trayer "/usr/bin/trayer --SetDockType false" "killall trayer")
+
+;; ======================
+
+
+;; (defcommand custom/show-hosts-data () ()
+;;   (let ((hosts-data nil))
+;;     (with-open-file (stream "/etc/hosts")
+;;       (let ((data (make-string (file-length stream))))
+;;         (read-sequence data stream)
+;;         (setf hosts-data data)))
+;;     (message-no-timeout "~a" (substitute #\Tab #\Space hosts-data))))
+
+;; ;; A nifty little recursive window shifter
+;; (defun shift-windows-forward (frames window)
+;;   (when frames
+;;     (let ((frame (car frames)))
+;;       (shift-windows-forward (cdr frames)
+;;           (frame-window frame))
+;;       (when window
+;;  (pull-window window frame)))))
+
+;; (defcommand rotate-windows () ()
+;;   "Rotate windows"
+;;   (let* ((frames (group-frames (current-group)))
+;;   (window (frame-window (car (last frames)))))
+;; (shift-windows-forward frames window)))
+
+;; ;;; shifting extension
+;; ;;; by Scott Jaderholm
+
+;; ;;; overview: moves windows around sorting them by most recently accessed
+;; ;;; starting from a user designated primary frame that includes the active
+;; ;;; window. everytime you select a window it is placed in the primary frame and
+;; ;;; other windows are shifted around the other frames. if you have fewer frames
+;; ;;; than windows then all non-displayed windows will be placed in the primary
+;; ;;; frame behind the active window.
+;; (in-package :stumpwm)
+
+;; (defun primary-frame ()
+;;   "Returns the frame where the active window is placed"
+;;   (let ((frames (first (last (tile-group-current-frame (current-group))))))
+;;     (if (consp maybe)
+;;         (if (consp (second maybe))
+;;             (first (second maybe))
+;;             (first (last maybe)))
+;;         maybe)))
+
+;; (defun in-primary-frame? ()
+;;   "returns true if in the primary-frame frame"
+;;   (eq (primary-frame)
+;;       ;; current frame
+;;       (tile-group-current-frame (current-group))))
+
+;; (defun first-match (props &optional (all-groups))
+;;   "returns first window matching the props exp
+;; Ex: (first-match '(:class \"Firefox\")"
+;;   (first (find-matching-windows props all-groups t)))
+
+;; (defun focus (win)
+;;   (focus-frame (window-group win) (window-frame win)))
+
+;; (defmacro no (object)                   ;arc FTW
+;;   `(not ,object))
+
+;; (defun window-in? (frame)
+;;   "returns true of there's a window in frame"
+;;   (frame-window frame))
+
+;; (defun shift-window-from (frame target)
+;;   "shifts window in frame to target frame, and then possibly shifts the window
+;; in target"
+;;   (let ((destination (neighbour :left frame (group-frames (current-group))))
+;;         (win (window-in? frame)))
+;;     (if win
+;;         (if (no destination)
+;;             (pull-window win (primary-frame))
+;;             (when (not (eq target win))
+;;               (let ((yeah (frame-window frame)))
+;;                 (shift-window-from destination target)
+;;                 (pull-window yeah destination)))))))
+
+;; (defun already-in-primary-frame? (win)
+;;   (eq (window-frame win) (primary-frame)))
+
+;; (defun focus-matching-window
+;;     (props &optional (all-groups *run-or-raise-all-groups*)
+;;      (all-screens *run-or-raise-all-screens*))
+;;   (labels
+;;       ;; Raise the window win and select its frame.  For now, it
+;;       ;; does not select the screen.
+;;       ((goto-win (win)
+;;          (let* ((group (window-group win))
+;;                 (frame (window-frame win))
+;;                 (old-frame (tile-group-current-frame group)))
+;;            ;; (frame-raise-window group frame win)
+;;            (focus-all win)
+;;            ;; (unless (eq frame old-frame)
+;;            ;;   (show-frame-indicator group))
+;;            )))
+;;     (let* ((matches (find-matching-windows props all-groups all-screens))
+;;            ;; other-matches is list of matches "after" the current
+;;            ;; win, if current win matches. getting 2nd element means
+;;            ;; skipping over the current win, to cycle through matches
+;;            (visible-matches (remove-if-not #'window-visible-p matches))
+;;            (other-matches (member (current-window) matches))
+;;            (win (if (> (length other-matches) 1)
+;;                     (second other-matches)
+;;                     ;; (if (and visible-matches
+;;                     ;;          (not (equal (first visible-matches)
+;;                     ;;                      (current-window))))
+;;                     ;;     (first visible-matches)
+;;                     ;;     (first matches))
+;;                     (first matches)
+;;                     )))
+;;       (if win
+;;           (goto-win win)))))
+
+;; (defparameter moving nil)
+
+;; (defmacro shifting-command (name props cmd &optional rat)
+;;   "a command that will shift windows around when selecting or running the
+;; program"
+;;   `(defcommand ,name () ()
+;;      (if moving
+;;          (let ((win (first-match ,props)))
+;;            (if (no win)
+;;                (progn (shift-window-from (primary-frame) win)
+;;                                         ;(move-focus :right)
+;;                       (run-shell-command ,cmd))
+;;                (progn
+;;                  (unless (and (already-in-primary-frame? win) (window-visible-p win))
+;;                    (shift-window-from (primary-frame) win))
+;;                  (pull-window win (primary-frame))
+;;                  (focus win))))
+;;          (if (first-match ,props t)
+;;              (progn (focus-matching-window ,props)
+;;                     (if ,rat (ratbottomright)))
+;; (run-shell-command ,cmd)))))
+
+;; ;;; from tycho
+;; (in-package :stumpwm)
+
+;; ;; Window swapping tool
+;; (defvar *swapping-window* nil
+;;   "What window we're swapping out.  Do not customize by hand!")
+;; (defvar *swapping-window-frame* nil
+;;   "What frame we're swapping to.  Do not customize by hand!")
+
+;; (defcommand swap-window () ()
+;;   "Run first on one window and then the next to swap the two windows"
+;;   (if *swapping-window*
+;;       (let ((this-current-window (current-window)))
+;;         (pull-window *swapping-window*)
+;;         (setf *swapping-window* nil)
+;;         (if *swapping-window-frame*
+;;             (pull-window this-current-window *swapping-window-frame*)
+;;             (setf *swapping-window-frame nil))
+;;         (echo "Swapped!"))
+;;       (progn
+;;         (setf *swapping-window* (current-window))
+;;         (setf *swapping-window-frame* (window-frame (current-window)))
+;;         (echo "Window marked for swapping."))))
+
+;; (defparameter *focus-frame-skip-list* '())
+
+;; (defun focus-frame-after (group frames)
+;;   "Given a list of frames focus the next one in the list after
+;; the current frame, except for those in *focus-frame-skip-list*."
+;;   (let ((next-frame (tile-group-current-frame group)))
+;;     (do ((rest (cdr (member next-frame frames :test 'eq))
+;;                (cdr (member next-frame frames :test 'eq)))
+;;          (frames-left (length frames) (1- frames-left)))
+;;         (nil)
+;;       (setf next-frame (if rest (car rest) (car frames)))
+;;       (unless (member next-frame *focus-frame-skip-list*)
+;;         (return))
+;;       (when (= frames-left 0) ; stop inifinite cycle
+;;         (setf next-frame nil)
+;;         (return)))
+;;     (when next-frame
+;;       (focus-frame group next-frame))))
+
+;; (defun focus-skip-current-frame (group)
+;;   (push (tile-group-current-frame group) *focus-frame-skip-list*))
+
+;; (defun focus-unskip-current-frame (group)
+;;   (setf *focus-frame-skip-list* (remove (tile-group-current-frame group)
+;;   *focus-frame-skip-list*)))
+
+;; (defcommand (fskip tile-group) () ()
+;;             "Put the current frame into the fnext/fprev skip list."
+;;             (focus-skip-current-frame (current-group)))
+
+;; (defcommand (funskip tile-group) () ()
+;;             "Take the current frame out of the fnext/fprev skip list."
+;; (focus-unskip-current-frame (current-group)))
+
+
+;; ;; TBD: heads should be updated automagically!!!
+;; (defcommand update-heads () ()
+;;                          "Update heads on current screen"
+;;                          (let* ((screen (current-screen))
+;;                                       (old-heads (copy-list (screen-heads screen))))
+;;                              (setf (screen-heads screen) nil)
+;;                              (let ((new-heads (make-screen-heads screen (screen-root screen))))
+;;                                  (setf (screen-heads screen) old-heads)
+;;                                  (cond
+;;                                      ((equalp old-heads new-heads)
+;;                                       (dformat 3 "Bogus configure-notify on root window of ~S~%" screen) t)
+;;                                      (t
+;;                                       (dformat 1 "Updating Xinerama configuration for ~S.~%" screen)
+;;                                       (if new-heads
+;;                                               (progn
+;;                                                   (scale-screen screen new-heads)
+;;                                                   (mapc 'group-sync-all-heads (screen-groups screen))
+;;                                                   (update-mode-lines screen))
+;;                                               (dformat 1 "Invalid configuration! ~S~%" new-heads)))))))
+
+;; ;; window placement
+; #+nil
+;; (defcommand layout-etc () ()
+;;                          "Layout with Emacs, terminal and conkeror"
+;;                          (restore-group (current-group)
+;;                                                       (make-gdump :number 1 :name "default"
+;;                                                                               :tree (list
+;;                                                                                              (list
+;;                                                                                               (make-fdump :number 0 :x 0 :y 0 :width 1680 :height 525
+;;                                                                                                                       :windows nil :current nil)
+;;                                                                                               (list
+;;                                                                                                  (make-fdump :number 1 :x 0 :y 525 :width 840 :height 525
+;;                                                                                                                          :windows nil :current nil)
+;;                                                                                                  (make-fdump
+;;                                                                                                   :number 4 :x 840 :y 525 :width 840 :height 525
+;;                                                                                                   :windows nil :current nil))))
+;;                                                                               :current 0))
+;;                          (setf *window-placement-rules*
+;;                                      '(("Default" 4 T T :CLASS "Conkeror" :INSTANCE "Navigator" :TITLE NIL :ROLE
+;;                                           "browser")
+;;                                          ("Default" 1 T T :CLASS "Gnome-terminal" :INSTANCE "gnome-terminal" :TITLE NIL
+;;                                           :ROLE "gnome-terminal-window-12785--1394073183-1274533966")
+;;                                          ("Default" 0 T T :CLASS "Emacs" :INSTANCE "emacs" :TITLE NIL :ROLE NIL)
+;                                          #+nil ("Default" 2 T T :CLASS "Argv0dummy" :INSTANCE "argv0dummy" :TITLE NIL :ROLE nil)))
+;;                          (place-existing-windows))
+
+;; (defcommand rule-them-all () ()
+;;                          "Make rules for all currently active windows"
+;;                          (clear-window-placement-rules)
+;;                          (dolist (w (all-windows))
+;;                              (make-rule-for-window w t)))
+
+;; (defcommand layout-base () ()
+;;                          "Arrange windows according to the default desktop placement"
+;;                          (update-heads)
+;;                          (let ((desktop-file (home-file ".stumpwm-desktop-base"))
+;;                                      (window-file (home-file ".stumpwm-windows-base")))
+;;                              (cond ((not (probe-file desktop-file))
+;;                                           (message "~s not found" desktop-file))
+;;                                          ((not (probe-file window-file))
+;;                                           (message "~s not found" window-file))
+;;                                          (t
+;;                                           (restore-from-file desktop-file)
+;;                                           (restore-window-placement-rules window-file)
+;;                                           (place-existing-windows)
+;;                                           (dolist (func *on-layout-base*)
