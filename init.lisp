@@ -11,9 +11,9 @@
 
 (defparameter *username* "alex3rd")
 (defparameter *SLIME-DIR* (format nil "/home/~a/quicklisp/dists/quicklisp/software/slime-v2.20/" *username*))
-(defparameter *CL-USER-DIR* (at-homedir ".commonlisp/"))
+(defparameter *STUMPWM-CONTRIB-GIT-DIR* (at-homedir "workspace/repos/github.com/wiedzmin/stumpwm-contrib/"))
+(defparameter *STUMPWM-GIT-DIR* (at-homedir "workspace/repos/github.com/wiedzmin/stumpwm-contrib/"))
 (defparameter *STUMPWM-LIB-DIR* (at-homedir ".stumpwm.d/"))
-(defparameter *STUMPWM-GIT-DIR* (at-homedir ".commonlisp/stumpwm-git/"))
 
 (defun cat (&rest strings) ; "Concatenates strings, like the Unix command 'cat'. A shortcut for (concatenate 'string foo bar)."
   (apply 'concatenate 'string strings))
@@ -38,7 +38,7 @@
 (swank-loader:init) ;; Load swank.;; *prefix-key* ; swank will kick this off
 (swank-loader::setup)
 
-(init-load-path (concatenate 'string *CL-USER-DIR* "stumpwm-contrib/"))
+(init-load-path *STUMPWM-CONTRIB-GIT-DIR*)
 
 (load-module "battery-portable") ;TODO: investigate/setup/maillist
 (load-module "cpu")
@@ -52,7 +52,6 @@
 (load-module "winner-mode")
 (load-module "globalwindows")
 (load-module "urgentwindows")
-(load-module "searchengines")
 (load-module "perwindowlayout")
 
 (load-config-module "common.lisp")
@@ -62,7 +61,6 @@
 
 (load-config-module "custom.lisp")
 (load-config-module "keydefs.lisp")
-(load-config-module "searches.lisp")
 
 (load-rc)
 

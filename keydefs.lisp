@@ -11,10 +11,6 @@
 
 (set-prefix-key (kbd "s-z"))
 
-;; (define-keysym #x1008ff11 "XF86AudioLowerVolume")
-;; (define-keysym #x1008ff12 "XF86AudioMute")
-;; (define-keysym #x1008ff13 "XF86AudioRaiseVolume")
-
 (define-keys *raise-keymap*
   ("DEL"  "other")
   ("3" "custom/spawn-emacs-frame"))
@@ -119,13 +115,11 @@
   ("s-u"     "raise-urgent")
   ("s-f"     "fullscreen")
   ;;
-  ("s-/"       *search-keymap*)
   ("s-1"       *pull-keymap*)
   ("s-2"       *raise-keymap*)
   ("s-`"       *heads-keymap*)
   ("s-3"       *frames-keymap*)
   ("s-q"       *desktop-keymap*)
-  ("s-w"       *web-keymap*)
   ("s-s"       *swank-keymap*)
   ("s-4"       *shell-keymap*)
   ("s-e"       "fselect") ;TODO: tolerate unselected frames/windows within fselect implementation

@@ -12,8 +12,6 @@
 
 (defparameter *pull-keymap* (make-sparse-keymap))
 (defparameter *raise-keymap* (make-sparse-keymap))
-(defparameter *search-keymap* (make-sparse-keymap))
-(defparameter *web-keymap* (make-sparse-keymap))
 (defparameter *heads-keymap* (make-sparse-keymap))
 (defparameter *frames-keymap* (make-sparse-keymap))
 (defparameter *desktop-keymap* (make-sparse-keymap))
@@ -93,12 +91,6 @@
   (let ((p (mismatch str2 str1 :from-end T)))
     (or (not p) (= 0 p))))
 
-(defun screenshot-filename ()
-  (cat
-   "~/screenshots/screenshot-"
-   (run-shell-command "date +\"%Y-%m-%d-%T\" | tr -d '[:cntrl:]'" t)
-   ".png"))
-
 (defun fix-str-length (str length)
   (if (> (length str) length)
       (cat (subseq str 0 (- length 2)) ".*")
@@ -151,24 +143,6 @@ in which case pull it into the current frame."
            #',name
            )))
 
-(defmacro defwebjump (caption url &key (map *web-keymap*) (key nil) (binded t) (browser nil))
-  (let ((command-name (concat-as-symbol "custom/open-" (string-downcase (substitute #\- #\Space caption))))
-        (browserobj (get-browser-by-name browser)))
-    `(progn
-       ,(when (and binded
-                   key)
-              `(define-key ,map (kbd ,key) nil))
-       (defcommand
-           ,command-name () ()
-         ,(format nil "Open ~a" caption)
-         ,(if browserobj
-              `(open-in-browser ,url :browser ,browserobj)
-              `(open-in-browser ,url))
-         )
-       ,(when (and binded
-                   key)
-              `(define-key ,map (kbd ,key) ,(string-downcase command-name))))))
-
 (defun enable-mode-line-all-heads ()
   (dolist (screen *screen-list*)
     (dolist (head (screen-heads screen))
@@ -217,71 +191,6 @@ in which case pull it into the current frame."
           (when (not (equal selected-file ""))
             ,@body)))))
 
-(defun list-with-newlines (items)
-  (format nil "~{~a~%~}" items))
-
-(defun rofi-dmenu (items)
-  (string-trim
-   '(#\Newline)
-   (run-shell-command
-    (format nil "echo -e \"~a\" | rofi -dmenu -i"
-            (list-with-newlines items)) t)))
-
-(defmacro define-rofi-filelist-selector (fn doc pathspec &body body)
-  `(defun ,(intern (string-upcase fn)) ()
-      ,doc
-      (let ((filelist (mapcar (lambda (pathname) (namestring pathname)) (directory-file-list ,@pathspec))))
-        (let ((selected-file (rofi-dmenu filelist)))
-          (when (not (equal selected-file ""))
-            ,@body)))))
-
-(defmacro define-rofi-filelist-selector-recursive (fn doc path filterfn &body body)
-  `(defun ,(intern (string-upcase fn)) ()
-      ,doc
-      (let ((filelist nil))
-        (cl-fad:walk-directory ,path (lambda (fname) (push (namestring fname) filelist)) :test ,filterfn)
-        (let ((selected-file (rofi-dmenu filelist)))
-          (when (not (equal selected-file ""))
-            ,@body)))))
-
-(define-rofi-filelist-selector
-    "select-layout-from-menu"
-    "Select and apply saved window layout"
-    (:subdir "layouts")
-  (restore-group (current-group) (read-dump-from-file selected-file)))
-
-(defparameter *ebook-formats*
-  '("pdf" "djvu")
-  "ebook formats to consider")
-
-(defcommand toggle-pdf-tools-usage () ()
-  (setf (psetup-use-pdf-tools *persistent-setup*)
-        (not (psetup-use-pdf-tools *persistent-setup*)))
-  (save-persistent-setup))
-
-(define-rofi-filelist-selector-recursive
-    "select-books-from-menu"
-    "Select from current virtual bookshelf"
-    "/home/octocat/bookshelf"
-    (lambda (filespec) (member (pathname-type filespec) *ebook-formats* :test #'equal))
-  (if (and (psetup-use-pdf-tools *persistent-setup*) (ends-with-p selected-file "pdf"))
-      (run-shell-command (format nil "emacsclient --eval '(find-file \"~a\")'" selected-file) nil)
-      (run-shell-command (format nil "~a \"~a\"" *PDF-VIEWER* selected-file) nil)))
-
-(defun select-links-from-var (linkslist &key (with-captions nil))
-  (let ((link (if with-captions
-                  (cadr (select-from-menu (current-screen) linkslist))
-                  (select-from-menu (current-screen) linkslist))))
-    (when link
-      (open-in-browser link))))
-
-(defun select-links-from-var-rofi (linkslist &key (with-captions nil))
-  (let ((link (if with-captions
-                  (cadr (assoc (rofi-dmenu (mapcar #'(lambda (item) (car item)) linkslist)) linkslist :test #'string=))
-                  (select-from-menu (current-screen) linkslist))))
-    (when link
-      (open-in-browser link))))
-
 (defun global-pointer-position ()
   "Get global position of the mouse pointer."
   (xlib:global-pointer-position *display*))
@@ -319,16 +228,6 @@ in which case pull it into the current frame."
             (mouse-location-in-frame currentframe)
           (warp-pointer (current-screen) pointer-x pointer-y))))))
 (add-hook *focus-frame-hook* 'mouse-follow-focus)
-
-(defmacro define-list (pname clear &rest listdata)
-  `(progn
-    (unless (boundp ',pname)
-      (defparameter ,pname nil))
-    (when ,clear
-      (setf ,pname nil))
-    (dolist (item (quote ,listdata))
-      (push item ,pname))
-    (setf ,pname (reverse ,pname))))
 
 (defun get-browser-by-name (name)
   (cadr (assoc name *available-browsers* :test #'equalp)))
@@ -390,14 +289,14 @@ in which case pull it into the current frame."
 
 (defcommand raise-volume () ()
   "Raise volume."
-  (run-shell-command "amixer -c 0 set Master 10+"))
+  (run-shell-command "volumectl inc"))
 
 (defcommand lower-volume () ()
   "Lower volume."
-  (run-shell-command "amixer -c 0 set Master 10-"))
+  (run-shell-command "volumectl dec"))
 
 (defcommand toggle-volume () ()
-  (run-shell-command "amixer set Master toggle >> /dev/null" t))
+  (run-shell-command "volumectl tog"))
 
 (defcommand toggle-modeline () ()
   "Toggle mode line."
@@ -406,15 +305,15 @@ in which case pull it into the current frame."
 
 (defcommand screenshot-window-active () ()
   "Make screenshot of focus window"
-  (run-shell-command (format nil "maim -o -i $(xdotool getactivewindow) --format png /dev/stdout | tee ~a | xclip -t image/png -i" (screenshot-filename)) nil))
+  (run-shell-command "screenshot_active_window" nil))
 
 (defcommand screenshot-selection () ()
   "Make screenshot of focus window"
-  (run-shell-command (format nil "maim -o -s --format png /dev/stdout | tee ~a | xclip -t image/png -i" (screenshot-filename)) nil))
+  (run-shell-command "screenshot_region" nil))
 
 (defcommand screenshot-workplace () ()
   "Make screenshot of focus window"
-  (run-shell-command (format nil "maim -o --format png /dev/stdout | tee ~a | xclip -t image/png -i" (screenshot-filename)) nil))
+  (run-shell-command "screenshot_full" nil))
 
 (defcommand update-mode-line () ()
   "Update the mode-line sooner than usual."
@@ -551,11 +450,6 @@ rules."
   (let ((group-file (cat *STUMPWM-LIB-DIR* "layouts/" filename)))
     (dump-to-file (dump-group (current-group)) group-file)))
 
-;; TBD Refactor to generalize with search macros
-(defcommand custom/open-selection () ()
-  "Open selection in browser as URL"
-  (open-in-browser (get-x-selection)))
-
 (defcommand custom/choose-group-layout () ()
   "Select windows layout from menu"
   (select-layout-from-menu))
@@ -572,10 +466,6 @@ rules."
 (defcommand custom/run-wicd-curses () ()
   "Run wicd-curses"
   (run-shell-command "urxvt -e wicd-curses"))
-
-(defcommand custom/run-wicd-gtk () ()
-  "Run wicd-gtk"
-  (run-shell-command "wicd-gtk"))
 
 (defcommand custom/run-iotop () ()
   "Run iotop"
@@ -598,10 +488,10 @@ rules."
   (emacs-org-open-agenda-list))
 
 (defcommand brightness-up () () ;TODO: think of using "light"
-  (run-shell-command "xbacklight -inc 10"))
+  (run-shell-command "backlightctl inc"))
 
 (defcommand brightness-down () () ;TODO: think of using "light"
-  (run-shell-command "xbacklight -dec 10"))
+  (run-shell-command "backlightctl dec"))
 
 (defcommand mode-lines () ()
   "A command to toggle the mode line visibility for all screens/heads."
@@ -613,38 +503,23 @@ rules."
 (defparameter *job-vpn-status-changed-hook* '())
 
 (defcommand custom/start-job-vpn () ()
-  (run-shell-command "sudo /etc/init.d/job-vpn start")
+  (run-shell-command "jobvpnctl start")
   (run-hook *job-vpn-status-changed-hook*))
 
 (defcommand custom/stop-job-vpn () ()
-  (run-shell-command "sudo /etc/init.d/job-vpn stop")
+  (run-shell-command "jobvpnctl stop")
   (run-hook *job-vpn-status-changed-hook*))
-
-(defcommand custom/job-vpn-status () ()
-  (format nil "job VPN: ~a"
-          (car (last (split-seq (run-shell-command "sudo /etc/init.d/job-vpn status" t) " ")))))
 
 ;;TODO: incapsulate/relocate/improve
 (defparameter *sshuttle-status-changed-hook* '())
 
 (defcommand custom/start-sshuttle () ()
-  (run-shell-command "sudo /etc/init.d/sshuttle start")
+  (run-shell-command "sshuttlectl start")
   (run-hook *sshuttle-status-changed-hook*))
 
 (defcommand custom/stop-sshuttle () ()
-  (run-shell-command "sudo /etc/init.d/sshuttle stop")
+  (run-shell-command "sshuttlectl stop")
   (run-hook *sshuttle-status-changed-hook*))
-
-(defcommand custom/sshuttle-status () ()
-  (format nil "sshuttle: ~a"
-          (car (last (split-seq (run-shell-command "sudo /etc/init.d/sshuttle status" t) " ")))))
-
-(defcommand custom/restart-job-vpn () ()
-  (custom/stop-job-vpn)
-  (custom/start-job-vpn))
-
-(defcommand custom/rofi-windowlist () ()
-  (run-shell-command "rofi -show window"))
 
 (defcommand custom/bother-stuck-emacs () ()
   (run-shell-command "pkill -SIGUSR2 emacs"))
@@ -660,11 +535,8 @@ rules."
 (defcommand custom/spawn-emacs-frame () ()
   (run-shell-command "emacsclient -c -n -e '(switch-to-buffer nil)'"))
 
-(defcommand custom/statusbar-osd () ()
-  (run-shell-command "statusbar_osd"))
-
 (defcommand custom/sbcl-send-exit () () ;TODO: generalize
   (window-send-string "(exit)"))
 
 (defcommand custom/restart-wifi () ()
-  (run-shell-command "sudo nmcli radio wifi off && sudo nmcli radio wifi on"))
+  (run-shell-command "wifictl jog"))
