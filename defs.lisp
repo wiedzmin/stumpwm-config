@@ -540,3 +540,52 @@ rules."
 
 (defcommand custom/restart-wifi () ()
   (run-shell-command "wifictl jog"))
+
+;; IDEA
+;; hydra-like machinery when we have activation key and then menu
+;; (rofi/builtin) pops up asking what item we want to activate
+
+;; (defun hide-all-lower-windows (current last)
+;;   (declare (ignore current last))
+;;   (when (typep (current-group) 'stumpwm::tile-group)
+;;     (mapc (lambda (win)
+;;             (unless (eq win (stumpwm::frame-window
+;;                              (stumpwm::window-frame win)))
+;;               (stumpwm::hide-window win)))
+;;           (group-windows (current-group)))))
+
+;; (defcommand enable-hiding-lower-windows () ()
+;;   "Enable a hook that hides all windows that aren't at the top of
+;;    their frame.
+;;    This is primarily useful when you have (a) transparent window(s) and
+;;    want to see the wallpaper underneath instead of other windows."
+;;             (add-hook *focus-window-hook* 'hide-all-lower-windows))
+
+;; (setf *xrandr-heads* '("HDMI1" "VGA1"))
+
+;; (defun dim-inactive-head (arg1 arg2)
+;;    (let* ((brighthead (slot-value (current-head) 'number))
+;;      (dimhead (if (eql brighthead 0) 1 0)))
+;;      (run-shell-command
+;;       (format nil "/usr/bin/xrandr --output ~d --brightness 1.0" (nth
+;; brighthead *xrandr-heads*)))
+;;      (run-shell-command
+;;       (format nil "/usr/bin/xrandr --output ~d --brightness 0.7" (nth
+;; dimhead *xrandr-heads*)))))
+
+;; > (run-shell-command (format nil "transset -t --id ~a" (window-id (first
+;; > (visible-windows)))))
+
+;; (defmacro toggle-command (state-var command kill-command)
+;;       `(progn (if ,state-var
+;;       (run-shell-command ,kill-command)
+;;           (run-shell-command ,command))
+;;         (setf ,state-var (not ,state-var))))
+
+;; (defmacro deftoggle (function-sym command kill-command)
+;;   `(let (toggle-state)
+;;     (defun ,function-sym ()
+;;        (toggle-command toggle-state ,command ,kill-command))))
+
+
+;; (deftoggle toggle-trayer "/usr/bin/trayer --SetDockType false" "killall trayer")
